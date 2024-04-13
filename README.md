@@ -1,4 +1,4 @@
-# SER516-Team-Cleveland
+# SER516-Team-Clever
 <div>
     <img width="20" src="https://user-images.githubusercontent.com/25181517/183423507-c056a6f9-1ba8-4312-a350-19bcbc5a8697.png" alt="Python" title="Python"/>
     <img width="20" src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" alt="React" title="React"/>
@@ -24,7 +24,7 @@ This project is a Python script for interacting with the Taiga API to perform va
   and run the command- 
 
    ``` bash
-   cd SER516-Team-Cleveland
+   cd SER516-Team-Clever
    docker-compose up --build -d
    ```
   It should run a multi-container application, which contains the front-end and the back-end applications. 
@@ -42,8 +42,8 @@ This project is a Python script for interacting with the Taiga API to perform va
     - Taiga project slug
     - Clone the repository
     ```bash
-       git clone https://github.com/ser516asu/SER516-Team-Cleveland.git
-       cd SER516-Team-Cleveland/taigaProject
+       git clone https://github.com/ser516asu/SER516-Team-Clever.git
+       cd SER516-Team-Clever/taigaProject
     ```
 
   - #### 2. Running the Backend Application
