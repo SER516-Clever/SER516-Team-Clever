@@ -8,7 +8,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - denver
+      - clever
 
   auth:
     build:
@@ -17,7 +17,7 @@ services:
     ports:
       - "8081:8080"
     networks:
-      - denver
+      - clever
 
   project:
     build:
@@ -26,34 +26,34 @@ services:
     ports:
       - "8082:8080"
     networks:
-      - denver
+      - clever
 
   burndown:
     build:
       context: /burndown-chart
       dockerfile: Dockerfile
     ports:
-      - "8083:8080"
+      - "8083:8004"
     networks:
-      - denver
+      - clever
 
   cycletime:
     build:
       context: /cycle-time
       dockerfile: Dockerfile
     ports:
-      - "8084:8080"
+      - "8084:8002"
     networks:
-      - denver
+      - clever
   
   leadtime:
     build:
       context: /lead-time
       dockerfile: Dockerfile
     ports:
-      - "8085:8080"
+      - "8085:8001"
     networks:
-      - denver
+      - clever
 
   adoptedwork:
     build:
@@ -62,7 +62,7 @@ services:
     ports:
       - "8086:8080"
     networks:
-      - denver
+      - clever
   
   foundwork:
     build:
@@ -71,7 +71,7 @@ services:
     ports:
       - "8087:8080"
     networks:
-      - denver
+      - clever
     
   deliveryontime:
     build:
@@ -80,25 +80,25 @@ services:
     ports:
       - "8088:8080"
     networks:
-      - denver
+      - clever
 
   cruft:
     build:
       context: /cruft
       dockerfile: Dockerfile
     ports:
-      - "8089:8080"
+      - "8089:8005"
     networks:
-      - denver
+      - clever
 
   devFocus:
     build:
       context: /dev-focus
       dockerfile: Dockerfile
     ports:
-      - "8090:8080"
+      - "8090:8003"
     networks:
-      - denver
+      - clever
 
 networks:
-  denver:
+  clever:
