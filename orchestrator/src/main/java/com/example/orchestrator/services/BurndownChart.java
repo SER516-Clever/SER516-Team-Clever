@@ -1,11 +1,7 @@
 package com.example.orchestrator.services;
 
-import com.example.orchestrator.models.AuthModel;
 import com.example.orchestrator.models.BurndownChartRequest;
-import com.example.orchestrator.models.TimeRequest;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.net.URI;
