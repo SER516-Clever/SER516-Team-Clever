@@ -1,19 +1,31 @@
 package com.example.orchestrator;
 
 import com.example.orchestrator.models.AuthModel;
+import com.example.orchestrator.models.BurndownChartRequest;
+import com.example.orchestrator.models.CruftRequest;
+import com.example.orchestrator.models.DevFocusRequest;
+import com.example.orchestrator.models.ProjectRequest;
+import com.example.orchestrator.models.TimeRequest;
 import com.example.orchestrator.services.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
-import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/api")
+@Slf4j
 public class Controller {
 
     @Autowired
@@ -35,6 +47,12 @@ public class Controller {
     DeliveryOnTimeService deliveryOnTimeService;
     @Autowired
     FoundWorkService foundWorkService;
+    @Autowired
+    CruftService cruftService;
+    @Autowired
+    DevFocusService devFocusService;
+    @Autowired
+    SprintService sprintService;
 
 
     @PostMapping("/login")
@@ -67,63 +85,19 @@ public class Controller {
         return projectService.getProjectDetailsSlug(Slug, token);
     }
 
-    @GetMapping("/burndownchart/{milestoneID}")
-    @ResponseBody
-    public String getBurndownValues(@PathVariable("milestoneID") Integer milestoneID,
-                                          @RequestParam Boolean totalSum, @RequestParam Boolean partialSum,
-                                          @RequestParam Boolean BVSum) {
-        return burndownChart.getBurndownValues(milestoneID, totalSum, partialSum, BVSum, token);
-
+    @PostMapping("/metric/Burndown")
+    public String getBurndownMetric(@RequestBody final BurndownChartRequest request) {
+        return burndownChart.getBurndownMetric(request, token);
     }
 
-    @GetMapping("/cycleTime/US/{milestoneID}")
-    @ResponseBody
-    public String getUSCycleTime(@PathVariable("milestoneID") Integer milestoneID) {
-        return cycleTimeService.getUSCycleTime(milestoneID, token);
+    @PostMapping("/metric/CycleTime")
+    public String getCycleTime(@RequestBody final TimeRequest request) {
+        return cycleTimeService.getCycleTimeMetric(request, token);
     }
 
-    @GetMapping("/cycleTime/Task/{milestoneID}")
-    @ResponseBody
-    public String getTaskCycleTime(@PathVariable("milestoneID") Integer milestoneID) {
-        return cycleTimeService.getTaskCycleTime(milestoneID, token);
-    }
-
-    @GetMapping("/cycleTime/US/byTime/{projectId}")
-    @ResponseBody
-    public String getUSCycleTimebyDates(@PathVariable Integer projectId, @RequestParam LocalDate startDate,
-                                                    @RequestParam LocalDate endDate) {
-        return cycleTimeService.calculateUSCycleTimebyDates(projectId, startDate, endDate, token);
-    }
-
-    @GetMapping("/cycleTime/Task/byTime/{projectId}")
-    @ResponseBody
-    public String getTaskCycleTimebyDates(@PathVariable Integer projectId, @RequestParam LocalDate startDate,
-                                           @RequestParam LocalDate endDate) {
-        return cycleTimeService.calculateTaskCycleTimebyDates(projectId, startDate, endDate, token);
-    }
-
-    @GetMapping("/leadTime/US/{milestoneID}")
-    @ResponseBody
-    public String getLeadTimeUS(@PathVariable("milestoneID") Integer  milestoneID) {
-        return taskService.calculateLeadTimeUS(milestoneID, token);
-    }
-
-    @GetMapping("/leadTime/Task/{milestoneID}")
-    @ResponseBody
-    public String getLeadTimeTask(@PathVariable("milestoneID") Integer  milestoneID) {
-        return taskService.calculateLeadTimeTask(milestoneID, token);
-    }
-
-    @GetMapping("/customleadTime/US")
-    @ResponseBody
-    public String getLeadTimeUSbyTime(@RequestParam Integer projectId, @RequestParam LocalDate startDate, @RequestParam LocalDate endDate) {
-        return taskService.calculateLeadTimeUSbyTime(projectId, startDate, endDate, token);
-    }
-
-    @GetMapping("/customleadTime/Task")
-    @ResponseBody
-    public String getLeadTimeTaskbyTime(@RequestParam Integer projectId, @RequestParam LocalDate startDate, @RequestParam LocalDate endDate) {
-        return taskService.calculateLeadTimeTaskbyTime(projectId, startDate, endDate, token);
+    @PostMapping("/metric/LeadTime")
+    public String getLeadTime(@RequestBody final TimeRequest request) {
+        return taskService.getLeadTimeMetric(request, token);
     }
 
     @GetMapping("/adoptedWork/{milestoneID}")
@@ -165,6 +139,26 @@ public class Controller {
     @ResponseBody
     public String getFoundWorkByID(@PathVariable("milestoneID") Integer milestoneID) {
         return foundWorkService.getFoundWork(milestoneID, token);
+    }
+
+    @PostMapping("/metric/Cruft")
+    public String getCruftMetric(@RequestBody final CruftRequest request) {
+        return cruftService.getCruftMetric(request, token);
+    }
+
+    @PostMapping("/metric/Devfocus")
+    public String getDevFocusMetric(@RequestBody final DevFocusRequest request) {
+        return devFocusService.getDevFocusMetric(request, token);
+    }
+
+    @PostMapping("/Sprints")
+    public String getSprint(@RequestBody final ProjectRequest request) {
+        return sprintService.getSprint(request, token);
+    }
+
+    @PostMapping("/Project")
+    public String getProject(@RequestBody final ProjectRequest request) {
+        return sprintService.getProject(request, token);
     }
 
 }

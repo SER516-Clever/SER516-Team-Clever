@@ -3,6 +3,8 @@ build/
 dist/
 *.egg-info/
 
+*.DS_STORE
+
 # Compiled class file
 *.class
 

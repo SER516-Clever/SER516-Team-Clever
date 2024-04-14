@@ -1,23 +1,24 @@
 package com.example.orchestrator.services;
 
-import com.example.orchestrator.models.TimeRequest;
+import com.example.orchestrator.models.CruftRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.net.URI;
 
 @Service
-public class TaskService {
+public class CruftService {
+
     WebClient webClient;
 
-    String authUrl2 = "http://lead_time:8001";
+    String url = "http://cruft:8005";
 
-    public TaskService() {
+    public CruftService() {
         this.webClient = WebClient.create();
     }
 
-    public String getLeadTimeMetric(final TimeRequest request, final String token) {
-        URI uri = URI.create(authUrl2 + "/metric/LeadTime");
+    public String getCruftMetric(final CruftRequest request, final String token) {
+        URI uri = URI.create(url + "/metric/Cruft");
 
         return webClient.post()
                 .uri(uri)
