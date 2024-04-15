@@ -28,7 +28,7 @@ services:
     networks:
       - clever
 
-  burndown-chart:
+  burndown_chart:
     build: burndown-chart/
     container_name: burndown_chart
     ports:
@@ -36,7 +36,7 @@ services:
     networks:
       - clever
 
-  cycle-time:
+  cycle_time:
     build: cycle-time/
     container_name: cycle_time
     ports:
@@ -44,7 +44,7 @@ services:
     networks:
       - clever
   
-  lead-time:
+  lead_time:
     build: lead-time/
     container_name: lead_time
     ports:
@@ -87,7 +87,7 @@ services:
     networks:
       - clever
 
-  dev-focus:
+  dev_focus:
     build: dev-focus/
     container_name: dev_focus
     ports:
