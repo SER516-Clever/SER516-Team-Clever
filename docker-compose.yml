@@ -34,7 +34,7 @@ services:
     ports:
       - "8004:8004"
     networks:
-      - denver
+      - clever
 
   cycle-time:
     build: cycle-time/
@@ -85,7 +85,7 @@ services:
     ports:
       - "8005:8005"
     networks:
-      - denver
+      - clever
 
   dev-focus:
     build: dev-focus/
@@ -101,7 +101,7 @@ services:
     ports:
       - "8010:8010"
     networks:
-      - denver
+      - clever
 
   frontend:
     build: ./react-ui
@@ -109,7 +109,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - denver
+      - clever
 
 networks:
   clever:
