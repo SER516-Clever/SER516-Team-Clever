@@ -15,8 +15,6 @@ def get_burndown_chart_metric(
     burndownChartRequest: BurndownChartRequest,
     token: Annotated[str | None, Header()] = None
 ):
-    print(burndownChartRequest.attributeKey)
-    print(burndownChartRequest.milestoneIds)
     if len(burndownChartRequest.milestoneIds) == 1:
         return get_burndown_chart_metric_detail(
             burndownChartRequest.milestoneIds[0],
