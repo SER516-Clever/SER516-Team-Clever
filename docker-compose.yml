@@ -32,8 +32,9 @@ services:
     build:
       context: /burndown-chart
       dockerfile: Dockerfile
+    container_name: burndown_chart
     ports:
-      - "8083:8004"
+      - "8004:8004"
     networks:
       - clever
 
@@ -41,8 +42,9 @@ services:
     build:
       context: /cycle-time
       dockerfile: Dockerfile
+    container_name: cycle_time
     ports:
-      - "8084:8002"
+      - "8002:8002"
     networks:
       - clever
   
@@ -50,8 +52,9 @@ services:
     build:
       context: /lead-time
       dockerfile: Dockerfile
+    container_name: lead_time
     ports:
-      - "8085:8001"
+      - "8001:8001"
     networks:
       - clever
 
@@ -86,8 +89,9 @@ services:
     build:
       context: /cruft
       dockerfile: Dockerfile
+    container_name: cruft
     ports:
-      - "8089:8005"
+      - "8005:8005"
     networks:
       - clever
 
@@ -95,8 +99,25 @@ services:
     build:
       context: /dev-focus
       dockerfile: Dockerfile
+    container_name: dev_focus
     ports:
-      - "8090:8003"
+      - "8003:8003"
+    networks:
+      - clever
+
+  backend:
+    build: ./taigaProject
+    container_name: backend
+    ports:
+      - "8010:8010"
+    networks:
+      - clever
+
+  frontend:
+    build: ./react-ui
+    container_name: frontend
+    ports:
+      - "3000:3000"
     networks:
       - clever
 
