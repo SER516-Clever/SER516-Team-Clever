@@ -41,7 +41,7 @@ const DateSelectorCruft = ({ attributes, token, projectId, onDateSubmit }) => {
         console.log(formData)
 
         axios({
-            url: "http://localhost:8080/metric/Cruft",
+            url: "http://localhost:8080/api/metric/Cruft",
             method: "post",
             data: formData,
             headers: {

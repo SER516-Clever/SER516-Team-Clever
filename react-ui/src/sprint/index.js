@@ -47,7 +47,7 @@ const SprintDetail = ({ sprintDetails, attributes, token, projectName }) => {
         };
 
         axios({
-            url: "http://localhost:8004/metric/Burndown",
+            url: "http://localhost:8080/api/metric/Burndown",
             method: "post",
             data: formData,
             headers: {
