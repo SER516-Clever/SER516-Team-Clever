@@ -11,7 +11,7 @@ public class DevFocusService {
 
     WebClient webClient;
 
-    String url = "http://dev_focus:8003";
+    String url = "http://devfocus:8003";
 
     public DevFocusService() {
         this.webClient = WebClient.create();

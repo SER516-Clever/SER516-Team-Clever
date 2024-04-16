@@ -28,25 +28,25 @@ services:
     networks:
       - clever
 
-  burndown_chart:
+  burndownchart:
     build: burndown-chart/
-    container_name: burndown_chart
+    container_name: burndownchart
     ports:
       - "8004:8004"
     networks:
       - clever
 
-  cycle_time:
+  cycletime:
     build: cycle-time/
-    container_name: cycle_time
+    container_name: cycletime
     ports:
       - "8002:8002"
     networks:
       - clever
-  
-  lead_time:
+ 
+  leadtime:
     build: lead-time/
-    container_name: lead_time
+    container_name: leadtime
     ports:
       - "8001:8001"
     networks:
@@ -87,9 +87,9 @@ services:
     networks:
       - clever
 
-  dev_focus:
+  devfocus:
     build: dev-focus/
-    container_name: dev_focus
+    container_name: devfocus
     ports:
       - "8003:8003"
     networks:

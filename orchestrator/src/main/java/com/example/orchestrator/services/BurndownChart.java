@@ -10,7 +10,7 @@ import java.net.URI;
 public class BurndownChart {
     WebClient webClient;
 
-    String url = "http://burndown_chart:8004";
+    String url = "http://burndownchart:8004";
 
     public BurndownChart() {
         this.webClient = WebClient.create();

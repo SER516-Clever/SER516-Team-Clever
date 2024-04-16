@@ -10,7 +10,7 @@ import java.net.URI;
 public class CycleTimeService {
     WebClient webClient;
 
-    String url = "http://cycle_time:8002";
+    String url = "http://cycletime:8002";
 
     public CycleTimeService() {
         this.webClient = WebClient.create();

@@ -10,7 +10,7 @@ import java.net.URI;
 public class TaskService {
     WebClient webClient;
 
-    String authUrl2 = "http://lead_time:8001";
+    String authUrl2 = "http://leadtime:8001";
 
     public TaskService() {
         this.webClient = WebClient.create();
