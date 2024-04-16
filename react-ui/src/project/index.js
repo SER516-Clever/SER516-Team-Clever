@@ -24,6 +24,7 @@ const Project = () => {
     const [isCycleTime, setIsCycleTime] = useState(false);
     const [isDevFocus, setIsDevFocus] = useState(false);
     const [isCruft, setIsCruft] = useState(false);
+    const [isAdopted, setIsAdpoted] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
@@ -36,6 +37,7 @@ const Project = () => {
             setIsDevFocus(false);
             setIsCruft(false);
             setIsLeadTime(true);
+            setIsAdopted(false);
         }
         else if (eventKey === "Cycle Time") {
             setMetric("8080/api/metric/CycleTime");
@@ -44,6 +46,7 @@ const Project = () => {
             setIsDevFocus(false);
             setIsCruft(false);
             setIsLeadTime(false);
+            setIsAdopted(false);
         }
         else if (eventKey === "Burndown Chart") {
             setMetric("8080/api/Sprints");
@@ -51,6 +54,7 @@ const Project = () => {
             setIsDevFocus(false);
             setIsLeadTime(false);
             setIsCruft(false);
+            setIsAdopted(false);
         }
         else if (eventKey === "Dev Focus") {
             setIsBurndown(false);
@@ -58,6 +62,7 @@ const Project = () => {
             setIsCycleTime(false);
             setIsCruft(false);
             setMetric("8080/api/Project");
+            setIsAdopted(false);
         }
         else if (eventKey === "Cruft") {
             setMetric("8080/api/Sprints");
@@ -65,6 +70,15 @@ const Project = () => {
             setIsCycleTime(false);
             setIsDevFocus(false);
             setIsLeadTime(false);
+            setIsAdopted(false);
+        }
+        else if (eventKey === "Adopted Work") {
+            setMetric("8080/api/metric/AdoptedWork");
+            setIsBurndown(false);
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsAdopted(true);
         }
     };
 
@@ -168,7 +182,7 @@ const Project = () => {
                             <div>
                                 <br />
                                 <Form>
-                                    <div style={{padding: "45px"}}>Welcome to Team Cleveland's SER516 Project! Metrics are important 
+                                    <div style={{padding: "45px"}}>Welcome to Team Clever's SER516 Project! Metrics are important 
                                     for any developer team to characterize, evaluate, predict and improve. This dashboard will help you
                                     evaluate your sprints and projects using different metrics. Read up more about the metrics  
                                     <a href="/metricwiki"> here</a>.
@@ -193,6 +207,7 @@ const Project = () => {
                                                     <Dropdown.Item eventKey="Burndown Chart">Burndown Chart</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Dev Focus">Dev Focus</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="Adopted Work">Adopted Work</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
                                         </InputGroup>
