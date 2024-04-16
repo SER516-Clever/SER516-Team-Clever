@@ -159,7 +159,6 @@ const Project = () => {
                                         <Nav.Link style={{ borderBottom: "1px solid #750E21" }} as={Link} to="/metricwiki" state={{token: auth}}>Burndown Chart</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #750E21" }} as={Link} to="/metricwiki" state={{token: auth}}>Dev Focus</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #750E21" }} as={Link} to="/metricwiki" state={{token: auth}}>Cruft</Nav.Link>
-                                        <Nav.Link style={{ borderBottom: "1px solid #750E21" }} as={Link} to="/metricwiki" state={{token: auth}}>Adopted Work</Nav.Link>
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>
