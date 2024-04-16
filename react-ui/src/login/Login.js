@@ -26,11 +26,7 @@ export default class Login extends React.Component {
         event.preventDefault();
         axios({
             method: "post",
-            url: "http://localhost:8080/auth",
-            data: {
-                username: this.state.username,
-                password: this.state.password
-            },
+            url: `http://localhost:8080/api/login?username=${this.state.username}&password=${this.state.password}`,
             headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "http://localhost:3000"

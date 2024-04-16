@@ -3,7 +3,7 @@ version: '3.8'
 services:
   orchestrator:
     build:
-      context: /orchestrator
+      context: ./orchestrator
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
@@ -12,7 +12,7 @@ services:
 
   auth:
     build:
-      context: /auth
+      context: ./auth
       dockerfile: Dockerfile
     ports:
       - "8081:8080"
@@ -21,43 +21,40 @@ services:
 
   project:
     build:
-      context: /project
+      context: ./project
       dockerfile: Dockerfile
     ports:
       - "8082:8080"
     networks:
       - clever
 
-  burndown:
-    build:
-      context: /burndown-chart
-      dockerfile: Dockerfile
+  burndownchart:
+    build: burndown-chart/
+    container_name: burndownchart
     ports:
-      - "8083:8004"
+      - "8004:8004"
     networks:
       - clever
 
   cycletime:
-    build:
-      context: /cycle-time
-      dockerfile: Dockerfile
+    build: cycle-time/
+    container_name: cycletime
     ports:
-      - "8084:8002"
+      - "8002:8002"
     networks:
       - clever
-  
+ 
   leadtime:
-    build:
-      context: /lead-time
-      dockerfile: Dockerfile
+    build: lead-time/
+    container_name: leadtime
     ports:
-      - "8085:8001"
+      - "8001:8001"
     networks:
       - clever
 
   adoptedwork:
     build:
-      context: /adoptedwork
+      context: ./adoptedwork
       dockerfile: Dockerfile
     ports:
       - "8086:8080"
@@ -66,7 +63,7 @@ services:
   
   foundwork:
     build:
-      context: /found_work
+      context: ./found_work
       dockerfile: Dockerfile
     ports:
       - "8087:8080"
@@ -75,7 +72,7 @@ services:
     
   deliveryontime:
     build:
-      context: /dot
+      context: ./dot
       dockerfile: Dockerfile
     ports:
       - "8088:8080"
@@ -83,20 +80,34 @@ services:
       - clever
 
   cruft:
-    build:
-      context: /cruft
-      dockerfile: Dockerfile
+    build: cruft/
+    container_name: cruft
     ports:
-      - "8089:8005"
+      - "8005:8005"
     networks:
       - clever
 
-  devFocus:
-    build:
-      context: /dev-focus
-      dockerfile: Dockerfile
+  devfocus:
+    build: dev-focus/
+    container_name: devfocus
     ports:
-      - "8090:8003"
+      - "8003:8003"
+    networks:
+      - clever
+
+  backend:
+    build: ./taigaProject
+    container_name: backend
+    ports:
+      - "8010:8010"
+    networks:
+      - clever
+
+  frontend:
+    build: ./react-ui
+    container_name: frontend
+    ports:
+      - "3000:3000"
     networks:
       - clever
 

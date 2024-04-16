@@ -30,7 +30,7 @@ const Project = () => {
     const handleSelect = (eventKey) => {
         setSelectedValue(eventKey);
         if (eventKey === "Lead Time") {
-            setMetric("8080/metric/LeadTime");
+            setMetric("8080/api/metric/LeadTime");
             setIsBurndown(false);
             setIsCycleTime(false);
             setIsDevFocus(false);
@@ -38,7 +38,7 @@ const Project = () => {
             setIsLeadTime(true);
         }
         else if (eventKey === "Cycle Time") {
-            setMetric("8080/metric/CycleTime");
+            setMetric("8080/api/metric/CycleTime");
             setIsBurndown(false);
             setIsCycleTime(true);
             setIsDevFocus(false);
@@ -46,7 +46,7 @@ const Project = () => {
             setIsLeadTime(false);
         }
         else if (eventKey === "Burndown Chart") {
-            setMetric("8080/Sprints");
+            setMetric("8080/api/Sprints");
             setIsCycleTime(false);
             setIsDevFocus(false);
             setIsLeadTime(false);
@@ -57,10 +57,10 @@ const Project = () => {
             setIsLeadTime(false);
             setIsCycleTime(false);
             setIsCruft(false);
-            setMetric("8080/Project");
+            setMetric("8080/api/Project");
         }
         else if (eventKey === "Cruft") {
-            setMetric("8080/Sprints");
+            setMetric("8080/api/Sprints");
             setIsBurndown(false);
             setIsCycleTime(false);
             setIsDevFocus(false);

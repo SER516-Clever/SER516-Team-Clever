@@ -1,9 +1,7 @@
 package com.example.orchestrator.services;
 
-import com.example.orchestrator.models.AuthModel;
-import jakarta.servlet.http.HttpServletRequest;
+import com.example.orchestrator.models.BurndownChartRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.net.URI;
@@ -12,27 +10,20 @@ import java.net.URI;
 public class BurndownChart {
     WebClient webClient;
 
-    String authUrl = "http://burndown:8080/api";
+    String url = "http://burndownchart:8004";
 
     public BurndownChart() {
         this.webClient = WebClient.create();
     }
 
-    public String getBurndownValues(Integer milestoneID,
-                                    Boolean totalSum,
-                                    Boolean partialSum,
-                                    Boolean BVSum,
-                                    String token) {
-        URI uri = URI.create(authUrl + "/burndownchart/"
-                + milestoneID
-                + "?totalSum=" + totalSum
-                + "&partialSum=" + partialSum
-                + "&BVSum=" + BVSum);
-        return webClient.get()
+    public String getBurndownMetric(final BurndownChartRequest request, final String token) {
+        URI uri = URI.create(url + "/metric/Burndown");
+
+        return webClient.post()
                 .uri(uri)
+                .bodyValue(request)
                 .header("token", token)
                 .retrieve()
                 .bodyToMono(String.class).block();
     }
-
 }
