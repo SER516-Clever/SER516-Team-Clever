@@ -19,82 +19,6 @@ services:
     networks:
       - clever
 
-  project:
-    build:
-      context: ./project
-      dockerfile: Dockerfile
-    ports:
-      - "8082:8080"
-    networks:
-      - clever
-
-  burndownchart:
-    build: burndown-chart/
-    container_name: burndownchart
-    ports:
-      - "8004:8004"
-    networks:
-      - clever
-
-  cycletime:
-    build: cycle-time/
-    container_name: cycletime
-    ports:
-      - "8002:8002"
-    networks:
-      - clever
- 
-  leadtime:
-    build: lead-time/
-    container_name: leadtime
-    ports:
-      - "8001:8001"
-    networks:
-      - clever
-
-  adoptedwork:
-    build:
-      context: ./adoptedwork
-      dockerfile: Dockerfile
-    ports:
-      - "8086:8080"
-    networks:
-      - clever
-  
-  foundwork:
-    build:
-      context: ./found_work
-      dockerfile: Dockerfile
-    ports:
-      - "8087:8080"
-    networks:
-      - clever
-    
-  deliveryontime:
-    build:
-      context: ./dot
-      dockerfile: Dockerfile
-    ports:
-      - "8088:8080"
-    networks:
-      - clever
-
-  cruft:
-    build: cruft/
-    container_name: cruft
-    ports:
-      - "8005:8005"
-    networks:
-      - clever
-
-  devfocus:
-    build: dev-focus/
-    container_name: devfocus
-    ports:
-      - "8003:8003"
-    networks:
-      - clever
-
   backend:
     build: ./taigaProject
     container_name: backend
@@ -108,6 +32,14 @@ services:
     container_name: frontend
     ports:
       - "3000:3000"
+    networks:
+      - clever
+  
+  techdebt:
+    build: tech-debt/
+    container_name: techdebt
+    ports:
+      - "8006:8006"
     networks:
       - clever
 
