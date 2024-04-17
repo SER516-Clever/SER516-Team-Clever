@@ -24,6 +24,7 @@ const Project = () => {
     const [isCycleTime, setIsCycleTime] = useState(false);
     const [isDevFocus, setIsDevFocus] = useState(false);
     const [isCruft, setIsCruft] = useState(false);
+    const [isDoT, setIsDoT] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
@@ -65,6 +66,15 @@ const Project = () => {
             setIsCycleTime(false);
             setIsDevFocus(false);
             setIsLeadTime(false);
+        }
+        else if (eventKey === "Delivery On Time") {
+            setMetric("8080/api/DoT");      // To do change the URL as required
+            setIsBurndown(false);
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+            setIsDoT(true);
         }
     };
 
@@ -193,6 +203,7 @@ const Project = () => {
                                                     <Dropdown.Item eventKey="Burndown Chart">Burndown Chart</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Dev Focus">Dev Focus</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="Delivery On Time">Delivery On Time</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
                                         </InputGroup>
@@ -258,6 +269,11 @@ const Project = () => {
                                     console.log("Date range submitted:", startDate, "to", endDate);
                                 }} />
                             ) : null}
+                            {/* {selectedValue === "Delivery On Time" && isDoT ? (
+                                <DateSelectorCruft attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
+                                    console.log("Date range submitted:", startDate, "to", endDate);
+                                }} />
+                            ) : null} */}
                             <br />
                         </Stack>
                     </div>
