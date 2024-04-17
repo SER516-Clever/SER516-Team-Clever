@@ -63,6 +63,7 @@ const Project = () => {
             setIsCruft(false);
             setIsFoundWork(false);
             setMetric("8080/api/Project");
+            setIsFoundWork(false);
         }
         else if (eventKey === "Cruft") {
             setMetric("8080/api/Sprints");
@@ -209,6 +210,7 @@ const Project = () => {
                                                     <Dropdown.Item eventKey="Burndown Chart">Burndown Chart</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Dev Focus">Dev Focus</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="Found Work">Found Work</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
                                         </InputGroup>
