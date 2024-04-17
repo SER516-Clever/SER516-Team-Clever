@@ -95,7 +95,7 @@ const DateSelectorTechDebt = ({ attributes, token, projectId, onDateSubmit }) =>
                 {data ? (
                     <div>
                         <br />
-                        <CustomPieChart apidata={data} title={"Zero Business Value Pie Chart"} type="techDebt" />
+                        <CustomPieChart apidata={data} title={"Zero Business Value Stories Pie Chart"} type="techDebt" />
                     </div>
                 ) : null}
                 <br />
