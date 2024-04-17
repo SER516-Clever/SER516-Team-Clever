@@ -78,7 +78,7 @@ const Project = () => {
             setIsCruft(false);
             setIsDoT(true);
         }
-        else if (eventKey === "Tech Debt") {
+        else if (eventKey === "Technical Debt") {
             setMetric("8080/api/Sprints");
             setIsBurndown(false);
             setIsCycleTime(false);
@@ -94,7 +94,6 @@ const Project = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
         setSpinnerFlag(true);
 
         axios({
@@ -288,7 +287,7 @@ const Project = () => {
                                 }} />
                             ) : null} */}
                             
-                            {selectedValue === "Tech Debt" && isTechDebt ? (
+                            {selectedValue === "Technical Debt" && isTechDebt ? (
                                 <DateSelectorTechDebt attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
                                     console.log("Date range submitted:", startDate, "to", endDate);
                                 }} />

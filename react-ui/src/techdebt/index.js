@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Form, Spinner, Stack } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import CustomPieChart from "../graph/piechart";
 
 const DateSelectorTechDebt = ({ attributes, token, projectId, onDateSubmit }) => {
