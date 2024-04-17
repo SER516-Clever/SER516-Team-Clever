@@ -8,6 +8,7 @@ import Graph from "../graph";
 import SprintDetail from "../sprint";
 import DateSelector from '../devfocus';
 import DateSelectorCruft from '../cruft';
+import DateSelectorTechDebt from '../techdebt';
 
 
 const Project = () => {
@@ -24,6 +25,7 @@ const Project = () => {
     const [isCycleTime, setIsCycleTime] = useState(false);
     const [isDevFocus, setIsDevFocus] = useState(false);
     const [isCruft, setIsCruft] = useState(false);
+    const [isTechDebt, setIsTechDebt] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
@@ -66,6 +68,14 @@ const Project = () => {
             setIsDevFocus(false);
             setIsLeadTime(false);
         }
+        else if (eventKey === "Tech Debt") {
+            setMetric("8080/api/Sprints");
+            setIsBurndown(false);
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+        }
     };
 
     useEffect(() => {
@@ -98,6 +108,7 @@ const Project = () => {
                 selectedValue === "Dev Focus" ? setIsDevFocus(true) : setIsDevFocus(false);
                 selectedValue === "Burndown Chart" ? setIsBurndown(true) : setIsBurndown(false);
                 selectedValue === "Cruft" ? setIsCruft(true) : setIsCruft(false);
+                selectedValue === "Tech Debt" ? setIsTechDebt(true) : setIsTechDebt(false);
             })
             .catch(ex => {
                 setError(true);
@@ -193,6 +204,7 @@ const Project = () => {
                                                     <Dropdown.Item eventKey="Burndown Chart">Burndown Chart</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Dev Focus">Dev Focus</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="Tech Debt">Tech Debt</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
                                         </InputGroup>
@@ -255,6 +267,11 @@ const Project = () => {
                             ) : null}
                             {selectedValue === "Cruft" && isCruft ? (
                                 <DateSelectorCruft attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
+                                    console.log("Date range submitted:", startDate, "to", endDate);
+                                }} />
+                            ) : null}
+                            {selectedValue === "Tech Debt" && isTechDebt ? (
+                                <DateSelectorTechDebt attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
                                     console.log("Date range submitted:", startDate, "to", endDate);
                                 }} />
                             ) : null}
