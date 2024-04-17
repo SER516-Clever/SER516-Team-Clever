@@ -24,6 +24,7 @@ const Project = () => {
     const [isCycleTime, setIsCycleTime] = useState(false);
     const [isDevFocus, setIsDevFocus] = useState(false);
     const [isCruft, setIsCruft] = useState(false);
+    const [isFoundWork, setIsFoundWork] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
@@ -36,6 +37,7 @@ const Project = () => {
             setIsDevFocus(false);
             setIsCruft(false);
             setIsLeadTime(true);
+            setIsFoundWork(false);
         }
         else if (eventKey === "Cycle Time") {
             setMetric("8080/api/metric/CycleTime");
@@ -44,6 +46,7 @@ const Project = () => {
             setIsDevFocus(false);
             setIsCruft(false);
             setIsLeadTime(false);
+            setIsFoundWork(false);
         }
         else if (eventKey === "Burndown Chart") {
             setMetric("8080/api/Sprints");
@@ -51,12 +54,14 @@ const Project = () => {
             setIsDevFocus(false);
             setIsLeadTime(false);
             setIsCruft(false);
+            setIsFoundWork(false);
         }
         else if (eventKey === "Dev Focus") {
             setIsBurndown(false);
             setIsLeadTime(false);
             setIsCycleTime(false);
             setIsCruft(false);
+            setIsFoundWork(false);
             setMetric("8080/api/Project");
         }
         else if (eventKey === "Cruft") {
@@ -65,6 +70,14 @@ const Project = () => {
             setIsCycleTime(false);
             setIsDevFocus(false);
             setIsLeadTime(false);
+        }
+        else if (eventKey === "Found Work") {
+            setMetric("8080/api/Sprints");
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+            setIsFoundWork(false);
         }
     };
 
@@ -98,12 +111,14 @@ const Project = () => {
                 selectedValue === "Dev Focus" ? setIsDevFocus(true) : setIsDevFocus(false);
                 selectedValue === "Burndown Chart" ? setIsBurndown(true) : setIsBurndown(false);
                 selectedValue === "Cruft" ? setIsCruft(true) : setIsCruft(false);
+                selectedValue === "Found Work" ? setIsFoundWork(true) : setIsFoundWork(false);
             })
             .catch(ex => {
                 setError(true);
                 setSpinnerFlag(false);
                 setIsBurndown(false);
                 setIsDevFocus(false);
+                setIsFoundWork(false);
             });
     }
 
