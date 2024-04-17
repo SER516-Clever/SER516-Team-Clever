@@ -70,6 +70,7 @@ const Project = () => {
             setIsCycleTime(false);
             setIsDevFocus(false);
             setIsLeadTime(false);
+            setIsFoundWork(false);
         }
         else if (eventKey === "Found Work") {
             setMetric("8080/api/Sprints");
@@ -272,6 +273,9 @@ const Project = () => {
                                 <DateSelectorCruft attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
                                     console.log("Date range submitted:", startDate, "to", endDate);
                                 }} />
+                            ) : null}
+                            {selectedValue === "Found Work" && isFoundWork ? (
+                                <SprintDetail sprintDetails={data.sprints} attributes={data.custom_attributes} token={auth} projectName={data.name} />
                             ) : null}
                             <br />
                         </Stack>
