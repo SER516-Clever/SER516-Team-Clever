@@ -287,7 +287,7 @@ const Project = () => {
                                 }} />
                             ) : null} */}
                             
-                            {selectedValue === "Technical Debt" && isTechDebt ? (
+                            {selectedValue === "Tech Debt" && isTechDebt ? (
                                 <DateSelectorTechDebt attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
                                     console.log("Date range submitted:", startDate, "to", endDate);
                                 }} />
