@@ -1,8 +1,8 @@
-import Name from "./Name.png";
-import Team from "./Team.jpg";
-import React, { useState, useEffect } from "react";
-import { Image, Row, Col, Accordion, Nav, Navbar, ListGroup, Container } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Accordion, Col, Container, Image, ListGroup, Nav, Navbar, Row } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+import Name from "../images/Name.png";
+import Team from "../images/Team.jpg";
 
 
 const AboutUs = () => {

@@ -1,8 +1,8 @@
-import React from 'react';
 import axios from "axios";
+import React from 'react';
 import { Button, FloatingLabel, Form, Image } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
-import Cleveland from "./Cleveland.png"
+import Cleveland from "../images/Background1.jpg";
 
 export default class Login extends React.Component {
     state = {

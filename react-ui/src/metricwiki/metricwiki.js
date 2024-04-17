@@ -1,7 +1,7 @@
-import Name from "./Name.png";
-import React, { useState, useEffect } from "react";
-import { Image, ListGroup, Accordion, Nav, Navbar } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Accordion, Image, ListGroup, Nav, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+import Name from "../images/Name.png";
 
 const MetricWiki = () => {
 
