@@ -79,7 +79,7 @@ const Project = () => {
             setIsDevFocus(false);
             setIsLeadTime(false);
             setIsCruft(false);
-            setIsFoundWork(false);
+            setIsBurndown(false);
         }
     };
 
