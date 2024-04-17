@@ -21,7 +21,7 @@ import java.util.List;
 
 @Service
 public class ProjectService {
-//    @Value("${taiga_api_endpoint}")
+    //    @Value("${taiga_api_endpoint}")
     private String TAIGA_API_ENDPOINT = "https://api.taiga.io/api/v1";
 
     private static final ObjectMapper objectMapper = new ObjectMapper()
@@ -31,9 +31,9 @@ public class ProjectService {
 
     HttpClient httpClient = HttpClients.createDefault();
 
-    public ProjectDTO getProjectDetails(int projectID, String token) {
+    public ProjectDTO getProjectDetails(String slug, String token) {
         try {
-            String endpoint = TAIGA_API_ENDPOINT + "/projects/" + projectID;
+            String endpoint = TAIGA_API_ENDPOINT + "/projects/by_slug?slug=" + slug;
             HttpGet request = new HttpGet(endpoint);
             request.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token);
             request.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
