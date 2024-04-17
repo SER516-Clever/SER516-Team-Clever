@@ -95,7 +95,7 @@ const DateSelectorCruft = ({ attributes, token, projectId, onDateSubmit }) => {
                 {data ? (
                     <div>
                         <br />
-                        <CustomPieChart apidata={data} title={"Zero Business Value Pie Chart"} type="cruft" />
+                        <CustomPieChart apidata={data} title={"Zero Business Value and Issues Pie Chart"} type="cruft" />
                     </div>
                 ) : null}
                 <br />
