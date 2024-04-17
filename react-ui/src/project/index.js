@@ -78,7 +78,7 @@ const Project = () => {
             setIsCruft(false);
             setIsDoT(true);
         }
-        else if (eventKey === "Technical Debt") {
+        else if (eventKey === "Tech Debt") {
             setMetric("8080/api/Sprints");
             setIsBurndown(false);
             setIsCycleTime(false);
