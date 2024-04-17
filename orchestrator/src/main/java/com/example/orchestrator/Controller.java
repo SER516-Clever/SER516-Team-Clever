@@ -53,6 +53,8 @@ public class Controller {
     DevFocusService devFocusService;
     @Autowired
     SprintService sprintService;
+    @Autowired
+    TechDebtService techDebtService;
 
 
     @PostMapping("/login")
@@ -159,6 +161,11 @@ public class Controller {
     @PostMapping("/Project")
     public String getProject(@RequestBody final ProjectRequest request) {
         return sprintService.getProject(request, token);
+    }
+
+    @PostMapping("/metric/TechDebt")
+    public String getTechDebt(@RequestBody final CruftRequest request) {
+        return techDebtService.getTechDebtMetric(request, token);
     }
 
 }
