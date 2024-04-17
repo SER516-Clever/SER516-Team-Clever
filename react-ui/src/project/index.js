@@ -61,6 +61,7 @@ const Project = () => {
             setIsLeadTime(false);
             setIsCycleTime(false);
             setIsCruft(false);
+            setIsFoundWork(false);
             setMetric("8080/api/Project");
             setIsFoundWork(false);
         }
@@ -73,12 +74,12 @@ const Project = () => {
             setIsFoundWork(false);
         }
         else if (eventKey === "Found Work") {
-            setMetric("8080/api/FoundWork"); // TODO: Update URL
-            setIsBurndown(false);
+            setMetric("8080/api/Sprints");
             setIsCycleTime(false);
             setIsDevFocus(false);
             setIsLeadTime(false);
-            setIsFoundWork(true);
+            setIsCruft(false);
+            setIsBurndown(false);
         }
     };
 
@@ -112,12 +113,14 @@ const Project = () => {
                 selectedValue === "Dev Focus" ? setIsDevFocus(true) : setIsDevFocus(false);
                 selectedValue === "Burndown Chart" ? setIsBurndown(true) : setIsBurndown(false);
                 selectedValue === "Cruft" ? setIsCruft(true) : setIsCruft(false);
+                selectedValue === "Found Work" ? setIsFoundWork(true) : setIsFoundWork(false);
             })
             .catch(ex => {
                 setError(true);
                 setSpinnerFlag(false);
                 setIsBurndown(false);
                 setIsDevFocus(false);
+                setIsFoundWork(false);
             });
     }
 
@@ -272,6 +275,9 @@ const Project = () => {
                                 <DateSelectorCruft attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
                                     console.log("Date range submitted:", startDate, "to", endDate);
                                 }} />
+                            ) : null}
+                            {selectedValue === "Found Work" && isFoundWork ? (
+                                <SprintDetail sprintDetails={data.sprints} attributes={data.custom_attributes} token={auth} projectName={data.name} />
                             ) : null}
                             <br />
                         </Stack>
