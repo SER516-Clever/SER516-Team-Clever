@@ -8,6 +8,7 @@ import Graph from "../graph";
 import SprintDetail from "../sprint";
 import DateSelector from '../devfocus';
 import DateSelectorCruft from '../cruft';
+import DateSelectorTechDebt from '../techdebt';
 
 
 const Project = () => {
@@ -24,6 +25,7 @@ const Project = () => {
     const [isCycleTime, setIsCycleTime] = useState(false);
     const [isDevFocus, setIsDevFocus] = useState(false);
     const [isCruft, setIsCruft] = useState(false);
+    const [isTechDebt, setIsTechDebt] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
@@ -66,6 +68,14 @@ const Project = () => {
             setIsDevFocus(false);
             setIsLeadTime(false);
         }
+        else if (eventKey === "Technical Debt") {
+            setIsBurndown(false);
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+            setIsTechDebt(true);
+        }
     };
 
     useEffect(() => {
@@ -74,7 +84,6 @@ const Project = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
         setSpinnerFlag(true);
 
         axios({
@@ -193,6 +202,7 @@ const Project = () => {
                                                     <Dropdown.Item eventKey="Burndown Chart">Burndown Chart</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Dev Focus">Dev Focus</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="Technical Debt">Technical Debt</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
                                         </InputGroup>
@@ -255,6 +265,11 @@ const Project = () => {
                             ) : null}
                             {selectedValue === "Cruft" && isCruft ? (
                                 <DateSelectorCruft attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
+                                    console.log("Date range submitted:", startDate, "to", endDate);
+                                }} />
+                            ) : null}
+                            {selectedValue === "Technical Debt" && isTechDebt ? (
+                                <DateSelectorTechDebt token={auth} onDateSubmit={(startDate, endDate) => {
                                     console.log("Date range submitted:", startDate, "to", endDate);
                                 }} />
                             ) : null}
