@@ -24,7 +24,7 @@ const FoundWork = ({ foundWorkData }) => {
         <div style={{ textAlign: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
         <div style={{ width: '90%' }}>
-        <h4 style={{ textAlign: 'center' }}>Burndown Chart</h4>
+        <h4 style={{ textAlign: 'center' }}>Found Work Chart</h4>
             <ResponsiveContainer width="100%" height={600}>
                 <LineChart
                     width={730}
