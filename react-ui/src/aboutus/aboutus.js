@@ -1,8 +1,8 @@
-import Name from "./Name.png";
-import Team from "./Team.jpg";
-import React, { useState, useEffect } from "react";
-import { Image, Row, Col, Accordion, Nav, Navbar, ListGroup, Container } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Accordion, Col, Container, Image, ListGroup, Nav, Navbar, Row } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+import Name from "../images/Name.png";
+import Team from "../images/Team.jpg";
 
 
 const AboutUs = () => {
@@ -63,11 +63,11 @@ const AboutUs = () => {
                             <Row>
                                 <Col sm={8}>
                                     <h2>Meet the Developer Team!</h2><br />
-                                    We are a developer team of five members: Ashutosh Chaurasia (achaur11@asu.edu), Advait Chirmule (achirmul@asu.edu), Hasan Shahid (shahih25@asu.edu),
-                                    Sehun Park (spark290@asu.edu) and Shikha Verma (sverma89asu@asu.edu).
+                                    We are a developer team of ten members: Ashutosh Chaurasia (achaur11@asu.edu), Advait Chirmule (achirmul@asu.edu), Hasan Shahid (shahih25@asu.edu),
+                                    Sehun Park (spark290@asu.edu), Shikha Verma (sverma89asu@asu.edu), Atharva Date (adate1@asu.edu), Aarti Kalekar (akalekar@asu.edu), Kushagra Kartik (kkartik12@asu.edu), Pradnya Chaudhari (pchaud21@asu.edu) and Vidya Rupak (vrupak@asu.edu).
                                 </Col>
                                 <Col sm={4}>
-                                    <Image alt="Team Photo" src={Team} style={{ height: "100%", width: "100%", borderRadius: "10px", filter: "brightness(2.5)" }} />
+                                    <Image alt="Team Photo" src={Team} style={{ height: "100%", width: "100%", borderRadius: "10px" }} />
                                 </Col>
                             </Row>
 
