@@ -66,7 +66,8 @@ const AboutUs = () => {
                                     We are a developer team of ten members: Aarti Kalekar (akalekar@asu.edu), Ashutosh Chaurasia (achaur11@asu.edu), 
                                     Advait Chirmule (achirmul@asu.edu), Atharva Date (adate1@asu.edu),
                                     Hasan Shahid (shahih25@asu.edu), Kushagra Kartik (kkartik12@asu.edu), Pradnya Chaudhari (pchaud21@asu.edu)
-                                    Sehun Park (spark290@asu.edu), Shikha Verma (sverma89asu@asu.edu), and Vidya Rupak (vrupak@asu.edu).
+                                    Sehun Park (spark290@asu.edu), Shikha Verma (sverma89asu@asu.edu), and Vidya Rupak (vrupak@asu.edu); and
+                                    we were mentored by Professor Kevin Gary (kgary@email.asu.edu).
                                 </Col>
                                 <Col sm={4}>
                                     <Image alt="Team Photo" src={Team} style={{ height: "100%", width: "100%", borderRadius: "10px" }} />
