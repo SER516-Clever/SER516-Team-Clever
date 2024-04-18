@@ -16,6 +16,7 @@ const AboutUs = () => {
 
     return (
         <div className="backgroundDashboard fontUniform" style={{ display: "flex", minWidth: "100vh", minHeight: "100vh", justifyContent: 'center', alignItems: 'center' }}>
+            <title>Team Clever</title>
             <div className="backgroundWhite" style={{ minWidth: "95%", minHeight: "95%", width: "95%", height: "95%", maxHeight: "95vh", overflow: "auto", borderRadius: "15px" }}>
                 <div style={{ position: "fixed", width: "25vh" }}>
                     <div className="backgroundNavBar" style={{ minHeight: "10vh", borderTopLeftRadius: "15px", overflow: "hidden", borderRight: "1px solid #61677A"  }}>
@@ -23,9 +24,6 @@ const AboutUs = () => {
                     </div>
                     <div className="backgroundWhite" style={{ minHeight: "85vh", borderBottomLeftRadius: "15px", borderTop: "1px solid #61677A", borderRight: "1px solid #61677A" }}>
                         <Nav defaultActiveKey="/home" className="flex-column">
-                            <ListGroup defaultActiveKey={['0']} alwaysOpen>
-                                <ListGroup.Item as="li"><a href="/">Home</a></ListGroup.Item>
-                            </ListGroup>
                             <ListGroup defaultActiveKey={['0']} alwaysOpen>
                                 <ListGroup.Item as={Link} to="/project" state={{token: auth}}><a href="/project">Dashboard</a></ListGroup.Item>
                             </ListGroup>
