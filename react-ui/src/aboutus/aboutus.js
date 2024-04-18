@@ -24,9 +24,6 @@ const AboutUs = () => {
                     <div className="backgroundWhite" style={{ minHeight: "85vh", borderBottomLeftRadius: "15px", borderTop: "1px solid #61677A", borderRight: "1px solid #61677A" }}>
                         <Nav defaultActiveKey="/home" className="flex-column">
                             <ListGroup defaultActiveKey={['0']} alwaysOpen>
-                                <ListGroup.Item as="li"><a href="/">Home</a></ListGroup.Item>
-                            </ListGroup>
-                            <ListGroup defaultActiveKey={['0']} alwaysOpen>
                                 <ListGroup.Item as={Link} to="/project" state={{token: auth}}><a href="/project">Dashboard</a></ListGroup.Item>
                             </ListGroup>
                             <Accordion defaultActiveKey={['0']} alwaysOpen>
