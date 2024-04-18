@@ -25,6 +25,7 @@ const Project = () => {
     const [isCycleTime, setIsCycleTime] = useState(false);
     const [isDevFocus, setIsDevFocus] = useState(false);
     const [isCruft, setIsCruft] = useState(false);
+    const [isFoundWork, setIsFoundWork] = useState(false);
     const [isDoT, setIsDoT] = useState(false);
     const [isTechDebt, setIsTechDebt] = useState(false);
     const [startDate, setStartDate] = useState('');
@@ -39,6 +40,7 @@ const Project = () => {
             setIsDevFocus(false);
             setIsCruft(false);
             setIsLeadTime(true);
+            setIsFoundWork(false);
         }
         else if (eventKey === "Cycle Time") {
             setMetric("8080/api/metric/CycleTime");
@@ -47,6 +49,7 @@ const Project = () => {
             setIsDevFocus(false);
             setIsCruft(false);
             setIsLeadTime(false);
+            setIsFoundWork(false);
         }
         else if (eventKey === "Burndown Chart") {
             setMetric("8080/api/Sprints");
@@ -54,13 +57,16 @@ const Project = () => {
             setIsDevFocus(false);
             setIsLeadTime(false);
             setIsCruft(false);
+            setIsFoundWork(false);
         }
         else if (eventKey === "Dev Focus") {
             setIsBurndown(false);
             setIsLeadTime(false);
             setIsCycleTime(false);
             setIsCruft(false);
+            setIsFoundWork(false);
             setMetric("8080/api/Project");
+            setIsFoundWork(false);
         }
         else if (eventKey === "Cruft") {
             setMetric("8080/api/Sprints");
@@ -68,6 +74,15 @@ const Project = () => {
             setIsCycleTime(false);
             setIsDevFocus(false);
             setIsLeadTime(false);
+            setIsFoundWork(false);
+        }
+        else if (eventKey === "Found Work") {
+            setMetric("8080/api/Sprints");
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+            setIsBurndown(false);
         }
         else if (eventKey === "Delivery On Time") {
             setMetric("8080/api/DoT");      // To do change the URL as required
@@ -117,6 +132,7 @@ const Project = () => {
                 selectedValue === "Dev Focus" ? setIsDevFocus(true) : setIsDevFocus(false);
                 selectedValue === "Burndown Chart" ? setIsBurndown(true) : setIsBurndown(false);
                 selectedValue === "Cruft" ? setIsCruft(true) : setIsCruft(false);
+                selectedValue === "Found Work" ? setIsFoundWork(true) : setIsFoundWork(false);
                 selectedValue === "Tech Debt" ? setIsTechDebt(true) : setIsTechDebt(false);
             })
             .catch(ex => {
@@ -124,6 +140,7 @@ const Project = () => {
                 setSpinnerFlag(false);
                 setIsBurndown(false);
                 setIsDevFocus(false);
+                setIsFoundWork(false);
             });
     }
 
@@ -213,6 +230,7 @@ const Project = () => {
                                                     <Dropdown.Item eventKey="Burndown Chart">Burndown Chart</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Dev Focus">Dev Focus</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="Found Work">Found Work</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Delivery On Time">Delivery On Time</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Tech Debt">Tech Debt</Dropdown.Item>
                                                 </Dropdown.Menu>
@@ -268,7 +286,7 @@ const Project = () => {
                                 </div>
                             ) : null}
                             {selectedValue === "Burndown Chart" && isBurndown ? (
-                                <SprintDetail sprintDetails={data.sprints} attributes={data.custom_attributes} token={auth} projectName={data.name} />
+                                <SprintDetail sprintDetails={data.sprints} attributes={data.custom_attributes} token={auth} projectName={data.name} isBurndown={isBurndown} isFoundWork={isFoundWork} />
                             ) : null}
                             {selectedValue === "Dev Focus" && isDevFocus ? (
                                 <DateSelector memberDetails={data.members} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
@@ -279,6 +297,10 @@ const Project = () => {
                                 <DateSelectorCruft attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
                                     console.log("Date range submitted:", startDate, "to", endDate);
                                 }} />
+                            ) : null}
+
+                            {selectedValue === "Found Work" && isFoundWork ? (
+                                <SprintDetail sprintDetails={data.sprints} attributes={data.custom_attributes} token={auth} projectName={data.name} isBurndown={isBurndown} isFoundWork={isFoundWork} />
                             ) : null}
 
                             {/* {selectedValue === "Delivery On Time" && isDoT ? (
