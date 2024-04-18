@@ -94,7 +94,7 @@ const SprintDetail = ({ sprintDetails, attributes, token, projectName }) => {
                 </div>
 
                 {spinner && (
-                    <Spinner animation="border" variant="primary" style={{ display: "block", marginLeft: "auto", marginRight: "auto" }} />
+                    <Spinner animation="border" style={{ display: "block", marginLeft: "auto", marginRight: "auto", color: "#61677A" }} />
                 )}
 
                 {error && <p className="errorMessage">Unable to fetch Sprint Detail</p>}

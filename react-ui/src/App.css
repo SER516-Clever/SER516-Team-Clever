@@ -38,17 +38,6 @@
   }
 }
 
-.submitButton {
-  font-size: calc(10px + 2vmin);
-  background-color: #61dafb;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  display: block;
-  margin: 0 auto;
-}
-
 .errorMessage {
   text-align: center;
   justify-content: center;
@@ -59,33 +48,48 @@
 }
 
 .background {
-  background-image: url('Background2.png');
-  background-size: cover;
+  background-color: #FED9ED;
 }
 
 .backgroundWhite {
   background-color: white;
 }
 
-.backgroundPaleOrange {
-  background-color: #FFFAF4;
+.backgroundNavBar {
+  background-color: #FED9ED;
 }
 
-.backgroundLightOrange {
-  background-color: #FFBE98;
+.backgroundDashboard {
+  background-color: #61677A;
 }
 
-.backgroundOrange {
-  background-color: #E36414;
+.list-group-item{
+  background-color: #FED9ED;
+  height: 55px;
+  padding-left: 20px;
+  padding-top: 15px;
+}
+
+.submitButton {
+  font-size: calc(10px + 2vmin);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
 }
 
 .backgroundButton {
-  background-image: url('Background1.png');
-  background-size: cover;
+  background-color: #67729D;
   color: white;
   border-radius: 6px;
   font-size: 18px;
   outline: none;
+}
+
+.backgroundButton:hover, .submitButton:hover, .backgroundButton:focus, .submitButton:focus, .backgroundButton:active, .submitButton:active{
+  background-color: #61677A;
 }
 
 .projectName {
@@ -112,35 +116,18 @@
   flex-direction: column;
 }
 
-a, a:link, a:visited, .nav-link:visited{
-  color: #B80000;
+a, a:link, a:visited, a:hover, .nav-link:hover, .nav-link:visited{
+  color: black;
   text-decoration: none;
 }
 
-a:hover, .nav-link:hover {
-  color: #750E21;
-}
-
 .accordion-button:not(.collapsed) {
-  color: #750E21;
+  color: black;
   background-color: white;
-}
-
-.list-group-item
-{
-  height: 55px;
-  padding-left: 20px;
-  padding-top: 15px;
-  color: #750E21;
 }
 
 .accordion-button {
   color: #750E21;
-}
-
-.list-group-item{
-  background-color: #ffefea;
-  border-color: #fbd9d3;
 }
 
 .fontUniform{
