@@ -8,6 +8,7 @@ import Graph from "../graph";
 import SprintDetail from "../sprint";
 import DateSelector from '../devfocus';
 import DateSelectorCruft from '../cruft';
+import DateSelectorTechDebt from '../techdebt';
 
 
 const Project = () => {
@@ -25,6 +26,8 @@ const Project = () => {
     const [isDevFocus, setIsDevFocus] = useState(false);
     const [isCruft, setIsCruft] = useState(false);
     const [isFoundWork, setIsFoundWork] = useState(false);
+    const [isDoT, setIsDoT] = useState(false);
+    const [isTechDebt, setIsTechDebt] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
@@ -81,6 +84,23 @@ const Project = () => {
             setIsCruft(false);
             setIsBurndown(false);
         }
+        else if (eventKey === "Delivery On Time") {
+            setMetric("8080/api/DoT");      // To do change the URL as required
+            setIsBurndown(false);
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+            setIsDoT(true);
+        }
+        else if (eventKey === "Tech Debt") {
+            setMetric("8080/api/Sprints");
+            setIsBurndown(false);
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+        }
     };
 
     useEffect(() => {
@@ -89,7 +109,6 @@ const Project = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
         setSpinnerFlag(true);
 
         axios({
@@ -114,6 +133,7 @@ const Project = () => {
                 selectedValue === "Burndown Chart" ? setIsBurndown(true) : setIsBurndown(false);
                 selectedValue === "Cruft" ? setIsCruft(true) : setIsCruft(false);
                 selectedValue === "Found Work" ? setIsFoundWork(true) : setIsFoundWork(false);
+                selectedValue === "Tech Debt" ? setIsTechDebt(true) : setIsTechDebt(false);
             })
             .catch(ex => {
                 setError(true);
@@ -211,6 +231,8 @@ const Project = () => {
                                                     <Dropdown.Item eventKey="Dev Focus">Dev Focus</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Found Work">Found Work</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="Delivery On Time">Delivery On Time</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="Tech Debt">Tech Debt</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
                                         </InputGroup>
@@ -276,8 +298,21 @@ const Project = () => {
                                     console.log("Date range submitted:", startDate, "to", endDate);
                                 }} />
                             ) : null}
+
                             {selectedValue === "Found Work" && isFoundWork ? (
                                 <SprintDetail sprintDetails={data.sprints} attributes={data.custom_attributes} token={auth} projectName={data.name} isBurndown={isBurndown} isFoundWork={isFoundWork} />
+                            ) : null}
+
+                            {/* {selectedValue === "Delivery On Time" && isDoT ? (
+                                <DateSelectorCruft attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
+                                    console.log("Date range submitted:", startDate, "to", endDate);
+                                }} />
+                            ) : null} */}
+                            
+                            {selectedValue === "Tech Debt" && isTechDebt ? (
+                                <DateSelectorTechDebt attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
+                                    console.log("Date range submitted:", startDate, "to", endDate);
+                                }} />
                             ) : null}
                             <br />
                         </Stack>

@@ -43,7 +43,7 @@ services:
       - "8002:8002"
     networks:
       - clever
- 
+
   leadtime:
     build: lead-time/
     container_name: leadtime
@@ -60,7 +60,7 @@ services:
       - "8086:8080"
     networks:
       - clever
-  
+
   foundwork:
     build:
       context: ./found_work
@@ -69,7 +69,7 @@ services:
       - "8087:8080"
     networks:
       - clever
-    
+
   deliveryontime:
     build:
       context: ./dot
@@ -108,6 +108,14 @@ services:
     container_name: frontend
     ports:
       - "3000:3000"
+    networks:
+      - clever
+
+  techdebt:
+    build: tech-debt/
+    container_name: techdebt
+    ports:
+      - "8006:8006"
     networks:
       - clever
 
