@@ -6,7 +6,7 @@ const CustomLineChart = ({ data }) => {
     const CustomToolTip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (
-                <div className="custom-tooltip" style={{ backgroundColor: '#ffd7b5', padding: '5px', border: '2px solid black', borderRadius: "10px"}}>
+                <div className="custom-tooltip" style={{ backgroundColor: '#FED9ED', padding: '5px', border: '2px solid black', borderRadius: "10px"}}>
                     <b>Total Story Points Burndown:</b> {payload[0].value}%<br/>
                     <b>Partial Story Points Burndown:</b> {payload[1].value}%<br/>
                     <b>Business Value Burndown:</b> {payload[2].value}%<br/>

@@ -5,7 +5,7 @@ const CustomScatterChart = ({ apiData, avg, chartFor, title }) => {
     const CustomToolTip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (
-                <div className="custom-tooltip" style={{ backgroundColor: '#ffd7b5', padding: '5px', border: '2px solid black', borderRadius: "10px"}}>
+                <div className="custom-tooltip" style={{ backgroundColor: '#FED9ED', padding: '5px', border: '2px solid black', borderRadius: "10px"}}>
                     <b>Date:</b> {payload[0].value}<br/>
                     <b>Days:</b> {payload[1].value}<br/>
                     <b>Task ID:</b> {payload[1].payload.taskRef}<br/>
@@ -35,9 +35,9 @@ const CustomScatterChart = ({ apiData, avg, chartFor, title }) => {
                             angle: -90, position: 'insideLeft', style: { fontSize: '20px' }
                         }} />
                         <Tooltip content={<CustomToolTip />} />
-                        <Scatter name={title} data={apiData} fill="#8884d8" />
-                        <ReferenceLine y={avg} stroke="orange" strokeWidth={2}
-                            label={{ value: `${avg}`, position: 'left', fontSize: 15, offset: 5, fill: "#FF8989", fontWeight: "bold" }} />
+                        <Scatter name={title} data={apiData} fill="#67729D" />
+                        <ReferenceLine y={avg} stroke="#C65BCF" strokeWidth={2}
+                            label={{ value: `${avg}`, position: 'left', fontSize: 15, offset: 5, fill: "#C65BCF", fontWeight: "bold" }} />
                     </ScatterChart>
                 </ResponsiveContainer>
             </div>
