@@ -1,7 +1,7 @@
-import Name from "../images/Name.png";
-import React, { useState, useEffect } from "react";
-import { Image, ListGroup, Accordion, Nav, Navbar } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Accordion, Image, ListGroup, Nav, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+import Name from "../images/Name.png";
 
 const MetricWiki = () => {
 
@@ -36,6 +36,7 @@ const MetricWiki = () => {
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Burndown Chart</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Dev Focus</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Cruft</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Technical Debt</Nav.Link>
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>
@@ -119,10 +120,24 @@ const MetricWiki = () => {
                             <b>Input:</b> <br/>
                             The Project Slug, and the Date Range between which the Cruft is to be measured. <br/><br/>
                             <b>Output:</b> <br/>
-                            (i) A Pie Chart visualizing the number of tasks that are issues, the ones with no business value and the 
+                            (i) A Pie Chart visualizing the number of tasks that are issues, the ones with no business value and the
                             issues.<br/>
                             (ii) A Pie Chart visualizing the story points of the tasks having business value vs the story points of
                             the tasks having no business value.
+                            <br/><br/>
+                        </div>
+                        <div id="TechDebt">
+                            <h4><u>Technical Debt</u></h4>
+                            Technical debt (also known as tech debt or code debt) describes what results when development teams take
+                            actions to expedite the delivery of a piece of functionality or a project which later needs to be refactored.
+                            In other words, it`s the result of prioritizing speedy delivery over perfect code. It will be represented 
+                            by user stories that have 0 business value.<br/>
+                            <br/>
+                            <b>Input:</b> <br/>
+                            The Project Slug, and the Date Range between which the number of stories with 0 business value are to be measured. <br/><br/>
+                            <b>Output:</b> <br/>
+                            (i) A Pie Chart visualizing visualizing number of zero vs non-zero business value stories completed in the date range.<br/>
+                            (ii) A Pie Chart visualizing total story points completed for zero vs. non-zero business value stories in a date range.
                             <br/><br/>
                         </div>
                     </div>

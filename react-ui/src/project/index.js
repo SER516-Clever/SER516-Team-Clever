@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Button, FloatingLabel, Form, Stack, Image, Dropdown, InputGroup, Spinner, Nav, Navbar, Accordion, ListGroup } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
-import CustomModal from "../modal";
 import axios from "axios";
-import Name from "../images/Name.png";
-import Graph from "../graph";
-import SprintDetail from "../sprint";
-import DateSelector from '../devfocus';
+import React, { useEffect, useState } from "react";
+import { Accordion, Button, Dropdown, FloatingLabel, Form, Image, InputGroup, ListGroup, Nav, Navbar, Spinner, Stack } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
 import DateSelectorCruft from '../cruft';
+import DateSelector from '../devfocus';
+import Graph from "../graph";
+import Name from "../images/Name.png";
+import CustomModal from "../modal";
+import SprintDetail from "../sprint";
 
 
 const Project = () => {
@@ -153,6 +153,7 @@ const Project = () => {
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Burndown Chart</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Dev Focus</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Cruft</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Technical Debt</Nav.Link>
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>
