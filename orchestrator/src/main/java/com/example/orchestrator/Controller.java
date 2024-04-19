@@ -124,9 +124,9 @@ public class Controller {
     @GetMapping("/DoT/by-slug/{Slug}")
     @ResponseBody
     public String getClosedMilestonesbySlug(@PathVariable("Slug") String Slug) {
-        String response = "{story_points: " + 
+        String response = "{ \"story_points\": " + 
         deliveryOnTimeService.getClosedMilestonesbySlug(Slug, token) + 
-        ", BV: " + deliveryOnTimeService.getClosedMilestonesbySlugForBV(Slug, token) + "}";
+        ", \"BV\": " + deliveryOnTimeService.getClosedMilestonesbySlugForBV(Slug, token) + "}";
         return response;
     }
 
