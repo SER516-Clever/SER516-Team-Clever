@@ -1,7 +1,7 @@
-import Name from "../images/Name.png";
-import React, { useState, useEffect } from "react";
-import { Image, ListGroup, Accordion, Nav, Navbar } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Accordion, Image, ListGroup, Nav, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+import Name from "../images/Name.png";
 
 const MetricWiki = () => {
 
@@ -36,6 +36,10 @@ const MetricWiki = () => {
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Burndown Chart</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Dev Focus</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Cruft</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Adopted Work</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Found Work</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Delivery On Time</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Technical Debt</Nav.Link>
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>
@@ -119,10 +123,55 @@ const MetricWiki = () => {
                             <b>Input:</b> <br/>
                             The Project Slug, and the Date Range between which the Cruft is to be measured. <br/><br/>
                             <b>Output:</b> <br/>
-                            (i) A Pie Chart visualizing the number of tasks that are issues, the ones with no business value and the 
+                            (i) A Pie Chart visualizing the number of tasks that are issues, the ones with no business value and the
                             issues.<br/>
                             (ii) A Pie Chart visualizing the story points of the tasks having business value vs the story points of
                             the tasks having no business value.
+                            <br/><br/>
+                        </div>
+                        <div id="AdoptedWork">
+                            <h4><u>Adopted Work</u></h4>
+                            It is the user stories that were created during the Sprint (it is called work adopted because you finished early). It can also be a 0 business value story.<br/>
+                            <br/>
+                            <b>Input:</b> <br/>
+                            The Project Slug, sprint details. <br/><br/>
+                            <b>Output:</b> <br/>
+                            (i) A stacked chart representing the value of adopted user stories out of the total story points in all the sprints.
+                            <br/><br/>
+                        </div>
+                        <div id="FoundWork">
+                            <h4><u>Found Work</u></h4>
+                            It is the number of tasks that were added after the initial Sprint Planning. This metric tells you how accurate the planning was.<br/>
+                            <br/>
+                            <b>Input:</b> <br/>
+                            The Project Slug, sprint details.<br/><br/>
+                            <b>Output:</b> <br/>
+                            (i) A graph representing the number of tasks added for each date during a single sprint.<br/>
+                            <br/><br/>
+                        </div>
+                        <div id="DeliveryOnTime">
+                            <h4><u>Delivery On Time</u></h4>
+                            Delivery On Time is an indicator of whether scope is properly managed. It may be correlated with Velocity or Sprint Goal Success.<br/>
+                            <br/>
+                            <b>Input:</b> <br/>
+                            The Project Slug, number of story points and business value for each sprint. <br/><br/>
+                            <b>Output:</b> <br/>
+                            (i) A stacked Chart visualizing Business Value delivered vs Business Value remaining for 10 sprints at a time.<br/>
+                            (ii) A stacked Chart visualizing Story Points delivered vs Story Points remaining for 10 sprints at a time.
+                            <br/><br/>
+                        </div>
+                        <div id="TechDebt">
+                            <h4><u>Technical Debt</u></h4>
+                            Technical debt (also known as tech debt or code debt) describes what results when development teams take
+                            actions to expedite the delivery of a piece of functionality or a project which later needs to be refactored.
+                            In other words, it`s the result of prioritizing speedy delivery over perfect code. It will be represented 
+                            by user stories that have 0 business value.<br/>
+                            <br/>
+                            <b>Input:</b> <br/>
+                            The Project Slug, and the Date Range between which the number of stories with 0 business value are to be measured. <br/><br/>
+                            <b>Output:</b> <br/>
+                            (i) A Pie Chart visualizing number of zero vs non-zero business value stories completed in the date range.<br/>
+                            (ii) A Pie Chart visualizing total story points completed for zero vs. non-zero business value stories in a date range.
                             <br/><br/>
                         </div>
                     </div>

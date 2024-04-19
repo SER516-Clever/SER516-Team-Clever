@@ -1,8 +1,8 @@
+import React, { useEffect, useState } from "react";
+import { Accordion, Col, Container, Image, ListGroup, Nav, Navbar, Row } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
 import Name from "../images/Name.png";
 import Team from "../images/Team.jpg";
-import React, { useState, useEffect } from "react";
-import { Image, Row, Col, Accordion, Nav, Navbar, ListGroup, Container } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
 
 
 const AboutUs = () => {
@@ -38,6 +38,10 @@ const AboutUs = () => {
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Burndown Chart</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Dev Focus</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Cruft</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Adopted Work</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Found Work</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Delivery On Time</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Technical Debt</Nav.Link>
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>
