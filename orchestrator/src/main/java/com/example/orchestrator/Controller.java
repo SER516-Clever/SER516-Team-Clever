@@ -66,7 +66,7 @@ public class Controller {
 
         AuthModel authModel = authentication.authenticate(username, password);
         if (authModel != null && authModel.getMemberID() != null) {
-            String token = authModel.getToken();
+            token = authModel.getToken();
             return ResponseEntity.ok(authModel.getMemberID());
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
