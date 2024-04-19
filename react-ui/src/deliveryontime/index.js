@@ -105,7 +105,6 @@ const DeliveryOnTimeDetail = ({ attributes, token, projectId }) => {
         });
     }
 
-    
     return (
         <div>
             <Form onSubmit={handleSubmit}>
