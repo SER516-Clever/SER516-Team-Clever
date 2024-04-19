@@ -36,6 +36,9 @@ const MetricWiki = () => {
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Burndown Chart</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Dev Focus</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Cruft</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Adopted Work</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Found Work</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Delivery On Time</Nav.Link>
                                         <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Technical Debt</Nav.Link>
                                     </Accordion.Body>
                                 </Accordion.Item>
@@ -126,6 +129,37 @@ const MetricWiki = () => {
                             the tasks having no business value.
                             <br/><br/>
                         </div>
+                        <div id="AdoptedWork">
+                            <h4><u>Adopted Work</u></h4>
+                            It is the user stories that were created during the Sprint (it is called work adopted because you finished early). It can also be a 0 business value story.<br/>
+                            <br/>
+                            <b>Input:</b> <br/>
+                            The Project Slug, sprint details. <br/><br/>
+                            <b>Output:</b> <br/>
+                            (i) A stacked chart representing the value of adopted user stories out of the total story points in all the sprints.
+                            <br/><br/>
+                        </div>
+                        <div id="FoundWork">
+                            <h4><u>Found Work</u></h4>
+                            It is the number of tasks that were added after the initial Sprint Planning. This metric tells you how accurate the planning was.<br/>
+                            <br/>
+                            <b>Input:</b> <br/>
+                            The Project Slug, sprint details.<br/><br/>
+                            <b>Output:</b> <br/>
+                            (i) A graph representing the number of tasks added for each date during a single sprint.<br/>
+                            <br/><br/>
+                        </div>
+                        <div id="DeliveryOnTime">
+                            <h4><u>Delivery On Time</u></h4>
+                            Delivery On Time is an indicator of whether scope is properly managed. It may be correlated with Velocity or Sprint Goal Success.<br/>
+                            <br/>
+                            <b>Input:</b> <br/>
+                            The Project Slug, number of story points and business value for each sprint. <br/><br/>
+                            <b>Output:</b> <br/>
+                            (i) A stacked Chart visualizing Business Value delivered vs Business Value remaining for 10 sprints at a time.<br/>
+                            (ii) A stacked Chart visualizing Story Points delivered vs Story Points remaining for 10 sprints at a time.
+                            <br/><br/>
+                        </div>
                         <div id="TechDebt">
                             <h4><u>Technical Debt</u></h4>
                             Technical debt (also known as tech debt or code debt) describes what results when development teams take
@@ -136,7 +170,7 @@ const MetricWiki = () => {
                             <b>Input:</b> <br/>
                             The Project Slug, and the Date Range between which the number of stories with 0 business value are to be measured. <br/><br/>
                             <b>Output:</b> <br/>
-                            (i) A Pie Chart visualizing visualizing number of zero vs non-zero business value stories completed in the date range.<br/>
+                            (i) A Pie Chart visualizing number of zero vs non-zero business value stories completed in the date range.<br/>
                             (ii) A Pie Chart visualizing total story points completed for zero vs. non-zero business value stories in a date range.
                             <br/><br/>
                         </div>
