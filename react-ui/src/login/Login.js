@@ -64,7 +64,7 @@ export default class Login extends React.Component {
                     >
                         <Form.Control type="password" placeholder="Enter Password" onChange={this.handlePasswordChange} />
                     </FloatingLabel>
-                    <br></br><br></br>
+                    <br/>
                     <Button type="submit" className="submitButton backgroundButton col-sm-8 offset-sm-2">
                         LOGIN
                     </Button>
