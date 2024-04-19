@@ -227,13 +227,11 @@ public class ProjectService {
         }
     }
 
-    public List<MilestoneDTO> getClosedMilestonesbyID(Integer projectID) {
-        List<MilestoneDTO> closedMilestones = new ArrayList<>();
-        return closedMilestones;
+    public List<MilestoneDTO> getClosedMilestonesbyID(Integer projectID, String token) {
+        return getPojectDetails(projectID, token).getMilestoneDetails();
     }
 
-    public List<MilestoneDTO> getClosedMilestonesbySlug(String Slug) {
-        List<MilestoneDTO> closedMilestones = new ArrayList<>();
-        return closedMilestones;
+    public List<MilestoneDTO> getClosedMilestonesbySlug(String Slug, String token) {
+        return getProjectDetailsSlug(Slug, token).getMilestoneDetails();
     }
 }

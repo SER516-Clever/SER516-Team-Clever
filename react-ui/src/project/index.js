@@ -85,7 +85,7 @@ const Project = () => {
             setIsBurndown(false);
         }
         else if (eventKey === "Delivery On Time") {
-            setMetric("8080/api/DoT");      // To do change the URL as required
+            setMetric(`8080/api/DoT/by-slug/${project}`);     
             setIsBurndown(false);
             setIsCycleTime(false);
             setIsDevFocus(false);
@@ -112,7 +112,7 @@ const Project = () => {
         setSpinnerFlag(true);
 
         axios({
-            method: "post",
+            method: isDoT ? "get" : "post",
             url: `http://localhost:${metric}`,
             data: {
                 projectslug: project,
@@ -134,6 +134,7 @@ const Project = () => {
                 selectedValue === "Cruft" ? setIsCruft(true) : setIsCruft(false);
                 selectedValue === "Found Work" ? setIsFoundWork(true) : setIsFoundWork(false);
                 selectedValue === "Tech Debt" ? setIsTechDebt(true) : setIsTechDebt(false);
+                selectedValue === "Delivery On Time" ? setIsDoT(true) : setIsDoT(false);
             })
             .catch(ex => {
                 setError(true);
@@ -141,6 +142,7 @@ const Project = () => {
                 setIsBurndown(false);
                 setIsDevFocus(false);
                 setIsFoundWork(false);
+                setIsDoT(false);
             });
     }
 

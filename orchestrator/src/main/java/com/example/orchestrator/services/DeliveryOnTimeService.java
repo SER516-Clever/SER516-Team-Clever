@@ -16,7 +16,7 @@ public class DeliveryOnTimeService {
     }
 
     public String getClosedMilestonesbyIDForBV(Integer projectID, String token) {
-        URI uri = URI.create(authUrl + "DoT/"+projectID+"/BV");
+        URI uri = URI.create(authUrl + "/DoT/"+projectID+"/BV");
         return webClient.get()
                 .uri(uri)
                 .header("token", token)
@@ -25,7 +25,25 @@ public class DeliveryOnTimeService {
     }
 
     public String getClosedMilestonesbySlugForBV(String slug, String token) {
-        URI uri = URI.create(authUrl + "DoT/by-slug/"+slug+"/BV");
+        URI uri = URI.create(authUrl + "/DoT/by-slug/"+slug+"/BV");
+        return webClient.get()
+                .uri(uri)
+                .header("token", token)
+                .retrieve()
+                .bodyToMono(String.class).block();
+    }
+
+    public String getClosedMilestonesbyID(Integer projectID, String token) {
+        URI uri = URI.create(authUrl + "/DoT/" + projectID);
+        return webClient.get()
+                .uri(uri)
+                .header("token", token)
+                .retrieve()
+                .bodyToMono(String.class).block();
+    }
+
+    public String getClosedMilestonesbySlug(String slug, String token) {
+        URI uri = URI.create(authUrl + "/DoT/by-slug/" + slug);
         return webClient.get()
                 .uri(uri)
                 .header("token", token)
