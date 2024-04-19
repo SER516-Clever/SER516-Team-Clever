@@ -82,13 +82,11 @@ const Project = () => {
 			setIsLeadTime(false);
 			setIsAdopted(false);
 		} else if (eventKey === 'Adopted Work') {
-			setMetric('8080/api/metric/AdoptedWork');
+      setMetric(`8080/api/adoptedWork/project/${project}`);
 			setIsBurndown(false);
 			setIsCycleTime(false);
 			setIsDevFocus(false);
 			setIsLeadTime(false);
-			// TODO - move this call in handleSubmit while integrating with the backend
-			setIsAdopted(true);
 		}
 	};
 
@@ -102,7 +100,7 @@ const Project = () => {
 		setSpinnerFlag(true);
 
 		axios({
-			method: 'post',
+			method: selectedValue == "Adopted Work" ? 'get' : 'post',
 			url: `http://localhost:${metric}`,
 			data: {
 				projectslug: project,
