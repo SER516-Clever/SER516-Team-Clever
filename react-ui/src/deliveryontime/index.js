@@ -104,6 +104,7 @@ const DeliveryOnTimeDetail = ({ attributes, token, projectId }) => {
             setSpinnerFlag(false);
         });
     }
+
     
     return (
         <div>
