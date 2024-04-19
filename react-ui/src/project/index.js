@@ -8,6 +8,7 @@ import Graph from "../graph";
 import SprintDetail from "../sprint";
 import DateSelector from '../devfocus';
 import DateSelectorCruft from '../cruft';
+import DeliveryOnTimeDetail from '../deliveryontime';
 
 
 const Project = () => {
@@ -24,6 +25,7 @@ const Project = () => {
     const [isCycleTime, setIsCycleTime] = useState(false);
     const [isDevFocus, setIsDevFocus] = useState(false);
     const [isCruft, setIsCruft] = useState(false);
+    const [isDoT, setIsDoT] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
@@ -66,6 +68,15 @@ const Project = () => {
             setIsDevFocus(false);
             setIsLeadTime(false);
         }
+        else if (eventKey === "Delivery On Time") {
+            setMetric(`8080/api/DoT/by-slug/${project}`);     
+            setIsBurndown(false);
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+            setIsDoT(true);
+        }
     };
 
     useEffect(() => {
@@ -78,7 +89,7 @@ const Project = () => {
         setSpinnerFlag(true);
 
         axios({
-            method: "post",
+            method: isDoT ? "get" : "post",
             url: `http://localhost:${metric}`,
             data: {
                 projectslug: project,
@@ -98,12 +109,14 @@ const Project = () => {
                 selectedValue === "Dev Focus" ? setIsDevFocus(true) : setIsDevFocus(false);
                 selectedValue === "Burndown Chart" ? setIsBurndown(true) : setIsBurndown(false);
                 selectedValue === "Cruft" ? setIsCruft(true) : setIsCruft(false);
+                selectedValue === "Delivery On Time" ? setIsDoT(true) : setIsDoT(false);
             })
             .catch(ex => {
                 setError(true);
                 setSpinnerFlag(false);
                 setIsBurndown(false);
                 setIsDevFocus(false);
+                setIsDoT(false);
             });
     }
 
@@ -193,6 +206,7 @@ const Project = () => {
                                                     <Dropdown.Item eventKey="Burndown Chart">Burndown Chart</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Dev Focus">Dev Focus</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="Delivery On Time">Delivery On Time</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
                                         </InputGroup>
@@ -257,6 +271,9 @@ const Project = () => {
                                 <DateSelectorCruft attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
                                     console.log("Date range submitted:", startDate, "to", endDate);
                                 }} />
+                            ) : null}
+                            {selectedValue === "Delivery On Time" && isDoT ? (
+                                <DeliveryOnTimeDetail attributes={data.custom_attributes} token={auth} projectId={data.id} />
                             ) : null}
                             <br />
                         </Stack>
