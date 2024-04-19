@@ -8,6 +8,9 @@ import Graph from "../graph";
 import Name from "../images/Name.png";
 import CustomModal from "../modal";
 import SprintDetail from "../sprint";
+import DateSelector from '../devfocus';
+import DateSelectorCruft from '../cruft';
+import DateSelectorTechDebt from '../techdebt';
 
 
 const Project = () => {
