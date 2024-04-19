@@ -8,8 +8,6 @@ import Graph from "../graph";
 import Name from "../images/Name.png";
 import CustomModal from "../modal";
 import SprintDetail from "../sprint";
-import DateSelector from '../devfocus';
-import DateSelectorCruft from '../cruft';
 import DateSelectorTechDebt from '../techdebt';
 
 
@@ -86,15 +84,15 @@ const Project = () => {
             setIsCruft(false);
             setIsBurndown(false);
         }
-        else if (eventKey === "Delivery On Time") {
-            setMetric("8080/api/DoT");      // To do change the URL as required
-            setIsBurndown(false);
-            setIsCycleTime(false);
-            setIsDevFocus(false);
-            setIsLeadTime(false);
-            setIsCruft(false);
-            setIsDoT(true);
-        }
+//        else if (eventKey === "Delivery On Time") {
+//            setMetric("8080/api/DoT");      // To do change the URL as required
+//            setIsBurndown(false);
+//            setIsCycleTime(false);
+//            setIsDevFocus(false);
+//            setIsLeadTime(false);
+//            setIsCruft(false);
+//            setIsDoT(true);
+//        }
         else if (eventKey === "Tech Debt") {
             setMetric("8080/api/Sprints");
             setIsBurndown(false);
@@ -235,7 +233,6 @@ const Project = () => {
                                                     <Dropdown.Item eventKey="Dev Focus">Dev Focus</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Found Work">Found Work</Dropdown.Item>
-                                                    <Dropdown.Item eventKey="Delivery On Time">Delivery On Time</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Tech Debt">Tech Debt</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
