@@ -1,8 +1,8 @@
-import React from 'react';
 import axios from "axios";
+import React from 'react';
 import { Button, FloatingLabel, Form, Image } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
-import Cleveland from "./Cleveland.png"
+import CleverLogo from "../images/CleverLogo.jpg";
 
 export default class Login extends React.Component {
     state = {
@@ -47,8 +47,8 @@ export default class Login extends React.Component {
         return (
             <div className="d-flex align-items-center justify-content-center vh-100 backgroundWhite">
                 <Form onSubmit={this.handleSubmit} style={{ width: "100%" }}>
-                    <Image src={ Cleveland } className='mb-3 col-sm-8 offset-sm-2'/><br/><br/>
-                    <h2 align="center">Login</h2><br/>
+                    <Image src={ CleverLogo } className='mb-3 col-sm-8 offset-sm-2'/><br/><br/>
+                    <br></br>
                     <FloatingLabel
                         controlId="formUsername"
                         label="Enter Username"
@@ -64,9 +64,9 @@ export default class Login extends React.Component {
                     >
                         <Form.Control type="password" placeholder="Enter Password" onChange={this.handlePasswordChange} />
                     </FloatingLabel>
-
+                    <br></br><br></br>
                     <Button type="submit" className="submitButton backgroundButton col-sm-8 offset-sm-2">
-                        SUBMIT
+                        LOGIN
                     </Button>
 
                     {this.state.validUser ? (
@@ -76,7 +76,7 @@ export default class Login extends React.Component {
                         this.state.token === null ? (
                             <div className="mb-3 col-sm-8 offset-sm-2">Incorrect password. Try again or reset password through your Taiga account.</div>
                         ) : null
-                    }<br/><br/><br/><br/>
+                    }<br/><br/>
                 </Form>
             </div>
         );
