@@ -1,6 +1,7 @@
 package com.example.orchestrator;
 
 import com.example.orchestrator.models.AuthModel;
+import com.example.orchestrator.models.AuthRequest;
 import com.example.orchestrator.models.BurndownChartRequest;
 import com.example.orchestrator.models.CruftRequest;
 import com.example.orchestrator.models.DevFocusRequest;
@@ -59,10 +60,13 @@ public class Controller {
 
     @PostMapping("/login")
     @ResponseBody
-    public Object login(@RequestParam String username, @RequestParam String password) {
+    public Object login(@RequestBody AuthRequest request) {
+        String username = request.getUsername();
+        String password = request.getPassword();
+
         AuthModel authModel = authentication.authenticate(username, password);
-        if(authModel != null && authModel.getMemberID() != null) {
-            token = authModel.getToken();
+        if (authModel != null && authModel.getMemberID() != null) {
+            String token = authModel.getToken();
             return ResponseEntity.ok(authModel.getMemberID());
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
