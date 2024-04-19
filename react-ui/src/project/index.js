@@ -24,7 +24,7 @@ const Project = () => {
     const [isCycleTime, setIsCycleTime] = useState(false);
     const [isDevFocus, setIsDevFocus] = useState(false);
     const [isCruft, setIsCruft] = useState(false);
-    const [isAdopted, setIsAdpoted] = useState(false);
+    const [isAdopted, setIsAdopted] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
@@ -73,7 +73,7 @@ const Project = () => {
             setIsAdopted(false);
         }
         else if (eventKey === "Adopted Work") {
-            setMetric("8080/api/metric/AdoptedWork");
+            setMetric(`8080/api/adoptedWork/project/${project}`);
             setIsBurndown(false);
             setIsCycleTime(false);
             setIsDevFocus(false);
@@ -92,7 +92,7 @@ const Project = () => {
         setSpinnerFlag(true);
 
         axios({
-            method: "post",
+            method: isAdopted ? "get" : "post",
             url: `http://localhost:${metric}`,
             data: {
                 projectslug: project,
