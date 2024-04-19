@@ -61,10 +61,16 @@ const CustomBarChart = ({ title, data, threshold, showMemberViolations, showInPr
     }, [data, threshold]);
 
     useEffect(() => {
-        let temp_arr = [];
-        let members = [];
+        if (showDeliveryOnTime && data) {
+            const newData = data.map(project => ({
+                ...project,
+                remBV: project.total_BV - project.deliveredBV,
+                remSP: project.total_SP - project.deliveredSP
+            }));
+            setsprintData(newData);
+        }
+    }, [data, showDeliveryOnTime]);
 
-    }, [data]);
 
     const filterTasks = (tasks) => {
         let removeTasks = [];
@@ -147,9 +153,14 @@ const CustomBarChart = ({ title, data, threshold, showMemberViolations, showInPr
                             value: 'Delivery On Time Count', angle: -90, position: 'insideLeft', style: { fontSize: '20px' }
                         }} />
 
-                        <Tooltip />
+                        {/* <Tooltip />
 
+                        <Legend align="right" verticalAlign="top" layout="horizontal" iconType="square"/> */}
                         <Legend align="right" verticalAlign="top" layout="horizontal" iconType="square"/>
+                        <Bar dataKey="deliveredBV" fill="#8884d8" name="Delivered BV" />
+                        <Bar dataKey="remBV" fill="#82ca9d" name="Remaining BV" />
+                        <Bar dataKey="deliveredSP" fill="#4184D8" name="Delivered SP" />
+                        <Bar dataKey="remSP" fill="#FFC658" name="Remaining SP" />
 
                         {/* {
                             members.map(member => {

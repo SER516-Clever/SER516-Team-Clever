@@ -3,68 +3,107 @@ import { useEffect, useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import CustomBarChart from "../graph/barchart";
 
-const DateSelector = ({ token, projectId }) => {
+const DeliveryOnTimeDetail = ({ attributes, token, projectId }) => {
+    const [bvAttribute, setBvAttribute] = useState(null);
+    const [spAttribute, setSpAttribute] = useState(null);
+    const [totalBV, setTotalBV] = useState(null);
+    const [totalSP, setTotalSP] = useState(null);
     const [data, setData] = useState(null);
+    const [error, setError] = useState(false);
+    const [spinner, setSpinner] = useState(false);
     const [isDoT, setIsDoT] = useState(false);
     const [spinnerFlag, setSpinnerFlag] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setSpinnerFlag(true);
+    useEffect(() => {
+        let bvId = null;
+        let spId = null;
+    
+        for (const attribute of attributes) {
+            const attributeName = attribute.name.toLowerCase();
+            if (attributeName === "bv" || attributeName === "business value") {
+                bvId = attribute.id.toString();
+            } else if (attributeName === "sp" || attributeName === "story_points") {
+                spId = attribute.id.toString();
+            }
+        }
+    
+        if (bvId) {
+            setBvAttribute(bvId);
+        } else {
+            setBvAttribute(null);
+        }
+    
+        if (spId) {
+            setSpAttribute(spId);
+        } else {
+            setSpAttribute(null);
+        }
+    }, [attributes])
+
+    const handleSubmit = (eventKey) => {
+        eventKey.preventDefault();
+        setError(false);
+        setSpinner(true);
+
+        const formData = {
+            "projectId": projectId,
+        }
+
+        if (bvAttribute !== null) {
+            formData.attributeKey = bvAttribute
+        } else if (spAttribute !== null) {
+            formData.attributeKey = spAttribute
+        }
+
+        console.log(formData)
 
         axios({
             method: "post",
-            url: `http://localhost:8080/api/DoT/by-slug/${project}`,
-            data: {
-                project_id: projectId.toString(),
-            },
+            url: `http://localhost:8080/api/DoT/by-slug/${project}`, // error
+            data: { project_id: projectId.toString() },
             headers: {
                 "Content-Type": "application/json",
                 "token": token
             }
         })
         .then(res => {
-            setData(res.data);
-            // let violationMembers = []
-            // let totalViolations = 0;
-            // for (let name in res.data) {
-            //     let count = 0;
-            //     for (let date in res.data[name]) {
-            //         let list = res.data[name][date].filter(task => task["inProgressDate"] !== null);
-            //         let filteredTasks = filterTasks(list);
-            //         if (filteredTasks.length >= threshold) {
-            //             totalViolations += 1;
-            //             count += 1;
-            //         }
-            //     }
-            //     if (count !== 0) {
-            //         violationMembers.push(name);
-            //     }
-            // }
+            let calculatedData = [];
+            let totalBV = 0;
+            let totalSP = 0;
+    
+            for (let name in res.data) {
+                let projectData = res.data[name];
+                let deliveredBV = projectData.deliveredBV;
+                let deliveredSP = projectData.deliveredSP;
+                let totalBVFromData = projectData.total_BV;
+                let totalSPFromData = projectData.total_SP;
+                let remBV = totalBVFromData - deliveredBV;
+                let remSP = totalSPFromData - deliveredSP;
+    
+                totalBV += deliveredBV;
+                totalSP += deliveredSP;
+    
+                calculatedData.push({
+                    name: name,
+                    deliveredBV: deliveredBV,
+                    remBV: remBV,
+                    deliveredSP: deliveredSP,
+                    remSP: remSP
+                });
+            }
+    
+            setData(calculatedData);
+            setTotalBV(totalBV);        
+            setTotalSP(totalSP);        
             setIsDoT(true);
             setSpinnerFlag(false);
         })
         .catch(ex => {
+            console.error('Error fetching data:', ex);
             setIsDoT(false);
             setSpinnerFlag(false);
         });
     }
-
-    // const filterTasks = (tasks) => {
-    //     let removeTasks = [];
-    //     for (let t1 of tasks) {
-    //         for (let t2 of tasks) {
-    //             if (t1["taskId"] !== t2["taskId"]) {
-    //                 let date1 = new Date(t1["inProgressDate"]);
-    //                 let date2 = new Date(t2["finished_date"]);
-    //                 if (date1.getUTCDate() === date2.getUTCDate() && date1.getUTCSeconds() > date2.getUTCSeconds()) {
-    //                     removeTasks.push(t2["taskId"]);
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return tasks.filter(task => !removeTasks.includes(task["taskId"]));
-    // }
     
     return (
         <div>
@@ -76,6 +115,10 @@ const DateSelector = ({ token, projectId }) => {
             <br />
             {spinnerFlag ? <Spinner variant="primary" animation="border" style={{ justifyContent: "center", alignItems: "center", display:"flex", marginLeft: "49%" }} /> : null}
 
+            {error ? (
+                    <p className="errorMessage">Unable to fetch Sprint Detail</p>
+                ) : null}
+
             {isDoT ? (
                 <div>
                     <CustomBarChart title={"Delivery On Time"} data={data} showMemberViolations={false} showInProgressTasks={false} showDeliveryOnTime={true} />
@@ -86,4 +129,4 @@ const DateSelector = ({ token, projectId }) => {
 };
       
 
-export default DateSelector;
+export default DeliveryOnTimeDetail;

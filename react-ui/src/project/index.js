@@ -9,6 +9,7 @@ import SprintDetail from "../sprint";
 import DateSelector from '../devfocus';
 import DateSelectorCruft from '../cruft';
 import DateSelectorTechDebt from '../techdebt';
+import DeliveryOnTimeDetail from '../deliveryontime';
 
 
 const Project = () => {
@@ -305,12 +306,10 @@ const Project = () => {
                                 <SprintDetail sprintDetails={data.sprints} attributes={data.custom_attributes} token={auth} projectName={data.name} isBurndown={isBurndown} isFoundWork={isFoundWork} />
                             ) : null}
 
-                            {/* {selectedValue === "Delivery On Time" && isDoT ? (
-                                <DateSelectorCruft attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
-                                    console.log("Date range submitted:", startDate, "to", endDate);
-                                }} />
-                            ) : null} */}
-                            
+                            {selectedValue === "Delivery On Time" && isDoT ? (
+                                <DeliveryOnTimeDetail attributes={data.custom_attributes} token={auth} projectId={data.id} />
+                            ) : null}
+
                             {selectedValue === "Tech Debt" && isTechDebt ? (
                                 <DateSelectorTechDebt attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
                                     console.log("Date range submitted:", startDate, "to", endDate);
