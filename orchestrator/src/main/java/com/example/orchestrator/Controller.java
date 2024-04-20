@@ -53,6 +53,8 @@ public class Controller {
     DevFocusService devFocusService;
     @Autowired
     SprintService sprintService;
+    @Autowired
+    TechDebtService techDebtService;
 
 
     @PostMapping("/login")
@@ -116,13 +118,16 @@ public class Controller {
     @GetMapping("/DoT/{projectID}")
     @ResponseBody
     public String getClosedMilestonesbyID(@PathVariable("projectID") Integer projectID) {
-        return projectService.getClosedMilestonesbyID(projectID, token);
+        return deliveryOnTimeService.getClosedMilestonesbyID(projectID, token);
     }
 
     @GetMapping("/DoT/by-slug/{Slug}")
     @ResponseBody
     public String getClosedMilestonesbySlug(@PathVariable("Slug") String Slug) {
-        return projectService.getClosedMilestonesbySlug(Slug, token);
+        String response = "{ \"story_points\": " + 
+        deliveryOnTimeService.getClosedMilestonesbySlug(Slug, token) + 
+        ", \"BV\": " + deliveryOnTimeService.getClosedMilestonesbySlugForBV(Slug, token) + "}";
+        return response;
     }
 
     @GetMapping("DoT/{projectID}/BV")
@@ -159,6 +164,11 @@ public class Controller {
     @PostMapping("/Project")
     public String getProject(@RequestBody final ProjectRequest request) {
         return sprintService.getProject(request, token);
+    }
+
+    @PostMapping("/metric/TechDebt")
+    public String getTechDebt(@RequestBody final CruftRequest request) {
+        return techDebtService.getTechDebtMetric(request, token);
     }
 
 }

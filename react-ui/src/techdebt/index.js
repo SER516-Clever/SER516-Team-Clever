@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Form, Spinner, Stack } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import CustomPieChart from "../graph/piechart";
 
-const DateSelectorCruft = ({ attributes, token, projectId, onDateSubmit }) => {
+const DateSelectorTechDebt = ({ attributes, token, projectId, onDateSubmit }) => {
     const [bvAttribute, setBvAttribute] = useState(null);
     const [data, setData] = useState(null);
     const [error, setError] = useState(false);
@@ -41,7 +41,7 @@ const DateSelectorCruft = ({ attributes, token, projectId, onDateSubmit }) => {
         console.log(formData)
 
         axios({
-            url: "http://localhost:8080/api/metric/Cruft",
+            url: "http://localhost:8080/api/metric/TechDebt",
             method: "post",
             data: formData,
             headers: {
@@ -95,7 +95,7 @@ const DateSelectorCruft = ({ attributes, token, projectId, onDateSubmit }) => {
                 {data ? (
                     <div>
                         <br />
-                        <CustomPieChart apidata={data} title={"Zero Business Value Stories and Issues Pie Chart"} type="cruft" />
+                        <CustomPieChart apidata={data} title={"Zero Business Value Stories Pie Chart"} type="techDebt" />
                     </div>
                 ) : null}
                 <br />
@@ -105,4 +105,4 @@ const DateSelectorCruft = ({ attributes, token, projectId, onDateSubmit }) => {
 };
 
 
-export default DateSelectorCruft;
+export default DateSelectorTechDebt;

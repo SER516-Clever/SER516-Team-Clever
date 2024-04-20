@@ -23,7 +23,7 @@ public class DoTController {
     @ResponseBody
     public List<MilestoneDTO> getClosedMilestonesbyID(@PathVariable("projectID") Integer projectID, HttpServletRequest request) {
         String token = request.getHeader("token");
-        return projectService.getClosedMilestonesbyID(projectID);
+        return projectService.getClosedMilestonesbyID(projectID, token);
     }
 
     @Cacheable(value="DoTbySlug", key = "#Slug")
@@ -31,7 +31,7 @@ public class DoTController {
     @ResponseBody
     public List<MilestoneDTO> getClosedMilestonesbySlug(@PathVariable("Slug") String Slug, HttpServletRequest request) {
         String token = request.getHeader("token");
-        return projectService.getClosedMilestonesbySlug(Slug);
+        return projectService.getClosedMilestonesbySlug(Slug, token);
     }
 
     @Cacheable(value="DoTBVbyProject", key = "#projectID")
