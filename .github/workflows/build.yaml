@@ -18,9 +18,6 @@ jobs:
     strategy:
       matrix:
         python-version: [3.12.3]
-        image: [achaur11/SER516-Team-Clever-FE, achaur11/SER516-Team-Clever-auth, achaur11/SER516-Team-Clever-adoptedWork, achaur11/SER516-Team-Clever-burndown, achaur11/SER516-Team-Clever-cruft, achaur11/SER516-Team-Clever-cycle-time, achaur11/SER516-Team-Clever-dev-focus, achaur11/SER516-Team-Clever-dot, achaur11/SER516-Team-Clever-found_work, achaur11/SER516-Team-Clever-lead-time, achaur11/SER516-Team-Clever-orchestrator, achaur11/SER516-Team-Clever-project, achaur11/SER516-Team-Clever-tech-debt, achaur11/SER516-Team-Clever-taigaProject]
-        path: [auth, react-ui, adoptedWork, burndown-chart, cruft, cycle-time, dev-focus, dot, found_work, lead-time, orchestrator, tech-debt, project, taigaProject]
-        dockerfile: [auth/Dockerfile, react-ui/Dockerfile, adoptedWork/Dockerfile, burndown-chart/Dockerfile, cruft/Dockerfile, cycle-time/Dockerfile, dev-focus/Dockerfile, dot/Dockerfile, found_work/Dockerfile, lead-time/Dockerfile, orchestrator/Dockerfile, tech-debt/Dockerfile, project/Dockerfile, taigaProject/Dockerfile]
         include:
           - image: achaur11/SER516-Team-Clever-auth
             path: auth
