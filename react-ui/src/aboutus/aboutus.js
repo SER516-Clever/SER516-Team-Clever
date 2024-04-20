@@ -66,8 +66,8 @@ const AboutUs = () => {
                                 <h3>Meet the Developer Team!</h3><br />
                                 <h6>We are a developer team of ten members: Aarti Kalekar (akalekar@asu.edu), Ashutosh Chaurasia (achaur11@asu.edu), 
                                 Advait Chirmule (achirmul@asu.edu), Atharva Date (adate1@asu.edu),
-                                Hasan Shahid (shahih25@asu.edu), Kushagra Kartik (kkartik12@asu.edu), Pradnya Chaudhari (pchaud21@asu.edu)
-                                Sehun Park (spark290@asu.edu), Shikha Verma (sverma89asu@asu.edu), and Vidya Rupak (vrupak@asu.edu);</h6>
+                                Hasan Shahid (hmshahid@asu.edu), Kushagra Kartik (kkartik@asu.edu), Pradnya Chaudhari (pchaud21@asu.edu)
+                                Sehun Park (spark290@asu.edu), Shikha Verma (sverma89@asu.edu), and Vidya Rupak (vrupak@asu.edu);</h6>
                             </Row>
                             <br />
                             <Row>
