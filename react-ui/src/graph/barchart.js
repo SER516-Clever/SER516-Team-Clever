@@ -4,7 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, Legend, CartesianGrid, ResponsiveContainer
 const CustomBarChart = ({ title, data, threshold, endDate }) => {
     const [memberData, setMemberData] = useState([]);
     const [dateData, setDateData] = useState({});
-    const [sprintData, setsprintData] = useState({});
+    const [sprintData, setSprintData] = useState({});
     const [members, setMembers] = useState([]);
 
     const colorGenerator = () => {

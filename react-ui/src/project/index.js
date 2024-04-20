@@ -92,7 +92,6 @@ const Project = () => {
             setIsDevFocus(false);
             setIsLeadTime(false);
             setIsCruft(false);
-            setIsDoT(true);
         }
         else if (eventKey === "Tech Debt") {
             setMetric("8080/api/Sprints");
@@ -113,8 +112,7 @@ const Project = () => {
         setSpinnerFlag(true);
 
         axios({
-            method: isDoT ? "get" : "post",
-            method: isDoT ? "get" : "post",
+            method: selectedValue === "Delivery On Time" ? "get" : "post",
             url: `http://localhost:${metric}`,
             data: {
                 projectslug: project,
@@ -308,7 +306,7 @@ const Project = () => {
                             ) : null}
 
                             {selectedValue === "Delivery On Time" && isDoT ? (
-                                <DeliveryOnTimeDetail attributes={data.custom_attributes} token={auth} projectId={data.id} />
+                                <DeliveryOnTimeDetail apiData={data} />
                             ) : null}
 
                             {selectedValue === "Tech Debt" && isTechDebt ? (
