@@ -160,7 +160,7 @@ const DateSelector = ({ onDateSubmit, memberDetails, token, projectId }) => {
                     <br />
                     <CustomCard num={totalViolations} from={startDate} to={endDate} members={members} title={title} />
                     <br />
-                    <CustomBarChart title={"Charts"} data={data} threshold={threshold} showMemberViolations={true} showInProgressTasks={true} showDeliveryOnTime={false}/>
+                    <CustomBarChart title={"Charts"} data={data} threshold={threshold} />
                 </div>
             ) : null}
         </div>

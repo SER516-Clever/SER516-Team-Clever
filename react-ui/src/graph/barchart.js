@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Legend, CartesianGrid, ResponsiveContainer, Tooltip, Rectangle } from 'recharts';
 
-const CustomBarChart = ({ title, data, threshold, showMemberViolations, showInProgressTasks, showDeliveryOnTime }) => {
+const CustomBarChart = ({ title, data, threshold, endDate }) => {
     const [memberData, setMemberData] = useState([]);
     const [dateData, setDateData] = useState({});
     const [sprintData, setsprintData] = useState({});
@@ -19,7 +19,6 @@ const CustomBarChart = ({ title, data, threshold, showMemberViolations, showInPr
     useEffect(() => {
         let temp_arr = [];
         let members = [];
-
         let tempDateMap = {};
         for (const name in data) {
             let count = 0;
@@ -61,16 +60,16 @@ const CustomBarChart = ({ title, data, threshold, showMemberViolations, showInPr
     }, [data, threshold]);
 
     useEffect(() => {
-        if (showDeliveryOnTime && data) {
-            const newData = data.map(project => ({
-                ...project,
-                remBV: project.total_BV - project.deliveredBV,
-                remSP: project.total_SP - project.deliveredSP
+        if (data) {
+            const newData = data.map(milestone => ({
+                ...milestone,
+                remBV: milestone.bvTotal - milestone.bvCompleted,
+                remSP: milestone.totalPoints - milestone.spCompleted,
+                name: milestone.milestoneName
             }));
-            setsprintData(newData);
+            setSprintData(newData);
         }
-    }, [data, showDeliveryOnTime]);
-
+    }, [data]);
 
     const filterTasks = (tasks) => {
         let removeTasks = [];
@@ -91,7 +90,6 @@ const CustomBarChart = ({ title, data, threshold, showMemberViolations, showInPr
     return (
         <div>
             <h4 style={{ textAlign: 'center' }}>{title}</h4>
-            {showMemberViolations && (
                 <ResponsiveContainer width="100%" height={600}>
                     <BarChart
                         data={memberData}
@@ -110,8 +108,6 @@ const CustomBarChart = ({ title, data, threshold, showMemberViolations, showInPr
                         <Bar dataKey="violations" fill="#8884d8" activeBar={<Rectangle fill="orange" stroke="purple" />} />
                     </BarChart>
                 </ResponsiveContainer>
-            )}
-            {showInProgressTasks && (
                 <ResponsiveContainer width="100%" height={600}>
                     <BarChart
                         data={dateData}
@@ -137,8 +133,6 @@ const CustomBarChart = ({ title, data, threshold, showMemberViolations, showInPr
                         }
                     </BarChart>
                 </ResponsiveContainer>
-            )}
-            {showDeliveryOnTime && (
                 <ResponsiveContainer width="100%" height={600}>
                     <BarChart
                         data={sprintData}
@@ -152,16 +146,12 @@ const CustomBarChart = ({ title, data, threshold, showMemberViolations, showInPr
                         <YAxis type="number" dataKey="" label={{
                             value: 'Delivery On Time Count', angle: -90, position: 'insideLeft', style: { fontSize: '20px' }
                         }} />
-
-                        {/* <Tooltip />
-
-                        <Legend align="right" verticalAlign="top" layout="horizontal" iconType="square"/> */}
-                        <Legend align="right" verticalAlign="top" layout="horizontal" iconType="square"/>
-                        <Bar dataKey="deliveredBV" fill="#8884d8" name="Delivered BV" />
+                        <Tooltip />
+                        <Legend align="right" verticalAlign="top" layout="horizontal"/>
+                        <Bar dataKey="bvCompleted" fill="#8884d8" name="Completed BV" />
                         <Bar dataKey="remBV" fill="#82ca9d" name="Remaining BV" />
-                        <Bar dataKey="deliveredSP" fill="#4184D8" name="Delivered SP" />
+                        <Bar dataKey="spCompleted" fill="#4184D8" name="Completed SP" />
                         <Bar dataKey="remSP" fill="#FFC658" name="Remaining SP" />
-
                         {/* {
                             members.map(member => {
                                 return <Bar key={member} dataKey={member} stackId="a" fill={colorGenerator()} />
@@ -169,7 +159,6 @@ const CustomBarChart = ({ title, data, threshold, showMemberViolations, showInPr
                         } */}
                     </BarChart>
                 </ResponsiveContainer>
-            )}
         </div>
     );
 }
