@@ -83,9 +83,10 @@ def get_task_cycle_time(project_id, auth_token, from_date=None, to_date=None):
     with ThreadPoolExecutor(max_workers=15) as executor:
         for task in tasks:
             finished_date = datetime.fromisoformat(task['finished_date'])
-            if from_date is not None and from_date > finished_date.date():
+            if (from_date != "None" and from_date != None and from_date != "") and from_date > finished_date.date():
                 continue
-            if to_date is not None and to_date < finished_date.date():
+
+            if (to_date != "None" and to_date != None and to_date != "") and to_date < finished_date.date():
                 continue
             executor.submit(
                 get_task_details,
@@ -122,9 +123,9 @@ def get_us_cycle_time(project_id, auth_token, from_date=None, to_date=None):
     with ThreadPoolExecutor(max_workers=15) as executor:
         for story in user_stories:
             finished_date = datetime.fromisoformat(story['finished_date'])
-            if from_date is not None and from_date > finished_date.date():
+            if (from_date != "None" and from_date != None and from_date != "") and from_date > finished_date.date():
                 continue
-            if to_date is not None and to_date < finished_date.date():
+            if (to_date != "None" and to_date != None and to_date != "") and to_date < finished_date.date():
                 continue
             executor.submit(
                 get_user_story_details,

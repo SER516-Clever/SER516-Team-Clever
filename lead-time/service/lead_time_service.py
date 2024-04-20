@@ -59,9 +59,9 @@ def get_us_lead_time(project_id, auth_token, from_date=None, to_date=None):
     for user_story in user_stories:
         created_date = datetime.fromisoformat(user_story["created_date"])
         finished_date = datetime.fromisoformat(user_story['finished_date'])
-        if from_date is not None and from_date > finished_date.date():
+        if (from_date != "None" and from_date != None and from_date != "") and from_date > finished_date.date():
             continue
-        if to_date is not None and to_date < finished_date.date():
+        if (to_date != "None" and to_date != None and to_date != "") and to_date < finished_date.date():
             continue
         lead_time += (finished_date - created_date).days
         lead_times.append({
@@ -90,9 +90,9 @@ def get_task_lead_time(project_id, auth_token, from_date=None, to_date=None):
     for task in tasks:
         created_date = datetime.fromisoformat(task["created_date"])
         finished_date = datetime.fromisoformat(task['finished_date'])
-        if from_date is not None and from_date > finished_date.date():
+        if (from_date != "None" and from_date != None and from_date != "") and from_date > finished_date.date():
             continue
-        if to_date is not None and to_date < finished_date.date():
+        if (to_date != "None" and to_date != None and to_date != "") and to_date < finished_date.date():
             continue
         lead_time += (finished_date - created_date).days
         lead_times.append({
