@@ -19,46 +19,46 @@ jobs:
       matrix:
         python-version: [3.12.3]
         include:
-          - image: hasanova2503/SER516-Team-Clever-auth
+          - image: achaur11/SER516-Team-Clever-auth
             path: auth
             dockerfile: auth/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-FE
+          - image: achaur11/SER516-Team-Clever-FE
             path: react-ui
             dockerfile: react-ui/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-adoptedWork
+          - image: achaur11/SER516-Team-Clever-adoptedWork
             path: adoptedWork
             dockerfile: adoptedWork/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-burndown
+          - image: achaur11/SER516-Team-Clever-burndown
             path: burndown-chart
             dockerfile: burndown-chart/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-cruft
+          - image: achaur11/SER516-Team-Clever-cruft
             path: cruft
             dockerfile: cruft/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-cycle-time
+          - image: achaur11/SER516-Team-Clever-cycle-time
             path: cycle-time
             dockerfile: cycle-time/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-dev-focus
+          - image: achaur11/SER516-Team-Clever-dev-focus
             path: dev-focus
             dockerfile: dev-focus/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-dot
+          - image: achaur11/SER516-Team-Clever-dot
             path: dot
             dockerfile: dot/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-found_work
+          - image: achaur11/SER516-Team-Clever-found_work
             path: found_work
             dockerfile: found_work/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-lead-time
+          - image: achaur11/SER516-Team-Clever-lead-time
             path: lead-time
             dockerfile: lead-time/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-orchestrator
+          - image: achaur11/SER516-Team-Clever-orchestrator
             path: orchestrator
             dockerfile: orchestrator/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-project
+          - image: achaur11/SER516-Team-Clever-project
             path: project
             dockerfile: project/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-tech-debt
+          - image: achaur11/SER516-Team-Clever-tech-debt
             path: tech-debt
             dockerfile: tech-debt/Dockerfile
-          - image: hasanova2503/SER516-Team-Clever-taigaProject
+          - image: achaur11/SER516-Team-Clever-taigaProject
             path: taigaProject
             dockerfile: taigaProject/Dockerfile
     runs-on: ubuntu-latest
