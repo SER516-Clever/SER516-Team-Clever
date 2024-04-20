@@ -104,7 +104,7 @@ const DeliveryOnTimeDetail = ({ attributes, token, projectId }) => {
             setSpinnerFlag(false);
         });
     }
-
+    
     return (
         <div>
             <Form onSubmit={handleSubmit}>

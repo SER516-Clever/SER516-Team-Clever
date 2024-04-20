@@ -114,6 +114,7 @@ const Project = () => {
 
         axios({
             method: isDoT ? "get" : "post",
+            method: isDoT ? "get" : "post",
             url: `http://localhost:${metric}`,
             data: {
                 projectslug: project,
