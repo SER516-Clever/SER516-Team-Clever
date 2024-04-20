@@ -54,7 +54,7 @@ services:
 
   adoptedwork:
     build:
-      context: ./adoptedwork
+      context: ./adoptedWork
       dockerfile: Dockerfile
     ports:
       - "8086:8080"
