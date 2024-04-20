@@ -24,8 +24,7 @@ jobs:
                 achaur11/SER516-Team-Clever-dev-focus, achaur11/SER516-Team-Clever-dot,
                 chaur11/SER516-Team-Clever-found_work, chaur11/SER516-Team-Clever-lead-time,
                 achaur11/SER516-Team-Clever-orchestrator, achaur11/SER516-Team-Clever-project,
-                achaur11/SER516-Team-Clever-tech-debt, achaur11/SER516-Team-Clever-taigaProject
-        ]
+                achaur11/SER516-Team-Clever-tech-debt, achaur11/SER516-Team-Clever-taigaProject]
         path: [auth, react-ui, adoptedWork, burndown-chart, cruft, cycle-time, dev-focus,
         dot, found_work, lead-time, orchestrator, tech-debt, project, taigaProject]
         dockerfile: [auth/Dockerfile, react-ui/Dockerfile, adoptedWork/Dockerfile,
