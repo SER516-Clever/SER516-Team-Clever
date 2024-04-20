@@ -73,7 +73,7 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build Compose Images
-        run: docker compose -f docker-compose.yml build
+        run: docker compose -f docker-compose.yml up
 
       - name: Push image to Container Registry
         run: docker compose -f docker-compose.yml push
