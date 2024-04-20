@@ -4,7 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, Legend, CartesianGrid, ResponsiveContainer
 const CustomBarChart = ({ title, data, threshold, endDate }) => {
     const [memberData, setMemberData] = useState([]);
     const [dateData, setDateData] = useState({});
-    const [sprintData, setSprintData] = useState({});
+    // const [sprintData, setSprintData] = useState({});
     const [members, setMembers] = useState([]);
 
     const colorGenerator = () => {
@@ -58,18 +58,6 @@ const CustomBarChart = ({ title, data, threshold, endDate }) => {
         setDateData(sortedDateData);
         setMembers(members);
     }, [data, threshold]);
-
-    useEffect(() => {
-        if (data) {
-            const newData = data.map(milestone => ({
-                ...milestone,
-                remBV: milestone.bvTotal - milestone.bvCompleted,
-                remSP: milestone.totalPoints - milestone.spCompleted,
-                name: milestone.milestoneName
-            }));
-            setSprintData(newData);
-        }
-    }, [data]);
 
     const filterTasks = (tasks) => {
         let removeTasks = [];
@@ -131,32 +119,6 @@ const CustomBarChart = ({ title, data, threshold, endDate }) => {
                                 return <Bar key={member} dataKey={member} stackId="a" fill={colorGenerator()} />
                             })
                         }
-                    </BarChart>
-                </ResponsiveContainer>
-                <ResponsiveContainer width="100%" height={600}>
-                    <BarChart
-                        data={sprintData}
-                        margin={{ top: 20, right: 40, bottom: 70, left: 30 }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis type="category" dataKey="Sprint" label={{value: 'Date',
-                            position: 'insideBottom', offset: -50, style: { fontSize: '20px' }
-                        }}
-                            tick={{ fontSize: 12 }} allowDuplicatedCategory={true} />
-                        <YAxis type="number" dataKey="" label={{
-                            value: 'Delivery On Time Count', angle: -90, position: 'insideLeft', style: { fontSize: '20px' }
-                        }} />
-                        <Tooltip />
-                        <Legend align="right" verticalAlign="top" layout="horizontal"/>
-                        <Bar dataKey="bvCompleted" fill="#8884d8" name="Completed BV" />
-                        <Bar dataKey="remBV" fill="#82ca9d" name="Remaining BV" />
-                        <Bar dataKey="spCompleted" fill="#4184D8" name="Completed SP" />
-                        <Bar dataKey="remSP" fill="#FFC658" name="Remaining SP" />
-                        {/* {
-                            members.map(member => {
-                                return <Bar key={member} dataKey={member} stackId="a" fill={colorGenerator()} />
-                            })
-                        } */}
                     </BarChart>
                 </ResponsiveContainer>
         </div>
