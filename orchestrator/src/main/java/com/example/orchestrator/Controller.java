@@ -1,6 +1,7 @@
 package com.example.orchestrator;
 
 import com.example.orchestrator.models.AuthModel;
+import com.example.orchestrator.models.AuthRequest;
 import com.example.orchestrator.models.BurndownChartRequest;
 import com.example.orchestrator.models.CruftRequest;
 import com.example.orchestrator.models.DevFocusRequest;
@@ -53,13 +54,18 @@ public class Controller {
     DevFocusService devFocusService;
     @Autowired
     SprintService sprintService;
+    @Autowired
+    TechDebtService techDebtService;
 
 
     @PostMapping("/login")
     @ResponseBody
-    public Object login(@RequestParam String username, @RequestParam String password) {
+    public Object login(@RequestBody AuthRequest request) {
+        String username = request.getUsername();
+        String password = request.getPassword();
+
         AuthModel authModel = authentication.authenticate(username, password);
-        if(authModel != null && authModel.getMemberID() != null) {
+        if (authModel != null && authModel.getMemberID() != null) {
             token = authModel.getToken();
             return ResponseEntity.ok(authModel.getMemberID());
         } else {
@@ -159,6 +165,11 @@ public class Controller {
     @PostMapping("/Project")
     public String getProject(@RequestBody final ProjectRequest request) {
         return sprintService.getProject(request, token);
+    }
+
+    @PostMapping("/metric/TechDebt")
+    public String getTechDebt(@RequestBody final CruftRequest request) {
+        return techDebtService.getTechDebtMetric(request, token);
     }
 
 }

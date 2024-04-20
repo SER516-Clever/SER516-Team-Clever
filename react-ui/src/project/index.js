@@ -88,7 +88,6 @@ const Project = () => {
 			setIsLeadTime(false);
 		}
 	};
-
 	useEffect(() => {
 		setAuth(location?.state?.token);
 	}, [location]);
@@ -154,7 +153,6 @@ const Project = () => {
 			/>
 		);
 	}
-
 	return (
 		<div
 			className="backgroundOrange fontUniform"
@@ -401,7 +399,6 @@ const Project = () => {
 											</div>
 										</div>
 									) : null}
-
 									<Button
 										variant="info"
 										type="submit"
@@ -410,7 +407,6 @@ const Project = () => {
 									>
 										Submit
 									</Button>
-
 									<br />
 
 									{error ? (
@@ -418,7 +414,6 @@ const Project = () => {
 											Unable to fetch project detail
 										</p>
 									) : null}
-
 									{spinnerFlag ? (
 										<Spinner
 											variant="primary"

@@ -72,7 +72,7 @@ def get_us_lead_time(project_id, auth_token, from_date=None, to_date=None):
             "startTime": user_story["created_date"],
             "startDate": created_date.date(),
             "endTime": user_story['finished_date'],
-            "endDate": finished_date.date(),
+            "endDate": datetime.strftime(finished_date.date(),'%m-%d-%Y'),
             "timeTaken": (finished_date - created_date).days
         })
         closed_user_stories += 1
@@ -103,7 +103,7 @@ def get_task_lead_time(project_id, auth_token, from_date=None, to_date=None):
             "startTime": task["created_date"],
             "startDate": created_date.date(),
             "endTime": task['finished_date'],
-            "endDate": finished_date.date(),
+            "endDate": datetime.strftime(finished_date.date(),'%m-%d-%Y'),
             "timeTaken": (finished_date - created_date).days
         })
         closed_tasks += 1

@@ -182,7 +182,7 @@ def get_user_story_details(
                 "startTime": story["created_date"],
                 "inProgressDate": in_progress_date.date(),
                 "endTime": story['finished_date'],
-                "endDate": finished_date.date(),
+                "endDate": datetime.strftime(finished_date.date(),'%m-%d-%Y'),
                 "timeTaken": (finished_date - in_progress_date).days,
                 "taskDesc": story["subject"],
                 "sprintURL": story["sprintURL"],

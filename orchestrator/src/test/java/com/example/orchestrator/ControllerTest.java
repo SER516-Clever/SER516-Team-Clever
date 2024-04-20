@@ -11,6 +11,7 @@ import com.example.orchestrator.services.CycleTimeService;
 import com.example.orchestrator.services.DevFocusService;
 import com.example.orchestrator.services.SprintService;
 import com.example.orchestrator.services.TaskService;
+import com.example.orchestrator.services.TechDebtService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -52,6 +53,9 @@ public class ControllerTest {
 
     @MockBean
     SprintService sprintService;
+
+    @MockBean
+    TechDebtService techDebtService;
 
     @Autowired
     MockMvc mvc;
@@ -150,6 +154,21 @@ public class ControllerTest {
         request.setProjectslug("slug");
         when(sprintService.getProject(any(ProjectRequest.class), anyString())).thenReturn("Response");
         mvc.perform(MockMvcRequestBuilders.post("/api/Sprints")
+                        .content(mapper.writeValueAsString(request))
+                        .contentType(APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @SneakyThrows
+    @Test
+    void testTechDebt() {
+        CruftRequest request = new CruftRequest();
+        request.setAttributeKey("attr");
+        request.setProjectId("pro");
+        request.setStartDate("start");
+        request.setEndDate("end");
+        when(techDebtService.getTechDebtMetric(any(CruftRequest.class), anyString())).thenReturn("Response");
+        mvc.perform(MockMvcRequestBuilders.post("/api/metric/TechDebt")
                         .content(mapper.writeValueAsString(request))
                         .contentType(APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
