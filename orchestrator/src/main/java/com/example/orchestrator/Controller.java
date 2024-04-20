@@ -75,33 +75,39 @@ public class Controller {
 
     @GetMapping("/projectList/{memberID}")
     @ResponseBody
+    @Cacheable(value="projectList", key = "#memberID")
     public String getProjectList(@PathVariable("memberID") Integer memberID) {
         return projectService.getProjectList(memberID, token);
     }
 
     @GetMapping("/projects/{projectID}")
     @ResponseBody
+    @Cacheable(value="projectByID", key = "#projectID")
     public String getProjectDetails(@PathVariable("projectID") Integer projectID) {
         return projectService.getPojectDetails(projectID, token);
     }
 
     @GetMapping("/projects/by-slug/{slug}")
     @ResponseBody
+    @Cacheable(value="projectBySlug", key = "#Slug")
     public String getProjectDetailsSlug(@PathVariable("slug") String Slug) {
         return projectService.getProjectDetailsSlug(Slug, token);
     }
 
     @PostMapping("/metric/Burndown")
+    @Cacheable(value="burnDown")
     public String getBurndownMetric(@RequestBody final BurndownChartRequest request) {
         return burndownChart.getBurndownMetric(request, token);
     }
 
     @PostMapping("/metric/CycleTime")
+    @Cacheable(value = "cycleTime")
     public String getCycleTime(@RequestBody final TimeRequest request) {
         return cycleTimeService.getCycleTimeMetric(request, token);
     }
 
     @PostMapping("/metric/LeadTime")
+    @Cacheable(value="leadTime")
     public String getLeadTime(@RequestBody final TimeRequest request) {
         return taskService.getLeadTimeMetric(request, token);
     }
@@ -119,12 +125,14 @@ public class Controller {
         return adoptedWorkService.getAdoptedWorkForAllSprints(slug, token);
     }
 
+    @Cacheable(value="DoTbyProject", key = "#projectID")
     @GetMapping("/DoT/{projectID}")
     @ResponseBody
     public String getClosedMilestonesbyID(@PathVariable("projectID") Integer projectID) {
         return deliveryOnTimeService.getClosedMilestonesbyID(projectID, token);
     }
 
+    @Cacheable(value="DoTbySlug", key = "#Slug")
     @GetMapping("/DoT/by-slug/{Slug}")
     @ResponseBody
     public String getClosedMilestonesbySlug(@PathVariable("Slug") String Slug) {
@@ -134,42 +142,50 @@ public class Controller {
         return response;
     }
 
+    @Cacheable(value="DoTBVbyProject", key = "#projectID")
     @GetMapping("DoT/{projectID}/BV")
     public @ResponseBody String getClosedMilestonesforBV(@PathVariable("projectID") Integer projectID) {
         return deliveryOnTimeService.getClosedMilestonesbyIDForBV(projectID, token);
     }
 
+    @Cacheable(value="DoTBVbySlug", key = "#projectID")
     @GetMapping("DoT/by-slug/{Slug}/BV")
     public @ResponseBody String getClosedMilestonesforBV(@PathVariable("Slug") String slug) {
         return deliveryOnTimeService.getClosedMilestonesbySlugForBV(slug, token);
     }
 
+    @Cacheable(value="foundWork", key = "#milestoneID")
     @GetMapping("/foundWork/{milestoneID}")
     @ResponseBody
     public String getFoundWorkByID(@PathVariable("milestoneID") Integer milestoneID) {
         return foundWorkService.getFoundWork(milestoneID, token);
     }
 
+    @Cacheable(value="cruft")
     @PostMapping("/metric/Cruft")
     public String getCruftMetric(@RequestBody final CruftRequest request) {
         return cruftService.getCruftMetric(request, token);
     }
 
+    @Cacheable(value="devFocus")
     @PostMapping("/metric/Devfocus")
     public String getDevFocusMetric(@RequestBody final DevFocusRequest request) {
         return devFocusService.getDevFocusMetric(request, token);
     }
 
+    @Cacheable(value="sprints")
     @PostMapping("/Sprints")
     public String getSprint(@RequestBody final ProjectRequest request) {
         return sprintService.getSprint(request, token);
     }
 
+    @Cacheable(value="project")
     @PostMapping("/Project")
     public String getProject(@RequestBody final ProjectRequest request) {
         return sprintService.getProject(request, token);
     }
 
+    @Cacheable(value="techDebt")
     @PostMapping("/metric/TechDebt")
     public String getTechDebt(@RequestBody final CruftRequest request) {
         return techDebtService.getTechDebtMetric(request, token);
