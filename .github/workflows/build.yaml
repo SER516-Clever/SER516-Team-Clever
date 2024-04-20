@@ -19,47 +19,7 @@ jobs:
       matrix:
         python-version: [3.12.3]
         include:
-          - image: achaur11/SER516-Team-Clever-auth
-            path: auth
-            dockerfile: auth/Dockerfile
-          - image: achaur11/SER516-Team-Clever-FE
-            path: react-ui
-            dockerfile: react-ui/Dockerfile
-          - image: achaur11/SER516-Team-Clever-adoptedWork
-            path: adoptedWork
-            dockerfile: adoptedWork/Dockerfile
-          - image: achaur11/SER516-Team-Clever-burndown
-            path: burndown-chart
-            dockerfile: burndown-chart/Dockerfile
-          - image: achaur11/SER516-Team-Clever-cruft
-            path: cruft
-            dockerfile: cruft/Dockerfile
-          - image: achaur11/SER516-Team-Clever-cycle-time
-            path: cycle-time
-            dockerfile: cycle-time/Dockerfile
-          - image: achaur11/SER516-Team-Clever-dev-focus
-            path: dev-focus
-            dockerfile: dev-focus/Dockerfile
-          - image: achaur11/SER516-Team-Clever-dot
-            path: dot
-            dockerfile: dot/Dockerfile
-          - image: achaur11/SER516-Team-Clever-found_work
-            path: found_work
-            dockerfile: found_work/Dockerfile
-          - image: achaur11/SER516-Team-Clever-lead-time
-            path: lead-time
-            dockerfile: lead-time/Dockerfile
-          - image: achaur11/SER516-Team-Clever-orchestrator
-            path: orchestrator
-            dockerfile: orchestrator/Dockerfile
-          - image: achaur11/SER516-Team-Clever-project
-            path: project
-            dockerfile: project/Dockerfile
-          - image: achaur11/SER516-Team-Clever-tech-debt
-            path: tech-debt
-            dockerfile: tech-debt/Dockerfile
           - image: achaur11/SER516-Team-Clever-taigaProject
-            path: taigaProject
             dockerfile: taigaProject/Dockerfile
     runs-on: ubuntu-latest
 
@@ -102,8 +62,8 @@ jobs:
         run: find . -name "requirements.txt" -exec bash -c '
             dir=$(dirname "{}")
             echo "--------In folder $dir-------"
-            cd "$dir" && flake8 --max-complexity 10 . --exit-zero
-          ' \;
+            cd "$dir" && flake8 --max-complexity 10 . --exit-zero '
+            \;
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
