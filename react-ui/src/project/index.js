@@ -22,7 +22,6 @@ import SprintDetail from '../sprint';
 import DateSelector from '../devfocus';
 import DateSelectorCruft from '../cruft';
 import { SimpleBarChart } from '../graph/barchart';
-import { testData } from '../graph/testData';
 
 const Project = () => {
 	const location = useLocation();
