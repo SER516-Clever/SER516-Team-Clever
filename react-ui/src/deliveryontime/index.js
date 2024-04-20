@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import { BarChart, Bar, XAxis, YAxis, Legend, CartesianGrid, ResponsiveContainer, Tooltip, Rectangle } from 'recharts';
-import { Button, Form, Spinner } from "react-bootstrap";
+import { BarChart, Bar, XAxis, YAxis, Legend, CartesianGrid, ResponsiveContainer, Tooltip } from 'recharts';
 
 const DeliveryOnTimeDetail = ({ apiData }) => {
-    const [error, setError] = useState(false);
-    const [spinner, setSpinner] = useState(false);
     const [sprintData, setSprintData] = useState([]);
 
     useEffect(() => {
@@ -22,17 +19,8 @@ const DeliveryOnTimeDetail = ({ apiData }) => {
                 };
             });
             setSprintData(newData);
-        } else {
-            setError(true);
-            console.error("Invalid apiData structure:", apiData);
         }
     }, [apiData]);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        setError(false);
-        setSpinner(true);
-    }
 
     return (
         <div>
