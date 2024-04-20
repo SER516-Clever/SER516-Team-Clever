@@ -35,10 +35,15 @@ def get_burndown_chart_metric_detail(milestone_id, attribute_key, auth_token):
     partial_burndown.sort(key=lambda item: item["date"])
     bv_burndown = list(bv_burndown.values())
     bv_burndown.sort(key=lambda item: item["date"])
+    for i in bv_burndown:
+        i["date"] = datetime.strftime(i["date"], '%m-%d-%Y')
     total_burndown = list(total_burndown.values())
     total_burndown.sort(key=lambda item: item["date"])
     combined_burndown["data"] = list(combined_burndown["data"].values())
     combined_burndown["data"].sort(key=lambda item: item["date"])
+    for i in combined_burndown["data"]:
+        i["date"] = datetime.strftime(i["date"], '%m-%d-%Y')
+    
 
     return {
         "partial_burndown": {
@@ -324,7 +329,7 @@ def append_points_date_data(
         date, completed_story_points, remaining_story_points
 ):
     return {
-        "date": date,
+        "date": datetime.strftime(date, '%m-%d-%Y'),
         "completed": completed_story_points,
         "remaining": remaining_story_points
     }

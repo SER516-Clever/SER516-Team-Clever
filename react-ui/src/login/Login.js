@@ -65,27 +65,18 @@ export default class Login extends React.Component {
 							placeholder="Enter Username"
 							onChange={this.handleUsernameInput}
 						/>
-					</FloatingLabel>
-
+                    </FloatingLabel>
 					<FloatingLabel
-						controlId="formPassword"
-						label="Enter Password"
-						className="mb-3 col-sm-8 offset-sm-2"
-					>
-						<Form.Control
-							type="password"
-							placeholder="Enter Password"
-							onChange={this.handlePasswordChange}
-						/>
-					</FloatingLabel>
-					<br></br>
-					<br></br>
-					<Button
-						type="submit"
-						className="submitButton backgroundButton col-sm-8 offset-sm-2"
-					>
-						LOGIN
-					</Button>
+                        controlId="formPassword"
+                        label="Enter Password"
+                        className="mb-3 col-sm-8 offset-sm-2"
+                    >
+                        <Form.Control type="password" placeholder="Enter Password" onChange={this.handlePasswordChange} />
+                    </FloatingLabel>
+                    <br/>
+                    <Button type="submit" className="submitButton backgroundButton col-sm-8 offset-sm-2">
+                        LOGIN
+                    </Button>
 
 					{this.state.validUser ? (
 						<Navigate
@@ -107,3 +98,4 @@ export default class Login extends React.Component {
 		);
 	}
 }
+

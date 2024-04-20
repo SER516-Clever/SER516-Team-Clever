@@ -105,12 +105,9 @@
 }
 
 .cards {
-  border: 1px solid black;
-  background-image: url('Background1.png');
-  color: white;
+  background-color: #FED9ED;
   height: 300px;
   border-radius: 25px;
-  box-shadow: 10px 10px 5px gray;
   align-items: center;
   width: 600px;
   flex-direction: column;
