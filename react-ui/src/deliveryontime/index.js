@@ -37,21 +37,6 @@ const DeliveryOnTimeDetail = ({ apiData }) => {
     return (
         <div>
             <br />
-            {/* <Form onSubmit={handleSubmit}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
-                </div>
-            </Form>
-
-            {spinner ? (
-                <div>
-                    <Spinner variant="primary" animation="border" style={{ justifyContent: "center", alignItems: "center", display: "flex", marginLeft: "49%" }} />
-                </div>
-            ) : null} */}
-
-            {/* {error ? (
-                <p className="errorMessage">Unable to fetch Sprint Detail</p>
-            ) : null} */}
-
             {sprintData.length > 0 && (
                 <div>
                     <h3 style={{ textAlign: 'center', marginBottom: '20px' }}>Delivery On Time Chart</h3>
