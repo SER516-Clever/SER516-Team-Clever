@@ -65,6 +65,7 @@ export default class Login extends React.Component {
 							placeholder="Enter Username"
 							onChange={this.handleUsernameInput}
 						/>
+                    </FloatingLabel>
 					<FloatingLabel
                         controlId="formPassword"
                         label="Enter Password"
@@ -97,3 +98,4 @@ export default class Login extends React.Component {
 		);
 	}
 }
+
