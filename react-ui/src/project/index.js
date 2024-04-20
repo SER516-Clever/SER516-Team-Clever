@@ -517,7 +517,7 @@ const Project = () => {
 							) : null}
 							{selectedValue === 'Adopted Work' && isAdopted ? (
 								<SimpleBarChart
-									apiData={testData}
+									apiData={data}
 									title={'Adopted Work'}
 									xAxisDataKey={'milestoneName'}
 									xAxisLabel={'Sprint'}
