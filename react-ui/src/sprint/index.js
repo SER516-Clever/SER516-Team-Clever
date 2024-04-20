@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
-import { Button, Spinner, Stack } from 'react-bootstrap';
+import { Button, Dropdown, Spinner, Stack } from 'react-bootstrap';
 import Areachart from '../areachart';
 import Graph from '../graph';
 import CustomMultiSeriesLineChart from '../graph/multiseries';
 import { SimpleBarChart } from '../graph/barchart';
+import FoundWork from '../foundwork';
 
-const SprintDetail = ({ sprintDetails, attributes, token, projectName }) => {
+const SprintDetail = ({ sprintDetails, attributes, token, projectName, isBurndown, isFoundWork }) => {
+	const [selectedValue, setSelectedValue] = useState([]);
 	const [selectedValues, setSelectedValues] = useState([]);
 	const [bvAttribute, setBvAttribute] = useState(null);
 	const [data, setData] = useState(null);
@@ -29,6 +31,11 @@ const SprintDetail = ({ sprintDetails, attributes, token, projectName }) => {
 		setBvAttribute(attribute.length !== 0 ? attribute[0].toString() : null);
 	}, [attributes]);
 
+	const handleSingleSelect = (eventKey) => {
+        const splitEventKey = eventKey.split(",");
+        setSelectedValue(splitEventKey);
+    }
+
 	const handleSelect = (selectedOptions) => {
 		setSelectedValues(selectedOptions);
 	};
@@ -39,35 +46,53 @@ const SprintDetail = ({ sprintDetails, attributes, token, projectName }) => {
 
 		let sprints = [];
 
-		selectedValues.forEach((v) => {
-			sprints.push(v.value.toString());
-		});
-
-		const formData = {
-			milestoneIds: sprints,
-			attributeKey: bvAttribute ? bvAttribute.toString() : '',
-		};
-
-		axios({
-			url: 'http://localhost:8080/api/metric/Burndown',
-			method: 'post',
-			data: formData,
-			headers: {
-				token: token,
-				'Content-Type': 'application/json',
-			},
-		})
-			.then((res) => {
-				setData(res.data);
-				console.log(res.data);
-				setError(false);
-				setSpinner(false);
-				setIsMultiChart(sprints.length > 1);
-			})
-			.catch((ex) => {
-				console.error(ex);
-				setError(true);
-			});
+		if (isBurndown) {
+            selectedValues.forEach(v => {
+                sprints.push(v.value.toString());
+            })
+    
+            const formData = {
+                milestoneIds: sprints,
+                attributeKey: bvAttribute ? bvAttribute.toString() : ""
+            };
+    
+            axios({
+                url: "http://localhost:8080/api/metric/Burndown",
+                method: "post",
+                data: formData,
+                headers: {
+                    "token": token,
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(res => {
+                setData(res.data);
+                console.log(res.data);
+                setError(false);
+                setSpinner(false);
+                setIsMultiChart(sprints.length > 1);
+            })
+            .catch(ex => {
+                console.error(ex);
+                setError(true);
+            });
+        }
+        else {
+            axios({
+                url: `http://localhost:8080/api/foundWork/${selectedValue[0]}`,
+                method: "get"
+            })
+            .then(res => {
+                setData(res.data);
+                console.log(res.data);
+                setError(false);
+                setSpinner(false);
+            })
+            .catch(ex => {
+                console.error(ex);
+                setError(true);
+            });
+        }
 	};
 
 	const options = sprintDetails.map((detail) => ({
@@ -80,14 +105,29 @@ const SprintDetail = ({ sprintDetails, attributes, token, projectName }) => {
 			<Stack gap={4}>
 				<h3 className="projectName">{projectName}</h3>
 				<div className="d-flex justify-content-center backgroundWhite">
-					<Select
-						isMulti
-						options={options}
-						className="basic-multi-select"
-						classNamePrefix="select"
-						onChange={handleSelect}
-						placeholder="Select Sprints"
-					/>
+				{isFoundWork ? (
+                        <Dropdown onSelect={handleSingleSelect}>
+                            <Dropdown.Toggle variant="outline-secondary" className="backgroundButton">
+                                {selectedValue.length === 2 ? selectedValue[1] : 'Select Sprint'}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                {
+                                    sprintDetails.map((item) => <Dropdown.Item key={item.id} eventKey={[item.id, item.name]}>{item.name}</Dropdown.Item>)
+                                }
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    ) : null}
+
+                    {isBurndown ? (
+                        <Select
+                            isMulti
+                            options={options}
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                            onChange={handleSelect}
+                            placeholder="Select Sprints"
+                        />
+                    ) : null}
 				</div>
 
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -102,16 +142,8 @@ const SprintDetail = ({ sprintDetails, attributes, token, projectName }) => {
 				</div>
 
 				{spinner && (
-					<Spinner
-						animation="border"
-						variant="primary"
-						style={{
-							display: 'block',
-							marginLeft: 'auto',
-							marginRight: 'auto',
-						}}
-					/>
-				)}
+                    <Spinner animation="border" style={{ display: "block", marginLeft: "auto", marginRight: "auto", color: "#61677A" }} />
+                )}
 
 				{error && <p className="errorMessage">Unable to fetch Sprint Detail</p>}
 
@@ -166,6 +198,10 @@ const SprintDetail = ({ sprintDetails, attributes, token, projectName }) => {
 						/>
 					</div>
 				) : null}
+
+				{isFoundWork && data ? (
+                    <FoundWork foundWorkData={data} />
+                ) : null}
 			</Stack>
 		</div>
 	);

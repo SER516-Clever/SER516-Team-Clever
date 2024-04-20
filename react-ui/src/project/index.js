@@ -16,12 +16,13 @@ import {
 import { Link, useLocation } from 'react-router-dom';
 import CustomModal from '../modal';
 import axios from 'axios';
-import Name from './Name.png';
+import Name from "../images/Name.png";
 import Graph from '../graph';
 import SprintDetail from '../sprint';
 import DateSelector from '../devfocus';
 import DateSelectorCruft from '../cruft';
 import { SimpleBarChart } from '../graph/barchart';
+import DateSelectorTechDebt from '../techdebt';
 
 const Project = () => {
 	const location = useLocation();
@@ -37,7 +38,9 @@ const Project = () => {
 	const [isCycleTime, setIsCycleTime] = useState(false);
 	const [isDevFocus, setIsDevFocus] = useState(false);
 	const [isCruft, setIsCruft] = useState(false);
+    const [isFoundWork, setIsFoundWork] = useState(false);
 	const [isAdopted, setIsAdopted] = useState(false);
+    const [isTechDebt, setIsTechDebt] = useState(false);
 	const [startDate, setStartDate] = useState('');
 	const [endDate, setEndDate] = useState('');
 
@@ -50,7 +53,9 @@ const Project = () => {
 			setIsDevFocus(false);
 			setIsCruft(false);
 			setIsLeadTime(true);
+            setIsFoundWork(false);
 			setIsAdopted(false);
+            setIsTechDebt(false);
 		} else if (eventKey === 'Cycle Time') {
 			setMetric('8080/api/metric/CycleTime');
 			setIsBurndown(false);
@@ -58,7 +63,9 @@ const Project = () => {
 			setIsDevFocus(false);
 			setIsCruft(false);
 			setIsLeadTime(false);
+            setIsFoundWork(false);
 			setIsAdopted(false);
+            setIsTechDebt(false);
 		} else if (eventKey === 'Burndown Chart') {
 			setMetric('8080/api/Sprints');
 			setIsCycleTime(false);
@@ -66,26 +73,62 @@ const Project = () => {
 			setIsLeadTime(false);
 			setIsCruft(false);
 			setIsAdopted(false);
+            setIsFoundWork(false);
+            setIsTechDebt(false);
 		} else if (eventKey === 'Dev Focus') {
 			setIsBurndown(false);
 			setIsLeadTime(false);
 			setIsCycleTime(false);
 			setIsCruft(false);
 			setMetric('8080/api/Project');
+            setIsFoundWork(false);
 			setIsAdopted(false);
+            setIsTechDebt(false);
 		} else if (eventKey === 'Cruft') {
 			setMetric('8080/api/Sprints');
 			setIsBurndown(false);
 			setIsCycleTime(false);
 			setIsDevFocus(false);
 			setIsLeadTime(false);
+            setIsFoundWork(false);
 			setIsAdopted(false);
-		} else if (eventKey === 'Adopted Work') {
-      setMetric(`8080/api/adoptedWork/project/${project}`);
+            setIsTechDebt(false);
+		} else if (eventKey === 'Found Work') {
+            setMetric('8080/api/Sprints');
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+            setIsBurndown(false);
+            setIsAdopted(false);
+            setIsTechDebt(false);
+        }
+//        else if (eventKey === "Delivery On Time") {
+//            setMetric("8080/api/DoT");      // To do change the URL as required
+//            setIsBurndown(false);
+//            setIsCycleTime(false);
+//            setIsDevFocus(false);
+//            setIsLeadTime(false);
+//            setIsCruft(false);
+//            setIsDoT(true);
+//        }
+        else if (eventKey === 'Tech Debt') {
+            setMetric('8080/api/Sprints');
+            setIsBurndown(false);
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+            setIsFoundWork(false);
+            setIsAdopted(false);
+        } else if (eventKey === 'Adopted Work') {
+            setMetric(`8080/api/adoptedWork/project/${project}`);
 			setIsBurndown(false);
 			setIsCycleTime(false);
 			setIsDevFocus(false);
 			setIsLeadTime(false);
+            setIsFoundWork(false);
+            setIsTechDebt(false);
 		}
 	};
 	useEffect(() => {
@@ -98,7 +141,7 @@ const Project = () => {
 		setSpinnerFlag(true);
 
 		axios({
-			method: selectedValue == "Adopted Work" ? 'get' : 'post',
+			method: selectedValue === "Adopted Work" ? 'get' : 'post',
 			url: `http://localhost:${metric}`,
 			data: {
 				projectslug: project,
@@ -124,6 +167,8 @@ const Project = () => {
 				selectedValue === 'Lead Time'
 					? setIsLeadTime(true)
 					: setIsLeadTime(false);
+                selectedValue === 'Found Work' ? setIsFoundWork(true) : setIsFoundWork(false);
+                selectedValue === 'Tech Debt' ? setIsTechDebt(true) : setIsTechDebt(false);
 				selectedValue === 'Adopted Work'
 					? setIsAdopted(true)
 					: setIsAdopted(false);
@@ -135,6 +180,8 @@ const Project = () => {
 				setIsDevFocus(false);
 				setIsLeadTime(false);
 				setIsAdopted(false);
+                setIsFoundWork(false);
+                setIsTechDebt(false);
 			});
 	};
 
@@ -263,6 +310,38 @@ const Project = () => {
 										>
 											Cruft
 										</Nav.Link>
+                                        <Nav.Link 
+                                            style={{ borderBottom: "1px solid #61677A" }}
+                                            as={Link}
+                                            to="/metricwiki"
+                                            state={{token: auth}}
+                                        >
+                                            Adopted Work
+                                        </Nav.Link>
+                                        <Nav.Link
+                                            style={{ borderBottom: "1px solid #61677A" }}
+                                            as={Link}
+                                            to="/metricwiki"
+                                            state={{token: auth}}
+                                        >
+                                            Found Work
+                                        </Nav.Link>
+                                        <Nav.Link
+                                            style={{ borderBottom: "1px solid #61677A" }}
+                                            as={Link}
+                                            to="/metricwiki"
+                                            state={{token: auth}}
+                                        >
+                                            Delivery On Time
+                                        </Nav.Link>
+                                        <Nav.Link
+                                            style={{ borderBottom: "1px solid #61677A" }}
+                                            as={Link}
+                                            to="/metricwiki"
+                                            state={{token: auth}}
+                                        >
+                                            Technical Debt
+                                        </Nav.Link>
 									</Accordion.Body>
 								</Accordion.Item>
 							</Accordion>
@@ -352,6 +431,8 @@ const Project = () => {
 														Dev Focus
 													</Dropdown.Item>
 													<Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="Found Work">Found Work</Dropdown.Item>
+                                                    <Dropdown.Item eventKey="Tech Debt">Tech Debt</Dropdown.Item>
 													<Dropdown.Item eventKey="Adopted Work">
 														Adopted Work
 													</Dropdown.Item>
@@ -414,18 +495,7 @@ const Project = () => {
 											Unable to fetch project detail
 										</p>
 									) : null}
-									{spinnerFlag ? (
-										<Spinner
-											variant="primary"
-											animation="border"
-											style={{
-												justifyContent: 'center',
-												alignItems: 'center',
-												display: 'flex',
-												marginLeft: '49%',
-											}}
-										/>
-									) : null}
+									{spinnerFlag ? <Spinner animation="border" style={{ justifyContent: "center", alignItems: "center", display: "flex", marginLeft: "49%", color: "#61677A" }} /> : null}
 								</Form>
 							</div>
 
@@ -477,6 +547,8 @@ const Project = () => {
 									attributes={data.custom_attributes}
 									token={auth}
 									projectName={data.name}
+                                    isBurndown={isBurndown}
+                                    isFoundWork={isFoundWork}
 								/>
 							) : null}
 							{selectedValue === 'Dev Focus' && isDevFocus ? (
@@ -509,6 +581,22 @@ const Project = () => {
 									}}
 								/>
 							) : null}
+                            {selectedValue === "Found Work" && isFoundWork ? (
+                                <SprintDetail sprintDetails={data.sprints} attributes={data.custom_attributes} token={auth} projectName={data.name} isBurndown={isBurndown} isFoundWork={isFoundWork} />
+                            ) : null}
+
+                            {/* {selectedValue === "Delivery On Time" && isDoT ? (
+                                <DateSelectorCruft attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
+                                    console.log("Date range submitted:", startDate, "to", endDate);
+                                }} />
+                            ) : null} */}
+
+                            {selectedValue === "Tech Debt" && isTechDebt ? (
+                                <DateSelectorTechDebt attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
+                                    console.log("Date range submitted:", startDate, "to", endDate);
+                                }} />
+                            ) : null}
+
 							{selectedValue === 'Adopted Work' && isAdopted ? (
 								<SimpleBarChart
 									apiData={data}
