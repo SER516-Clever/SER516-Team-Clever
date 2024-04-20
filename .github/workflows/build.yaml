@@ -63,6 +63,9 @@ jobs:
             echo "--------In folder $dir-------"
             cd "$dir" && flake8 --max-complexity 10 . --exit-zero
           ' \;
+      - name: Run unit tests and coverage
+        run: |
+          pytest --exitfirst --verbose --failed-first --cov=. --cov-report html
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
