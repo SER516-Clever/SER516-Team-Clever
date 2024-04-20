@@ -20,7 +20,6 @@ def get_lead_time_metric(
             token
         )
         cache.set(lead_time_request.projectslug, project_info)
-        print("hello")
         return get_lead_time_details(
             project_info,
             token,
