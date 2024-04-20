@@ -14,6 +14,26 @@ public class AdoptedWorkDTO {
         this.adoptedWork = adoptedWork;
     }
 
+    public Integer getSprintTotalPoints() {
+        return sprintTotalPoints;
+    }
+
+    public void setSprintTotalPoints(Integer sprintTotalPoints) {
+        this.sprintTotalPoints = sprintTotalPoints;
+    }
+
+    public Integer getMilestoneID() {
+        return milestoneID;
+    }
+
+    public void setMilestoneID(Integer milestoneID) {
+        this.milestoneID = milestoneID;
+    }
+    
+    public String getMilestoneName() {
+        return milestoneName;
+    }
+
     public void setMilestoneName(String milestoneName) {
         this.milestoneName = milestoneName;
     }

@@ -22,7 +22,6 @@ import SprintDetail from '../sprint';
 import DateSelector from '../devfocus';
 import DateSelectorCruft from '../cruft';
 import { SimpleBarChart } from '../graph/barchart';
-import { testData } from '../graph/testData';
 
 const Project = () => {
 	const location = useLocation();
@@ -517,7 +516,7 @@ const Project = () => {
 							) : null}
 							{selectedValue === 'Adopted Work' && isAdopted ? (
 								<SimpleBarChart
-									apiData={testData}
+									apiData={data}
 									title={'Adopted Work'}
 									xAxisDataKey={'milestoneName'}
 									xAxisLabel={'Sprint'}
