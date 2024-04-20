@@ -18,7 +18,6 @@ jobs:
     strategy:
       matrix:
         python-version: [3.12.3]
-        image: [achaur11/SER516-Team-Clever-FE, achaur11/SER516-Team-Clever-auth, achaur11/SER516-Team-Clever-adoptedWork, achaur11/SER516-Team-Clever-burndown, achaur11/SER516-Team-Clever-cruft, achaur11/SER516-Team-Clever-cycle-time, achaur11/SER516-Team-Clever-dev-focus, achaur11/SER516-Team-Clever-dot, achaur11/SER516-Team-Clever-found_work, achaur11/SER516-Team-Clever-lead-time, achaur11/SER516-Team-Clever-orchestrator, achaur11/SER516-Team-Clever-project, achaur11/SER516-Team-Clever-tech-debt, achaur11/SER516-Team-Clever-taigaProject]
     runs-on: ubuntu-latest
 
     permissions:
@@ -73,15 +72,9 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Extract metadata
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: ${{ matrix.image }}
-
       - name: Build Compose Images
-        run: docker compose -f compose.yaml build
+        run: docker compose -f docker-compose.yml build
 
       - name: Push image to Container Registry
-        run: docker compose -f compose.yaml push
+        run: docker compose -f docker-compose.yml push
 
