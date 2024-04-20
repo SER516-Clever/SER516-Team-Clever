@@ -98,6 +98,9 @@ const MetricWiki = () => {
                             (ii) An Area Chart for the Partial Story Points (story points of completed tasks). <br/>
                             (iii) An Area Chart for the Business Value (for Business Value of completed user stories). <br/>
                             (iv) An Area Chart combining all of the three metrics taken as a percentage of their total. <br/>
+                            (v) A day-wise Multi-sprint Story Point Comparison between the selected sprints. <br/>
+                            (vi) A day-wise Multi-sprint Business Value Comparison between the selected sprints. <br/>
+                            (vii) A Multi-sprint Bar Chart showing the total business value and story points for each sprint. <br/>
                             <br/><br/>
                         </div>
                         <div id="DevFocusInfo">
