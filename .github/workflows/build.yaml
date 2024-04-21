@@ -1,0 +1,73 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+      - '*'
+    tags: [ 'v*.*.*' ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    strategy:
+      matrix:
+        python-version: [3.12.3]
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Switch to Current Branch
+        run: git checkout ${{ env.BRANCH }}
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          cd taigaProject
+          find . -name "requirements.txt" -execdir pip install -r {} \;
+          find . -name "setup.py" -execdir pip install -e . \;
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Java build
+        run: find . -name "pom.xml" -execdir mvn clean install \;
+      - name: Generate JaCoCo Code Coverage Report
+        run: find . -name "pom.xml" -execdir mvn clean verify \;
+      - name: Flake8 Installation
+        run: pip install flake8
+      - name: Run Flake8
+        run: find . -name "requirements.txt" -exec bash -c '
+            dir=$(dirname "{}")
+            echo "--------In folder $dir-------"
+            cd "$dir" && flake8 --max-complexity 10 . --exit-zero
+          ' \;
+      - name: Run unit tests and coverage
+        run: |
+          pytest --exitfirst --verbose --failed-first --cov=. --cov-report html
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_ACCESS }}
+          SONAR_TOKEN: ${{ secrets.SONAR_ACCESS }}
