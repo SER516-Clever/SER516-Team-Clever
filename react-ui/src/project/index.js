@@ -23,6 +23,7 @@ import DateSelector from '../devfocus';
 import DateSelectorCruft from '../cruft';
 import { SimpleBarChart } from '../graph/barchart';
 import DateSelectorTechDebt from '../techdebt';
+import DeliveryOnTimeDetail from '../deliveryontime';
 
 const Project = () => {
 	const location = useLocation();
@@ -38,61 +39,67 @@ const Project = () => {
 	const [isCycleTime, setIsCycleTime] = useState(false);
 	const [isDevFocus, setIsDevFocus] = useState(false);
 	const [isCruft, setIsCruft] = useState(false);
-    const [isFoundWork, setIsFoundWork] = useState(false);
+  	const [isFoundWork, setIsFoundWork] = useState(false);
 	const [isAdopted, setIsAdopted] = useState(false);
-    const [isTechDebt, setIsTechDebt] = useState(false);
+  	const [isDoT, setIsDoT] = useState(false);
+  	const [isTechDebt, setIsTechDebt] = useState(false);
 	const [startDate, setStartDate] = useState('');
 	const [endDate, setEndDate] = useState('');
 
 	const handleSelect = (eventKey) => {
 		setSelectedValue(eventKey);
 		if (eventKey === 'Lead Time') {
-			setMetric('8080/api/metric/LeadTime');
-			setIsBurndown(false);
-			setIsCycleTime(false);
-			setIsDevFocus(false);
-			setIsCruft(false);
-			setIsLeadTime(true);
+            setMetric('8080/api/metric/LeadTime');
+            setIsBurndown(false);
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsCruft(false);
+            setIsLeadTime(true);
             setIsFoundWork(false);
 			setIsAdopted(false);
             setIsTechDebt(false);
+      		setIsDoT(false);
 		} else if (eventKey === 'Cycle Time') {
-			setMetric('8080/api/metric/CycleTime');
-			setIsBurndown(false);
-			setIsCycleTime(true);
-			setIsDevFocus(false);
-			setIsCruft(false);
-			setIsLeadTime(false);
+            setMetric('8080/api/metric/CycleTime');
+            setIsBurndown(false);
+            setIsCycleTime(true);
+            setIsDevFocus(false);
+            setIsCruft(false);
+            setIsLeadTime(false);
             setIsFoundWork(false);
 			setIsAdopted(false);
             setIsTechDebt(false);
+      		setIsDoT(false);
 		} else if (eventKey === 'Burndown Chart') {
-			setMetric('8080/api/Sprints');
-			setIsCycleTime(false);
-			setIsDevFocus(false);
-			setIsLeadTime(false);
-			setIsCruft(false);
-			setIsAdopted(false);
+            setMetric('8080/api/Sprints');
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+            setIsAdopted(false);
             setIsFoundWork(false);
             setIsTechDebt(false);
+      		setIsDoT(false);
 		} else if (eventKey === 'Dev Focus') {
-			setIsBurndown(false);
-			setIsLeadTime(false);
-			setIsCycleTime(false);
-			setIsCruft(false);
-			setMetric('8080/api/Project');
+            setIsBurndown(false);
+            setIsLeadTime(false);
+            setIsCycleTime(false);
+            setIsCruft(false);
+            setMetric('8080/api/Project');
             setIsFoundWork(false);
 			setIsAdopted(false);
             setIsTechDebt(false);
+      		setIsDoT(false);
 		} else if (eventKey === 'Cruft') {
-			setMetric('8080/api/Sprints');
-			setIsBurndown(false);
-			setIsCycleTime(false);
-			setIsDevFocus(false);
-			setIsLeadTime(false);
+            setMetric('8080/api/Sprints');
+            setIsBurndown(false);
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
             setIsFoundWork(false);
 			setIsAdopted(false);
             setIsTechDebt(false);
+      		setIsDoT(false);
 		} else if (eventKey === 'Found Work') {
             setMetric('8080/api/Sprints');
             setIsCycleTime(false);
@@ -102,18 +109,18 @@ const Project = () => {
             setIsBurndown(false);
             setIsAdopted(false);
             setIsTechDebt(false);
+      		setIsDoT(false);
         }
-//        else if (eventKey === "Delivery On Time") {
-//            setMetric("8080/api/DoT");      // To do change the URL as required
-//            setIsBurndown(false);
-//            setIsCycleTime(false);
-//            setIsDevFocus(false);
-//            setIsLeadTime(false);
-//            setIsCruft(false);
-//            setIsDoT(true);
-//        }
-        else if (eventKey === 'Tech Debt') {
-            setMetric('8080/api/Sprints');
+        else if (eventKey === "Delivery On Time") {
+            setMetric(`8080/api/DoT/by-slug/${project}`);     
+            setIsBurndown(false);
+            setIsCycleTime(false);
+            setIsDevFocus(false);
+            setIsLeadTime(false);
+            setIsCruft(false);
+        }
+        else if (eventKey === "Tech Debt") {
+            setMetric("8080/api/Sprints");
             setIsBurndown(false);
             setIsCycleTime(false);
             setIsDevFocus(false);
@@ -121,14 +128,16 @@ const Project = () => {
             setIsCruft(false);
             setIsFoundWork(false);
             setIsAdopted(false);
+          	setIsDoT(false);
         } else if (eventKey === 'Adopted Work') {
             setMetric(`8080/api/adoptedWork/project/${project}`);
 			setIsBurndown(false);
-			setIsCycleTime(false);
-			setIsDevFocus(false);
-			setIsLeadTime(false);
+      		setIsCycleTime(false);
+		    setIsDevFocus(false);
+      		setIsLeadTime(false);
             setIsFoundWork(false);
             setIsTechDebt(false);
+          	setIsDoT(false);
 		}
 	};
 	useEffect(() => {
@@ -141,7 +150,7 @@ const Project = () => {
 		setSpinnerFlag(true);
 
 		axios({
-			method: selectedValue === "Adopted Work" ? 'get' : 'post',
+			method: selectedValue === "Adopted Work" || selectedValue === 'Delivery On Time' ? 'get' : 'post',
 			url: `http://localhost:${metric}`,
 			data: {
 				projectslug: project,
@@ -153,36 +162,35 @@ const Project = () => {
 				token: auth,
 			},
 		})
-			.then((res) => {
-				setData(res.data);
-				setSpinnerFlag(false);
-				setError(false);
-				selectedValue === 'Dev Focus'
-					? setIsDevFocus(true)
-					: setIsDevFocus(false);
-				selectedValue === 'Burndown Chart'
-					? setIsBurndown(true)
-					: setIsBurndown(false);
-				selectedValue === 'Cruft' ? setIsCruft(true) : setIsCruft(false);
-				selectedValue === 'Lead Time'
-					? setIsLeadTime(true)
-					: setIsLeadTime(false);
-                selectedValue === 'Found Work' ? setIsFoundWork(true) : setIsFoundWork(false);
-                selectedValue === 'Tech Debt' ? setIsTechDebt(true) : setIsTechDebt(false);
-				selectedValue === 'Adopted Work'
-					? setIsAdopted(true)
-					: setIsAdopted(false);
-			})
-			.catch((ex) => {
-				setError(true);
-				setSpinnerFlag(false);
-				setIsBurndown(false);
-				setIsDevFocus(false);
-				setIsLeadTime(false);
-				setIsAdopted(false);
-                setIsFoundWork(false);
-                setIsTechDebt(false);
-			});
+		.then((res) => {
+			setData(res.data);
+			setSpinnerFlag(false);
+			setError(false);
+			selectedValue === 'Dev Focus'
+				? setIsDevFocus(true)
+				: setIsDevFocus(false);
+			selectedValue === 'Burndown Chart'
+				? setIsBurndown(true)
+				: setIsBurndown(false);
+			selectedValue === 'Cruft' ? setIsCruft(true) : setIsCruft(false);
+			selectedValue === 'Found Work' ? setIsFoundWork(true) : setIsFoundWork(false);
+			selectedValue === 'Tech Debt' ? setIsTechDebt(true) : setIsTechDebt(false);
+			selectedValue === "Delivery On Time" ? setIsDoT(true) : setIsDoT(false);
+			selectedValue === 'Adopted Work'
+				? setIsAdopted(true)
+				: setIsAdopted(false);
+		})
+		.catch((ex) => {
+			setError(true);
+			setSpinnerFlag(false);
+			setIsBurndown(false);
+			setIsDevFocus(false);
+			setIsLeadTime(false);
+			setIsAdopted(false);
+        	setIsFoundWork(false);
+        	setIsTechDebt(false);
+    		setIsDoT(false);
+		});
 	};
 
 	const handleProjectSlugField = (event) => {
@@ -201,185 +209,51 @@ const Project = () => {
 		);
 	}
 	return (
-		<div
-			className="backgroundOrange fontUniform"
-			style={{
-				display: 'flex',
-				minWidth: '100vh',
-				minHeight: '100vh',
-				justifyContent: 'center',
-				alignItems: 'center',
-			}}
-		>
-			<div
-				className="backgroundWhite"
-				style={{
-					minWidth: '95%',
-					minHeight: '95%',
-					width: '95%',
-					height: '95%',
-					maxHeight: '95vh',
-					overflow: 'auto',
-					borderRadius: '15px',
-				}}
-			>
-				<div style={{ position: 'fixed', width: '25vh' }}>
-					<div
-						className="backgroundWhite"
-						style={{
-							minHeight: '10vh',
-							borderTopLeftRadius: '15px',
-							overflow: 'hidden',
-							borderRight: '1px solid #750E21',
-						}}
-					>
-						<Image
-							src={Name}
-							style={{ width: '100%', height: '100%', marginTop: '10px' }}
-						/>
-					</div>
-					<div
-						className="backgroundWhite"
-						style={{
-							minHeight: '85vh',
-							borderBottomLeftRadius: '15px',
-							borderTop: '1px solid #750E21',
-							borderRight: '1px solid #750E21',
-						}}
-					>
-						<Nav defaultActiveKey="/home" className="flex-column">
-							<ListGroup defaultActiveKey={['0']} alwaysOpen>
-								<ListGroup.Item as="li">
-									<a href="/">Home</a>
-								</ListGroup.Item>
-							</ListGroup>
-							<ListGroup defaultActiveKey={['0']} alwaysOpen>
-								<ListGroup.Item as={Link} to="/project" state={{ token: auth }}>
-									<b>Dashboard</b>
-								</ListGroup.Item>
-							</ListGroup>
+		<div className="backgroundDashboard fontUniform" style={{ display: "flex", minWidth: "100vh", minHeight: "100vh", justifyContent: 'center', alignItems: 'center' }}>
+			<title>Team Clever</title>
+			<div className="backgroundWhite" style={{ minWidth: "95%", minHeight: "95%", width: "95%", height: "95%", maxHeight: "95vh", overflow: "auto", borderRadius: "15px" }}>
+                <div style={{ position: "fixed", width: "25vh" }}>
+                    <div className="backgroundNavBar" style={{ minHeight: "10vh", borderTopLeftRadius: "15px", overflow: "hidden", borderRight: "1px solid #61677A"  }}>
+                        <Image src={Name} style={{ width: "100%", height: "100%", marginTop: "15px" }} />
+                    </div>
+					<div className="backgroundWhite" style={{ minHeight: "85vh", borderBottomLeftRadius: "15px", borderTop: "1px solid #61677A", borderRight: "1px solid #61677A" }}>
+                        <Nav defaultActiveKey="/home" className="flex-column">
+                            <ListGroup defaultActiveKey={['0']} alwaysOpen>
+                                <ListGroup.Item  as={Link} to="/project" state={{token: auth}}><b>Dashboard</b></ListGroup.Item>
+                            </ListGroup>
 							<Accordion defaultActiveKey={['0']} alwaysOpen>
-								<Accordion.Item eventKey="0">
-									<ListGroup defaultActiveKey={['0']} alwaysOpen>
-										<ListGroup.Item
-											as={Link}
-											to="/metricwiki"
-											state={{ token: auth }}
-										>
-											Metric Wiki
-										</ListGroup.Item>
-									</ListGroup>
-									<Accordion.Body style={{ paddingTop: '5px' }}>
-										<Nav.Link
-											style={{ borderBottom: '1px solid #750E21' }}
-											as={Link}
-											to="/metricwiki"
-											state={{ token: auth }}
-										>
-											Lead Time
-										</Nav.Link>
-										<Nav.Link
-											style={{ borderBottom: '1px solid #750E21' }}
-											as={Link}
-											to="/metricwiki"
-											state={{ token: auth }}
-										>
-											Cycle Time
-										</Nav.Link>
-										<Nav.Link
-											style={{ borderBottom: '1px solid #750E21' }}
-											as={Link}
-											to="/metricwiki"
-											state={{ token: auth }}
-										>
-											Burndown Chart
-										</Nav.Link>
-										<Nav.Link
-											style={{ borderBottom: '1px solid #750E21' }}
-											as={Link}
-											to="/metricwiki"
-											state={{ token: auth }}
-										>
-											Dev Focus
-										</Nav.Link>
-										<Nav.Link
-											style={{ borderBottom: '1px solid #750E21' }}
-											as={Link}
-											to="/metricwiki"
-											state={{ token: auth }}
-										>
-											Cruft
-										</Nav.Link>
-                                        <Nav.Link 
-                                            style={{ borderBottom: "1px solid #61677A" }}
-                                            as={Link}
-                                            to="/metricwiki"
-                                            state={{token: auth}}
-                                        >
-                                            Adopted Work
-                                        </Nav.Link>
-                                        <Nav.Link
-                                            style={{ borderBottom: "1px solid #61677A" }}
-                                            as={Link}
-                                            to="/metricwiki"
-                                            state={{token: auth}}
-                                        >
-                                            Found Work
-                                        </Nav.Link>
-                                        <Nav.Link
-                                            style={{ borderBottom: "1px solid #61677A" }}
-                                            as={Link}
-                                            to="/metricwiki"
-                                            state={{token: auth}}
-                                        >
-                                            Delivery On Time
-                                        </Nav.Link>
-                                        <Nav.Link
-                                            style={{ borderBottom: "1px solid #61677A" }}
-                                            as={Link}
-                                            to="/metricwiki"
-                                            state={{token: auth}}
-                                        >
-                                            Technical Debt
-                                        </Nav.Link>
-									</Accordion.Body>
-								</Accordion.Item>
-							</Accordion>
+                                <Accordion.Item eventKey="0">
+                                    <ListGroup defaultActiveKey={['0']} alwaysOpen>
+                                        <ListGroup.Item  as={Link} to="/metricwiki" state={{token: auth}}>Metric Wiki</ListGroup.Item>
+                                    </ListGroup>
+                                    <Accordion.Body style={{ paddingTop: "5px" }}>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Lead Time</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Cycle Time</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Burndown Chart</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Dev Focus</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Cruft</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Adopted Work</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Found Work</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Delivery On Time</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Technical Debt</Nav.Link>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
 							<ListGroup defaultActiveKey={['0']} alwaysOpen>
-								<ListGroup.Item as={Link} to="/aboutus" state={{ token: auth }}>
-									About Us
-								</ListGroup.Item>
-							</ListGroup>
+                                <ListGroup.Item as={Link} to="/aboutus" state={{token: auth}}>About Us</ListGroup.Item>
+                            </ListGroup>
 						</Nav>
 					</div>
 				</div>
-				<div style={{ marginLeft: '25vh' }}>
-					<div
-						className="backgroundLightOrange"
-						style={{ minHeight: '10vh', borderBottom: '1px solid #750E21' }}
-					>
-						<Navbar>
-							<div
-								style={{
-									marginLeft: '40px',
-									marginTop: '10px',
-									fontFamily: 'Cascadia Mono SemiLight',
-								}}
-							>
-								<h2>
-									<b>DASHBOARD</b>
-								</h2>
-							</div>
-							<div
-								className="ms-auto"
-								style={{ marginRight: '45px', marginTop: '5px' }}
-							>
-								<a href="/" style={{ fontSize: '20px' }}>
-									<u>Logout</u>
-								</a>
-							</div>
-						</Navbar>
-					</div>
+				<div style={{ marginLeft: "25vh" }}>
+                    <div className="backgroundNavBar" style={{ minHeight: "10vh", borderBottom: "1px solid #61677A" }}>
+                        <Navbar>
+                            <div style={{ marginLeft: "40px", marginTop: "10px" }}><h2><b>Dashboard</b></h2></div>
+                            <div className="ms-auto" style={{ marginRight: "45px", marginTop: "5px" }}>
+                                <a href="/" style={{ fontSize: "20px" }}><u>Logout</u></a>
+                            </div>
+                        </Navbar>
+                    </div>
 					<div className="backgroundWhite" style={{ minHeight: '85vh' }}>
 						<Stack>
 							<div>
@@ -436,6 +310,7 @@ const Project = () => {
 													<Dropdown.Item eventKey="Adopted Work">
 														Adopted Work
 													</Dropdown.Item>
+													<Dropdown.Item eventKey="Delivery On Time">Delivery On Time</Dropdown.Item>
 												</Dropdown.Menu>
 											</Dropdown>
 										</InputGroup>
@@ -585,11 +460,9 @@ const Project = () => {
                                 <SprintDetail sprintDetails={data.sprints} attributes={data.custom_attributes} token={auth} projectName={data.name} isBurndown={isBurndown} isFoundWork={isFoundWork} />
                             ) : null}
 
-                            {/* {selectedValue === "Delivery On Time" && isDoT ? (
-                                <DateSelectorCruft attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {
-                                    console.log("Date range submitted:", startDate, "to", endDate);
-                                }} />
-                            ) : null} */}
+                            {selectedValue === "Delivery On Time" && isDoT ? (
+                                <DeliveryOnTimeDetail apiData={data} />
+                            ) : null}
 
                             {selectedValue === "Tech Debt" && isTechDebt ? (
                                 <DateSelectorTechDebt attributes={data.custom_attributes} token={auth} projectId={data.id} onDateSubmit={(startDate, endDate) => {

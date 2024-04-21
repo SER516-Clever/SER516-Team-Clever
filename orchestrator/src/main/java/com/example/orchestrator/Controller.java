@@ -122,13 +122,16 @@ public class Controller {
     @GetMapping("/DoT/{projectID}")
     @ResponseBody
     public String getClosedMilestonesbyID(@PathVariable("projectID") Integer projectID) {
-        return projectService.getClosedMilestonesbyID(projectID, token);
+        return deliveryOnTimeService.getClosedMilestonesbyID(projectID, token);
     }
 
     @GetMapping("/DoT/by-slug/{Slug}")
     @ResponseBody
     public String getClosedMilestonesbySlug(@PathVariable("Slug") String Slug) {
-        return projectService.getClosedMilestonesbySlug(Slug, token);
+        String response = "{ \"story_points\": " + 
+        deliveryOnTimeService.getClosedMilestonesbySlug(Slug, token) + 
+        ", \"BV\": " + deliveryOnTimeService.getClosedMilestonesbySlugForBV(Slug, token) + "}";
+        return response;
     }
 
     @GetMapping("DoT/{projectID}/BV")
