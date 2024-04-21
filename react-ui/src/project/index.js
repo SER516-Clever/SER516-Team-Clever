@@ -39,10 +39,10 @@ const Project = () => {
 	const [isCycleTime, setIsCycleTime] = useState(false);
 	const [isDevFocus, setIsDevFocus] = useState(false);
 	const [isCruft, setIsCruft] = useState(false);
-  const [isFoundWork, setIsFoundWork] = useState(false);
+  	const [isFoundWork, setIsFoundWork] = useState(false);
 	const [isAdopted, setIsAdopted] = useState(false);
-  const [isDoT, setIsDoT] = useState(false);
-  const [isTechDebt, setIsTechDebt] = useState(false);
+  	const [isDoT, setIsDoT] = useState(false);
+  	const [isTechDebt, setIsTechDebt] = useState(false);
 	const [startDate, setStartDate] = useState('');
 	const [endDate, setEndDate] = useState('');
 
@@ -56,9 +56,9 @@ const Project = () => {
             setIsCruft(false);
             setIsLeadTime(true);
             setIsFoundWork(false);
-			      setIsAdopted(false);
+			setIsAdopted(false);
             setIsTechDebt(false);
-      setIsDoT(false);
+      		setIsDoT(false);
 		} else if (eventKey === 'Cycle Time') {
             setMetric('8080/api/metric/CycleTime');
             setIsBurndown(false);
@@ -67,9 +67,9 @@ const Project = () => {
             setIsCruft(false);
             setIsLeadTime(false);
             setIsFoundWork(false);
-			      setIsAdopted(false);
+			setIsAdopted(false);
             setIsTechDebt(false);
-      setIsDoT(false);
+      		setIsDoT(false);
 		} else if (eventKey === 'Burndown Chart') {
             setMetric('8080/api/Sprints');
             setIsCycleTime(false);
@@ -79,7 +79,7 @@ const Project = () => {
             setIsAdopted(false);
             setIsFoundWork(false);
             setIsTechDebt(false);
-      setIsDoT(false);
+      		setIsDoT(false);
 		} else if (eventKey === 'Dev Focus') {
             setIsBurndown(false);
             setIsLeadTime(false);
@@ -87,9 +87,9 @@ const Project = () => {
             setIsCruft(false);
             setMetric('8080/api/Project');
             setIsFoundWork(false);
-			      setIsAdopted(false);
+			setIsAdopted(false);
             setIsTechDebt(false);
-      setIsDoT(false);
+      		setIsDoT(false);
 		} else if (eventKey === 'Cruft') {
             setMetric('8080/api/Sprints');
             setIsBurndown(false);
@@ -97,9 +97,9 @@ const Project = () => {
             setIsDevFocus(false);
             setIsLeadTime(false);
             setIsFoundWork(false);
-			      setIsAdopted(false);
+			setIsAdopted(false);
             setIsTechDebt(false);
-      setIsDoT(false);
+      		setIsDoT(false);
 		} else if (eventKey === 'Found Work') {
             setMetric('8080/api/Sprints');
             setIsCycleTime(false);
@@ -109,7 +109,7 @@ const Project = () => {
             setIsBurndown(false);
             setIsAdopted(false);
             setIsTechDebt(false);
-      setIsDoT(false);
+      		setIsDoT(false);
         }
         else if (eventKey === "Delivery On Time") {
             setMetric(`8080/api/DoT/by-slug/${project}`);     
@@ -128,17 +128,17 @@ const Project = () => {
             setIsCruft(false);
             setIsFoundWork(false);
             setIsAdopted(false);
-          setIsDoT(false);
+          	setIsDoT(false);
         } else if (eventKey === 'Adopted Work') {
             setMetric(`8080/api/adoptedWork/project/${project}`);
-			      setIsBurndown(false);
-      			setIsCycleTime(false);
-			      setIsDevFocus(false);
-      			setIsLeadTime(false);
+			setIsBurndown(false);
+      		setIsCycleTime(false);
+		    setIsDevFocus(false);
+      		setIsLeadTime(false);
             setIsFoundWork(false);
             setIsTechDebt(false);
-          setIsDoT(false);
-		    }
+          	setIsDoT(false);
+		}
 	};
 	useEffect(() => {
 		setAuth(location?.state?.token);
@@ -162,35 +162,35 @@ const Project = () => {
 				token: auth,
 			},
 		})
-			.then((res) => {
-				setData(res.data);
-				setSpinnerFlag(false);
-				setError(false);
-				selectedValue === 'Dev Focus'
-					? setIsDevFocus(true)
-					: setIsDevFocus(false);
-				selectedValue === 'Burndown Chart'
-					? setIsBurndown(true)
-					: setIsBurndown(false);
-				selectedValue === 'Cruft' ? setIsCruft(true) : setIsCruft(false);
-        selectedValue === 'Found Work' ? setIsFoundWork(true) : setIsFoundWork(false);
-        selectedValue === 'Tech Debt' ? setIsTechDebt(true) : setIsTechDebt(false);
-        selectedValue === "Delivery On Time" ? setIsDoT(true) : setIsDoT(false);
-				selectedValue === 'Adopted Work'
-					? setIsAdopted(true)
-					: setIsAdopted(false);
-			})
-			.catch((ex) => {
-				setError(true);
-				setSpinnerFlag(false);
-				setIsBurndown(false);
-				setIsDevFocus(false);
-				setIsLeadTime(false);
-				setIsAdopted(false);
-        setIsFoundWork(false);
-        setIsTechDebt(false);
-        setIsDot(false);
-			});
+		.then((res) => {
+			setData(res.data);
+			setSpinnerFlag(false);
+			setError(false);
+			selectedValue === 'Dev Focus'
+				? setIsDevFocus(true)
+				: setIsDevFocus(false);
+			selectedValue === 'Burndown Chart'
+				? setIsBurndown(true)
+				: setIsBurndown(false);
+			selectedValue === 'Cruft' ? setIsCruft(true) : setIsCruft(false);
+			selectedValue === 'Found Work' ? setIsFoundWork(true) : setIsFoundWork(false);
+			selectedValue === 'Tech Debt' ? setIsTechDebt(true) : setIsTechDebt(false);
+			selectedValue === "Delivery On Time" ? setIsDoT(true) : setIsDoT(false);
+			selectedValue === 'Adopted Work'
+				? setIsAdopted(true)
+				: setIsAdopted(false);
+		})
+		.catch((ex) => {
+			setError(true);
+			setSpinnerFlag(false);
+			setIsBurndown(false);
+			setIsDevFocus(false);
+			setIsLeadTime(false);
+			setIsAdopted(false);
+        	setIsFoundWork(false);
+        	setIsTechDebt(false);
+    		setIsDoT(false);
+		});
 	};
 
 	const handleProjectSlugField = (event) => {
