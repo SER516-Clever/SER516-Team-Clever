@@ -14,18 +14,11 @@ public class AdoptedWorkController {
     @Autowired
     AdoptedWorkService adoptedWorkService;
 
-    @Cacheable(value = "adoptedWorkByMilestone", key = "#milestoneID")
-    @GetMapping("/adoptedWork/{milestoneID}")
+    @Cacheable(value = "adoptedWorkByProject", key = "#slug")
+    @GetMapping("/adoptedWork/project/{slug}")
     @ResponseBody
-    public AdoptedWorkDTO getUSAddedAfterSprintPlanning(@PathVariable("milestoneID") Integer milestoneID, HttpServletRequest request) {
+    public List<AdoptedWorkDTO> getAdoptedWorkForAllSprints(@PathVariable("slug") String slug,  HttpServletRequest request) {
         String token = request.getHeader("token");
-        return adoptedWorkService.getUSAddedAfterSprintPlanning(milestoneID, token);
-    }
-    @Cacheable(value = "adoptedWorkByProject", key = "#projectID")
-    @GetMapping("/adoptedWork/project/{projectID}")
-    @ResponseBody
-    public List<AdoptedWorkDTO> getAdoptedWorkForAllSprints(@PathVariable("projectID") Integer projectID,  HttpServletRequest request) {
-        String token = request.getHeader("token");
-        return adoptedWorkService.getAdoptedWorkForAllSprints(projectID, token);
+        return adoptedWorkService.getAdoptedWorkForAllSprints(slug, token);
     }
 }
