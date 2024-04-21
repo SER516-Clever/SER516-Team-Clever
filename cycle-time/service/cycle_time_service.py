@@ -35,6 +35,9 @@ def get_cycle_time_details(project_details,
     task_cycle_time.sort(key=lambda item: item["endDate"])
     us_cycle_time.sort(key=lambda item: item["endDate"])
 
+    for i in task_cycle_time:
+        i["endDate"] = datetime.strftime(i["endDate"],'%m-%d-%Y')
+
     task_cycle_time = get_cycle_time_object(
         "task", task_cycle_time, avg_task_ct
     )
