@@ -18,7 +18,6 @@ const CustomBarChart = ({ title, data, threshold, endDate }) => {
     useEffect(() => {
         let temp_arr = [];
         let members = [];
-
         let tempDateMap = {};
         for (const name in data) {
             let count = 0;
@@ -78,49 +77,49 @@ const CustomBarChart = ({ title, data, threshold, endDate }) => {
     return (
         <div>
             <h4 style={{ textAlign: 'center' }}>{title}</h4>
-            <ResponsiveContainer width="100%" height={600}>
-                <BarChart
-                    data={memberData}
-                    margin={{ top: 20, right: 40, bottom: 70, left: 30 }}
-                >    
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis type="category" dataKey="name" label={{
-                        value: 'User', position: 'insideBottom', offset: -50, style: { fontSize: '20px' }
-                    }}
-                        tick={{ fontSize: 12 }} allowDuplicatedCategory={true} />
-                    <YAxis type="number" dataKey="" label={{
-                        value: 'Violations', angle: -90, position: 'insideLeft', style: { fontSize: '20px' }
-                    }} />
+                <ResponsiveContainer width="100%" height={600}>
+                    <BarChart
+                        data={memberData}
+                        margin={{ top: 20, right: 40, bottom: 70, left: 30 }}
+                    >    
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis type="category" dataKey="name" label={{
+                            value: 'User', position: 'insideBottom', offset: -50, style: { fontSize: '20px' }
+                        }}
+                            tick={{ fontSize: 12 }} allowDuplicatedCategory={true} />
+                        <YAxis type="number" dataKey="" label={{
+                            value: 'Violations', angle: -90, position: 'insideLeft', style: { fontSize: '20px' }
+                        }} />
 
-                    <Tooltip />
-                    <Bar dataKey="violations" fill="#8884d8" activeBar={<Rectangle fill="orange" stroke="purple" />} />
-                </BarChart>
-            </ResponsiveContainer>
-            <ResponsiveContainer width="100%" height={600}>
-                <BarChart
-                    data={dateData}
-                    margin={{ top: 20, right: 40, bottom: 70, left: 30 }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis type="category" dataKey="date" label={{value: 'Date',
-                        position: 'insideBottom', offset: -50, style: { fontSize: '20px' }
-                    }}
-                        tick={{ fontSize: 12 }} allowDuplicatedCategory={true} />
-                    <YAxis type="number" dataKey="" label={{
-                        value: 'In Progress Tasks Count', angle: -90, position: 'insideLeft', style: { fontSize: '20px' }
-                    }} />
+                        <Tooltip />
+                        <Bar dataKey="violations" fill="#8884d8" activeBar={<Rectangle fill="orange" stroke="purple" />} />
+                    </BarChart>
+                </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height={600}>
+                    <BarChart
+                        data={dateData}
+                        margin={{ top: 20, right: 40, bottom: 70, left: 30 }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis type="category" dataKey="date" label={{value: 'Date',
+                            position: 'insideBottom', offset: -50, style: { fontSize: '20px' }
+                        }}
+                            tick={{ fontSize: 12 }} allowDuplicatedCategory={true} />
+                        <YAxis type="number" dataKey="" label={{
+                            value: 'In Progress Tasks Count', angle: -90, position: 'insideLeft', style: { fontSize: '20px' }
+                        }} />
 
-                    <Tooltip />
+                        <Tooltip />
 
-                    <Legend align="right" verticalAlign="top" layout="horizontal" iconType="square"/>
+                        <Legend align="right" verticalAlign="top" layout="horizontal" iconType="square"/>
 
-                    {
-                        members.map(member => {
-                            return <Bar key={member} dataKey={member} stackId="a" fill={colorGenerator()} />
-                        })
-                    }
-                </BarChart>
-            </ResponsiveContainer>
+                        {
+                            members.map(member => {
+                                return <Bar key={member} dataKey={member} stackId="a" fill={colorGenerator()} />
+                            })
+                        }
+                    </BarChart>
+                </ResponsiveContainer>
         </div>
     );
 }
