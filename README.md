@@ -6,6 +6,7 @@
     <img width="20" src="https://user-images.githubusercontent.com/25181517/121401671-49102800-c959-11eb-9f6f-74d49a5e1774.png" alt="npm" title="npm"/>
     <img width="20" src="https://user-images.githubusercontent.com/25181517/184146221-671413cb-b1ae-47db-a232-b37c99281516.png" alt="SonarQube" title="SonarQube"/>
     <img width="20" src="https://user-images.githubusercontent.com/25181517/184117132-9e89a93b-65fb-47c3-91e7-7d0f99e7c066.png" alt="pytest" title="pytest"/>
+    <img width="20" src="https://github.com/SER516-Clever/SER516-Team-Clever/assets/144571801/ba9e2bda-1b52-4d12-ad76-cd333b38e1eb" alt="Java" title="Java" />
 </div>
 
 ## Taiga API Integration
