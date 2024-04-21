@@ -42,11 +42,11 @@ This project is a Python script for interacting with the Taiga API to perform va
     - Taiga project slug
     - Clone the repository
     ```bash
-       git clone https://github.com/ser516asu/SER516-Team-Clever.git
+       git clone https://github.com/SER516-Clever/SER516-Team-Clever.git
        cd SER516-Team-Clever/taigaProject
     ```
 
-  - #### 2. Running the Backend Application
+  - #### 2. Running Single Uvicorn microservice
 
     Go to `taigaProject` folder
     ``` bash
@@ -127,27 +127,6 @@ This project is a Python script for interacting with the Taiga API to perform va
     npm start
     ```
     4. Go to http://localhost:3000 to view in browser
-
-  - #### 4. Run individual microserices
-    1. Lead-time: Go to lead-time folder and run it on port 8001
-    ``` bash
-    uvicorn main:app --reload --host 0.0.0.0 --port 8001
-    ```
-
-    2. Cycle-time: Go to cycle-time folder and run it on port 8002
-    ``` bash
-    uvicorn main:app --reload --host 0.0.0.0 --port 8002
-    ```
-
-    3. Dev-focus: Go to dev-focus folder and run it on port 8003
-    ``` bash
-    uvicorn main:app --reload --host 0.0.0.0 --port 8003
-    ```
-
-    4. Burndown-chart: Go to burndown-chart folder and run it on port 8004
-    ``` bash
-    uvicorn main:app --reload --host 0.0.0.0 --port 8004
-    ```
 
 ## Using the application
   
