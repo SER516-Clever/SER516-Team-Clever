@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Accordion, Col, Container, Image, ListGroup, Nav, Navbar, Row } from "react-bootstrap";
+import { Accordion, Container, Image, ListGroup, Nav, Navbar, Row } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import Name from "../images/Name.png";
 import Team from "../images/Team.jpg";
@@ -63,17 +63,19 @@ const AboutUs = () => {
                     <div className="backgroundWhite" style={{ minHeight: "85vh", padding: "30px" }}>
                         <Container>
                             <Row>
-                                <Col sm={8}>
-                                    <h2>Meet the Developer Team!</h2><br />
-                                    We are a developer team of ten members: Aarti Kalekar (akalekar@asu.edu), Ashutosh Chaurasia (achaur11@asu.edu), 
-                                    Advait Chirmule (achirmul@asu.edu), Atharva Date (adate1@asu.edu),
-                                    Hasan Shahid (shahih25@asu.edu), Kushagra Kartik (kkartik12@asu.edu), Pradnya Chaudhari (pchaud21@asu.edu)
-                                    Sehun Park (spark290@asu.edu), Shikha Verma (sverma89asu@asu.edu), and Vidya Rupak (vrupak@asu.edu); and
-                                    we were mentored by Professor Kevin Gary (kgary@email.asu.edu).
-                                </Col>
-                                <Col sm={4}>
-                                    <Image alt="Team Photo" src={Team} style={{ height: "100%", width: "100%", borderRadius: "10px" }} />
-                                </Col>
+                                <h3>Meet the Developer Team!</h3><br />
+                                <h6>We are a developer team of ten members: Aarti Kalekar (akalekar@asu.edu), Ashutosh Chaurasia (achaur11@asu.edu), 
+                                Advait Chirmule (achirmul@asu.edu), Atharva Date (adate1@asu.edu),
+                                Hasan Shahid (hmshahid@asu.edu), Kushagra Kartik (kkartik@asu.edu), Pradnya Chaudhari (pchaud21@asu.edu)
+                                Sehun Park (spark290@asu.edu), Shikha Verma (sverma89@asu.edu), and Vidya Rupak (vrupak@asu.edu);</h6>
+                            </Row>
+                            <br />
+                            <Row>
+                                <h5>We were mentored by Professor Gary (kgary@email.asu.edu)!</h5>
+                            </Row>
+                            <br />
+                            <Row>
+                            <Image alt="Team Photo" src={Team} style={{ height: "50%", width: "50%", borderRadius: "10px", margin: "auto", alignmentdisplay: "block"}} />
                             </Row>
 
                         </Container>
