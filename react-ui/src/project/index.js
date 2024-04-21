@@ -441,6 +441,7 @@ const Project = () => {
 													<Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Found Work">Found Work</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Tech Debt">Tech Debt</Dropdown.Item>
+													<Dropdown.Item eventKey="Delivery On Time">Delivery On Time</Dropdown.Item>
 													<Dropdown.Item eventKey="Adopted Work">
 														Adopted Work
 													</Dropdown.Item>
