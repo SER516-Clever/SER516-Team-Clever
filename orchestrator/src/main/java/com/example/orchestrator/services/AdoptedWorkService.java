@@ -24,8 +24,8 @@ public class AdoptedWorkService {
                 .bodyToMono(String.class).block();
     }
 
-    public String getAdoptedWorkForAllSprints(Integer projectID, String token) {
-        URI uri = URI.create(authUrl + "/adoptedWork/project/" + projectID);
+    public String getAdoptedWorkForAllSprints(String slug, String token) {
+        URI uri = URI.create(authUrl + "/adoptedWork/project/" + slug);
         return webClient.get()
                 .uri(uri)
                 .header("token", token)

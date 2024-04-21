@@ -79,12 +79,12 @@ public class AdoptedWorkService {
         }
     }
 
-    public List<AdoptedWorkDTO> getAdoptedWorkForAllSprints(Integer projectId, String token) {
+    public List<AdoptedWorkDTO> getAdoptedWorkForAllSprints(String slug, String token) {
         try {
             ProjectService projectService = new ProjectService();
-            List<MilestoneDTO> milestones = projectService.getProjectDetails(projectId, token).getMilestoneDetails();
+            List<MilestoneDTO> milestones = projectService.getProjectDetails(slug, token).getMilestoneDetails();
             List<AdoptedWorkDTO> adoptedWorkList = new ArrayList<>();
-            
+
             for (MilestoneDTO milestone : milestones) {
                 AdoptedWorkDTO adoptedWork = getUSAddedAfterSprintPlanning(milestone.getMilestoneID(), token);
                 adoptedWork.setMilestoneName(milestone.getMilestoneName());

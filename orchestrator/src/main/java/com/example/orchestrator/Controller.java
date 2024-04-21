@@ -112,11 +112,11 @@ public class Controller {
         return adoptedWorkService.getUSAddedAfterSprintPlanning(milestoneID, token);
     }
 
-    @Cacheable(value = "adoptedWorkByProject", key = "#projectID")
-    @GetMapping("/adoptedWork/project/{projectID}")
+    @Cacheable(value = "adoptedWorkByProject", key = "#slug")
+    @GetMapping("/adoptedWork/project/{slug}")
     @ResponseBody
-    public String getAdoptedWorkForAllSprints(@PathVariable("projectID") Integer projectID) {
-        return adoptedWorkService.getAdoptedWorkForAllSprints(projectID, token);
+    public String getAdoptedWorkForAllSprints(@PathVariable("slug") String slug) {
+        return adoptedWorkService.getAdoptedWorkForAllSprints(slug, token);
     }
 
     @GetMapping("/DoT/{projectID}")
