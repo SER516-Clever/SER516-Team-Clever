@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Button, FloatingLabel, Form, Stack, Image, Dropdown, InputGroup, Spinner, Nav, Navbar, Accordion, ListGroup } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
-import CustomModal from "../modal";
 import axios from "axios";
-import Name from "./Name.png";
-import Graph from "../graph";
-import SprintDetail from "../sprint";
-import DateSelector from '../devfocus';
+import React, { useEffect, useState } from "react";
+import { Accordion, Button, Dropdown, FloatingLabel, Form, Image, InputGroup, ListGroup, Nav, Navbar, Spinner, Stack } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
 import DateSelectorCruft from '../cruft';
+import DateSelector from '../devfocus';
+import Graph from "../graph";
+import Name from "../images/Name.png";
+import CustomModal from "../modal";
+import SprintDetail from "../sprint";
 import DateSelectorTechDebt from '../techdebt';
 import DeliveryOnTimeDetail from '../deliveryontime';
 
@@ -92,6 +92,7 @@ const Project = () => {
             setIsDevFocus(false);
             setIsLeadTime(false);
             setIsCruft(false);
+            setIsDoT(true);
         }
         else if (eventKey === "Tech Debt") {
             setMetric("8080/api/Sprints");
@@ -159,17 +160,15 @@ const Project = () => {
     }
 
     return (
-        <div className="backgroundOrange fontUniform" style={{ display: "flex", minWidth: "100vh", minHeight: "100vh", justifyContent: 'center', alignItems: 'center' }}>
+        <div className="backgroundDashboard fontUniform" style={{ display: "flex", minWidth: "100vh", minHeight: "100vh", justifyContent: 'center', alignItems: 'center' }}>
+            <title>Team Clever</title>
             <div className="backgroundWhite" style={{ minWidth: "95%", minHeight: "95%", width: "95%", height: "95%", maxHeight: "95vh", overflow: "auto", borderRadius: "15px" }}>
                 <div style={{ position: "fixed", width: "25vh" }}>
-                    <div className="backgroundWhite" style={{ minHeight: "10vh", borderTopLeftRadius: "15px", overflow: "hidden", borderRight: "1px solid #750E21"  }}>
-                        <Image src={Name} style={{ width: "100%", height: "100%", marginTop: "10px" }} />
+                    <div className="backgroundNavBar" style={{ minHeight: "10vh", borderTopLeftRadius: "15px", overflow: "hidden", borderRight: "1px solid #61677A"  }}>
+                        <Image src={Name} style={{ width: "100%", height: "100%", marginTop: "15px" }} />
                     </div>
-                    <div className="backgroundWhite" style={{ minHeight: "85vh", borderBottomLeftRadius: "15px", borderTop: "1px solid #750E21", borderRight: "1px solid #750E21" }}>
+                    <div className="backgroundWhite" style={{ minHeight: "85vh", borderBottomLeftRadius: "15px", borderTop: "1px solid #61677A", borderRight: "1px solid #61677A" }}>
                         <Nav defaultActiveKey="/home" className="flex-column">
-                            <ListGroup defaultActiveKey={['0']} alwaysOpen>
-                                <ListGroup.Item as="li"><a href="/">Home</a></ListGroup.Item>
-                            </ListGroup>
                             <ListGroup defaultActiveKey={['0']} alwaysOpen>
                                 <ListGroup.Item  as={Link} to="/project" state={{token: auth}}><b>Dashboard</b></ListGroup.Item>
                             </ListGroup>
@@ -179,11 +178,15 @@ const Project = () => {
                                         <ListGroup.Item  as={Link} to="/metricwiki" state={{token: auth}}>Metric Wiki</ListGroup.Item>
                                     </ListGroup>
                                     <Accordion.Body style={{ paddingTop: "5px" }}>
-                                        <Nav.Link style={{ borderBottom: "1px solid #750E21" }} as={Link} to="/metricwiki" state={{token: auth}}>Lead Time</Nav.Link>
-                                        <Nav.Link style={{ borderBottom: "1px solid #750E21" }} as={Link} to="/metricwiki" state={{token: auth}}>Cycle Time</Nav.Link>
-                                        <Nav.Link style={{ borderBottom: "1px solid #750E21" }} as={Link} to="/metricwiki" state={{token: auth}}>Burndown Chart</Nav.Link>
-                                        <Nav.Link style={{ borderBottom: "1px solid #750E21" }} as={Link} to="/metricwiki" state={{token: auth}}>Dev Focus</Nav.Link>
-                                        <Nav.Link style={{ borderBottom: "1px solid #750E21" }} as={Link} to="/metricwiki" state={{token: auth}}>Cruft</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Lead Time</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Cycle Time</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Burndown Chart</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Dev Focus</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Cruft</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Adopted Work</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Found Work</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Delivery On Time</Nav.Link>
+                                        <Nav.Link style={{ borderBottom: "1px solid #61677A" }} as={Link} to="/metricwiki" state={{token: auth}}>Technical Debt</Nav.Link>
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>
@@ -194,9 +197,9 @@ const Project = () => {
                     </div>
                 </div>
                 <div style={{ marginLeft: "25vh" }}>
-                    <div className="backgroundLightOrange" style={{ minHeight: "10vh", borderBottom: "1px solid #750E21" }}>
+                    <div className="backgroundNavBar" style={{ minHeight: "10vh", borderBottom: "1px solid #61677A" }}>
                         <Navbar>
-                            <div style={{ marginLeft: "40px", marginTop: "10px", fontFamily: "Cascadia Mono SemiLight" }}><h2><b>DASHBOARD</b></h2></div>
+                            <div style={{ marginLeft: "40px", marginTop: "10px" }}><h2><b>Dashboard</b></h2></div>
                             <div className="ms-auto" style={{ marginRight: "45px", marginTop: "5px" }}>
                                 <a href="/" style={{ fontSize: "20px" }}><u>Logout</u></a>
                             </div>
@@ -207,7 +210,7 @@ const Project = () => {
                             <div>
                                 <br />
                                 <Form>
-                                    <div style={{padding: "45px"}}>Welcome to Team Cleveland's SER516 Project! Metrics are important 
+                                    <div style={{padding: "45px"}}>Welcome to Team Clever's SER516 Project! Metrics are important 
                                     for any developer team to characterize, evaluate, predict and improve. This dashboard will help you
                                     evaluate your sprints and projects using different metrics. Read up more about the metrics  
                                     <a href="/metricwiki"> here</a>.
@@ -233,7 +236,6 @@ const Project = () => {
                                                     <Dropdown.Item eventKey="Dev Focus">Dev Focus</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Cruft">Cruft</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Found Work">Found Work</Dropdown.Item>
-                                                    <Dropdown.Item eventKey="Delivery On Time">Delivery On Time</Dropdown.Item>
                                                     <Dropdown.Item eventKey="Tech Debt">Tech Debt</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
@@ -255,7 +257,7 @@ const Project = () => {
                                 </div>
                             ) : null}
 
-                                    <Button variant="info" type="submit" className="submitButton backgroundButton" onClick={handleSubmit}>
+                                    <Button type="submit" className="submitButton backgroundButton" onClick={handleSubmit}>
                                         Submit
                                     </Button>
 
@@ -265,7 +267,7 @@ const Project = () => {
                                         <p className="errorMessage">Unable to fetch project detail</p>
                                     ) : null}
 
-                                    {spinnerFlag ? <Spinner variant="primary" animation="border" style={{ justifyContent: "center", alignItems: "center", display: "flex", marginLeft: "49%" }} /> : null}
+                                    {spinnerFlag ? <Spinner animation="border" style={{ justifyContent: "center", alignItems: "center", display: "flex", marginLeft: "49%", color: "#61677A" }} /> : null}
                                 </Form>
                             </div>
 

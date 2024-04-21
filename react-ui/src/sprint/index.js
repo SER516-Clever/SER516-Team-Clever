@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Select from 'react-select';
 import { Button, Dropdown, Spinner, Stack } from "react-bootstrap";
+import Select from 'react-select';
 import Areachart from "../areachart";
-import Graph from "../graph";
-import CustomMultiSeriesLineChart from "../graph/multiseries";
-import { SimpleBarChart } from "../graph/barchart";
 import FoundWork from "../foundwork";
+import Graph from "../graph";
+import { SimpleBarChart } from "../graph/barchart";
+import CustomMultiSeriesLineChart from "../graph/multiseries";
 
 const SprintDetail = ({ sprintDetails, attributes, token, projectName, isBurndown, isFoundWork }) => {
     const [selectedValue, setSelectedValue] = useState([]);
@@ -107,7 +107,7 @@ const SprintDetail = ({ sprintDetails, attributes, token, projectName, isBurndow
                     {isFoundWork ? (
                         <Dropdown onSelect={handleSingleSelect}>
                             <Dropdown.Toggle variant="outline-secondary" className="backgroundButton">
-                                {selectedValue.length === 2 ? selectedValue[1] : 'Select Metric'}
+                                {selectedValue.length === 2 ? selectedValue[1] : 'Select Sprint'}
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 {
@@ -134,7 +134,7 @@ const SprintDetail = ({ sprintDetails, attributes, token, projectName, isBurndow
                 </div>
 
                 {spinner && (
-                    <Spinner animation="border" variant="primary" style={{ display: "block", marginLeft: "auto", marginRight: "auto" }} />
+                    <Spinner animation="border" style={{ display: "block", marginLeft: "auto", marginRight: "auto", color: "#61677A" }} />
                 )}
 
                 {error && <p className="errorMessage">Unable to fetch Sprint Detail</p>}

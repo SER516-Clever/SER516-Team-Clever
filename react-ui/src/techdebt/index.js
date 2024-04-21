@@ -84,7 +84,7 @@ const DateSelectorTechDebt = ({ attributes, token, projectId, onDateSubmit }) =>
                 <br />
                 {spinner ? (
                     <div>
-                        <Spinner variant="primary" animation="border" style={{ justifyContent: "center", alignItems: "center", display: "flex", marginLeft: "49%" }} />
+                        <Spinner animation="border" style={{ justifyContent: "center", alignItems: "center", display: "flex", marginLeft: "49%", color: "#61677A" }} />
                     </div>
                 ) : null}
 

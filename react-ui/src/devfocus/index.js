@@ -153,7 +153,7 @@ const DateSelector = ({ onDateSubmit, memberDetails, token, projectId }) => {
                 </div>
             </Form>
             <br />
-            {spinnerFlag ? <Spinner variant="primary" animation="border" style={{ justifyContent: "center", alignItems: "center", display:"flex", marginLeft: "49%" }} /> : null}
+            {spinnerFlag ? <Spinner animation="border" style={{ justifyContent: "center", alignItems: "center", display:"flex", marginLeft: "49%", color: "#61677A" }} /> : null}
 
             {isDevFocus ? (
                 <div>
