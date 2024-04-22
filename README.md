@@ -52,4 +52,4 @@ To interact with the Taiga API using the provided Python script, you will need t
 2. Project page will be displayed
 3. Enter project slug eg: ser516asu-ser516-team-cleveland
 4. Select type of metric from dropdown.
-5. Submit to get the metric disployed on the same screen
+5. Submit to get the metric displayed on the same screen
