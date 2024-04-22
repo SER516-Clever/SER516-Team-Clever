@@ -14,7 +14,7 @@
 
 ## Taiga API Integration
 
-This project is a Python script for interacting with the Taiga API to perform various task and calculating metrics.
+This project aims to interact with the Taiga API to visualize various metrics. Each metric is computed within its own microservice.
 
 ## Running the Application
 
@@ -52,4 +52,4 @@ To interact with the Taiga API using the provided Python script, you will need t
 2. Project page will be displayed
 3. Enter project slug eg: ser516asu-ser516-team-cleveland
 4. Select type of metric from dropdown.
-5. Submit to get the metric displaoyed on the same screen
+5. Submit to get the metric disployed on the same screen
